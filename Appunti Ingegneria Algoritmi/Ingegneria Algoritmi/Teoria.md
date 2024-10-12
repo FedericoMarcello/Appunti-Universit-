@@ -87,4 +87,4 @@ che si riconduce al caso precedente.
 DFT opera su sequenze (campionamenti di una funzione).
 $$f_j,j=0,...,N-1 $$
 e si definisce come $$\sum_{j=0}^{N-1} e^{\frac{2\pi ijk},{}} $$
-E' evidente c
+E' evidente che a
