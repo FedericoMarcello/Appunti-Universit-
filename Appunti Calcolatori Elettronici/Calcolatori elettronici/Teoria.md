@@ -125,6 +125,14 @@ Esso non avviene quando i due operandi hanno segno discorde.
 Viceversa, esistono due casi in cui il risultato di una somma (in complemento a due) non è corretto ovvero se
 - somma algebrica di due numeri positivi A e B. Si ha un overflow se $$ A + B >=  2^{n-1} $$
 - somma algebrica di due numeri negativi A e B. Si ha overflow se  $$ A + B >= 2^{n-1} $$
+Tali due condizioni si verificano se gli ultimi due riporti sono discordi:
+![[Pasted image 20241012170320.png]]
+
+Guardando l'immagine orizzontalmente, i primi due numeri sono entrambi somme di numeri positivi, mentre gli altri due sono numeri negativi (presenza dell'1 davanti al vero numero)
+
+
+
+
 
 ### Altri tipi di codifica:
 #### Codifica ASCII:
@@ -144,7 +152,7 @@ Viceversa, esistono due casi in cui il risultato di una somma (in complemento a 
 ![[Pasted image 20240930151419.png]]
 
 
-### Distanza di Hamming (h)
+### #Distanza di Hamming (h)
 Si dice distanza di Hamming il numero minimo di cifre diverse tra due parole del codice.
 ##### Esempio:
 
