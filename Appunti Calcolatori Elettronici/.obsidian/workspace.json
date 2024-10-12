@@ -1,0 +1,167 @@
+{
+  "main": {
+    "id": "f9a321178d2cae05",
+    "type": "split",
+    "children": [
+      {
+        "id": "024e79544b970f8b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "906e57e4460aa6f5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Calcolatori elettronici/Esercizi.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2b95d311ec9b84cb",
+    "type": "split",
+    "children": [
+      {
+        "id": "5428bb7ccca14e3c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2040fa59373b2e39",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5cfb9421fae359e3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "62ae86a9e7cecadc",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "860a6d09507ed90e",
+    "type": "split",
+    "children": [
+      {
+        "id": "dea19d14b4fc6e52",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "85cae0fd57059212",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Calcolatori elettronici/Esercizi.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d711b3b5d1a97eab",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Calcolatori elettronici/Esercizi.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b3d1a4f061dac637",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b579fe6cb6ccd332",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Calcolatori elettronici/Esercizi.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "906e57e4460aa6f5",
+  "lastOpenFiles": [
+    "Calcolatori elettronici/Teoria.md",
+    "Calcolatori elettronici/Esercizi.md",
+    "Immagini/Pasted image 20240930182922.png",
+    "Immagini/Pasted image 20240930151346.png",
+    "Immagini/Pasted image 20240930152759.png",
+    "Immagini/Pasted image 20240930152700.png",
+    "Immagini/Pasted image 20240930152540.png",
+    "Immagini/Pasted image 20240930151419.png",
+    "Immagini/Pasted image 20240930151055.png",
+    "Immagini/Pasted image 20240927184618.png",
+    "Immagini/Pasted image 20240927183515.png",
+    "Immagini/Pasted image 20240927180033.png",
+    "Untitled.md",
+    "Immagini",
+    "Calcolatori elettronici"
+  ]
+}
