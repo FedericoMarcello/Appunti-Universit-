@@ -183,3 +183,4 @@ vale 1 se il numero di 1 nella codifica irridondante è dispari.
 ##### Disparità:
 vale 1 se il numero di 1 nella codifica è pari.
 ![[Pasted image 20240930182922.png]]
+a
