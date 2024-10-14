@@ -128,31 +128,139 @@ Viceversa, esistono due casi in cui il risultato di una somma (in complemento a 
 Tali due condizioni si verificano se gli ultimi due riporti sono discordi:
 ![[Pasted image 20241012170320.png]]
 
-Guardando l'immagine orizzontalmente, i primi due numeri sono entrambi somme di numeri positivi, mentre gli altri due sono numeri negativi (presenza dell'1 davanti al vero numero)
+Guardando l'immagine orizzontalmente, i primi due numeri sono entrambi somme di numeri positivi, mentre gli altri due sono numeri negativi (presenza dell'1 davanti al vero numero).
+##### Rappresentazione in eccesso:
+Chiamata anche offset binary o biased. Consiste nel selezionare un numero k nell'intervallo rappresentabile. Viene utilizzata la codifica binaria di k per rappresentare lo zero. 
+Quando si utilizzano n bit , tipicamente si pone $k=2^{n-1}$ 
+con due caratteristiche principali: 
+- lo zero è rappresentato con un valore con la sola cifra più significativa pari a 1, essa è unica.
+- viene conservato l'ordinamento dei numeri(non è vero con il complemento a 2)
+- la codifica è estremamente semplice:$$x'=x+k,~~~x = x'-k$$
+- Vi è una sola rappresentazione dello zero
+- L'intervallo rappresentabile è $[-2^{n-1},2^{n-1}-1]$
+### Numeri in virgola mobile:
+Esistono molte quantità di numeri reali che possono essere memorizzate in numeri interi:
+- lunghuezza
+- prezzi
+- temperature
+- frequenze delle note musicali
+- velocità
+Cosa succede se dovessimo rappresentare un numero che è più alto del numero massimo rappresentato attraverso i bit?
+Attraverso la Floating Point Unit possiamo manipolare numeri reali.
+#### Caratteristiche:
+- la rappresentazione dei numeri in virgola mobile si base su una uguaglianza del tipo: $12,345 = 1,2345 * 10^{1}$
+  dove 
+  $1,2345~è~la~mantissa,~10~è~la~base,~1~è~l'esponente$
+  
+- il nome virgola mobile si riferisce al fatto che la virgola può muoversi avanti e indietro 
 
+- sono state proposte diverse rappresentazioni nel tempo, ma studieremo lo standard IEEE 754 a 32 bit:
+#### Rappresentazione IEEE 754 a 32 bit:
+![[Pasted image 20241014113848.png]]
+Un numero reale (float) ha dimensione 32 bit così utilizzati:
+- segno s: 1 bit
+- esponente e: 8 bit
+- mantissa m: 23 bit
+#### Caratteristiche:
+L'esponente decimale E è rappresentato in eccesso a 127:$$e= E +127
+$$
+La mantissa rappresenta il valore binario $$(1.m)_2$$
+- dove la parte intera viene omessa nella rappresentazione
+Il valore decimale può essere calcolato come $$(-1)^{s}*2^{è-127}*(1.m)$$ questa viene chiamata rappresentazione _normalizzata_
+##### Tipologie di numero:
+- numeri normalizzati: sono la maggior parte dei numeri rappresentabili dallo standard
+- numeri denormalizzati: valori molto prossii allo zero. Generano alcuni problemi nella gestione degli errori di arrotondamento.
+	- la parte intera omessa non è 1, bensì 0
+- zeri: è possibile rappresentare ±0
+	- la maggior parte delle operazioni ignora il segno, ma dividere per ±0 può dare come risultato $\pm\infty$ 
+- infiniti: $\pm\infty$. Sono il risultato di una divisione per zero, o di un'operazione che genera un _overflow_
+- NaNs(not a number): sono il risultato di un'operazione che non ha significato: $(\infty - \infty, \frac{0}{0},\sqrt{-1},...)$ 
 
-
-
-
+Attraverso questa tabella possiamo individuare il  tipo di valore corrispondente grazie al valore della mantissa e dell'esponente:
+![[Pasted image 20241014132810.png]]
+##### Eccezioni:
+In alternativa a NaNs e infiniti, è possibile richiedere alla FPU di sollevare delle eccezioni:
+- **Invalid Operation**: generata quando si calcola un'operazione non matematicamente corretta
+- **Overflow** : indica che il risultato di un'operazione è troppo grande per essere rappresentato da un numero in virgola mobile.
+- **Division by Zero**: viene alzata quando si calcola $\frac{x}{\pm0}$ se $x \neq 0$
+- **Underflow**: analoga all'overflow, per risultati troppo piccoli
+- **Inexact**: i risultato reale non può essere rappresentato (vi è un errore di arrotondamento)
+#### Massimo e minimo numero positivo rappresentabile:
+##### Caso dei numeri normalizzati:
+La mantissa rappresenta i numeri nell'intervallo:
+$[(1.00000000000000000000000)_2,(1,11111111111111111111111)_2]$
+###### Caratteristiche:
+- Gli esponenti minimo e massimo sono 127 e -126
+- minimo $2^{-126}\approx 1.1754943508 * 10^{-38}$ 
+- massimo $2^{-126} * (1-2^{-23}\approx 3.4028234664*10^{38}$ 
+##### Caso dei numeri denormalizzati:
+La mantissa rappresenta i numeri nell'intervallo:
+$[(0.00000000000000000000001)_2,(1,11111111111111111111111)_2]$
+###### Caratteristiche:
+- L'esponente è -126
+- minimo $2^{-126} *2^{-23}=2^{-149}\approx 1.4012984643 * 10^{-45}$ 
+- massimo $2^{-126} * (1-2^{-23}\approx 1.1754943508*10^{-38}$ 
+#### Errori di approssimazione:
+Sappiamo che numeri reali sono infiniti, ma i bit utilizzati per la rappresentazione in virgola mobile sono finiti, dunque:
+- Ogni volta che effettuiamo un'operazione su un numero in virgola mobile, commettiamo un errore di operazione su un numero in virgola mobile
+- Il risultato è che, anche se l'insieme dei reali è totalmente _connesso_, l'insieme dei numeri in virgola mobile è _sparso_
+![[Pasted image 20241014155605.png]]
+La presenza di numeri massimi e minimi rappresentabili, crea dei buchi nella linea dei numeri rappresentabili.
+Altri buchi piccoli si creano tra la rappresentazione normalizzata quella denormalizzata.
+Se un numero non è rappresentabile in alcun modo:
+- **Overflow**:numero troppo grande o troppo piccolo (negativo)
+- **Underflow**: arrotondamento allo zero
+![[Pasted image 20241014163515.png]]
+La divisione in mantissa/esponente fa nascere un ulteriore peculiarità del formato
+quando siamo vicini allo zero, l'esponente è piccolo, quindi un incremento nella mantissa di 1 provoca un "salto" piccolo.
+Viceversa, per numeri grandi, questo numero sarà migliore.
+La densità dei numeri in virgola mobile non è quindi costante.
+- con 32 bit, circa la metà dei numeri rappresentabili sono compresi tra -1 e 1
+- vi è la stessa quantità di numeri rappresentabili tra 65536 e 131072
+![[Pasted image 20241014173928.png]]
+##### Come misurare l'errore:
+è possibile quantificare l'errore di approssimazione commesso nella rappresentazione di un numero in virgola mobile:
+- si può utilizzare la nozione di errore assoluto:
+$$\varepsilon_A=x-x'$$
+e ci dice quanto è stato perso dell'informazione originale.
+Volendo si può utilizzare anche la nozione di errore relativo:
+$$\varepsilon_{R}= \frac{x-x'}{x} $$
+esso è una quantità adimensionale che indica se l'errore commesso è grande o piccolo.
+La quantità $\log_{10}(\varepsilon_R)$ indica il numero di cifre non affette da errore.
+###### Esempio:
+![[Pasted image 20241014174950.png]]
 ### Altri tipi di codifica:
-#### Codifica ASCII:
-##### Tradizionale:
+Volendo se definiamo un alfabeto e un tipo di codifica, possiamo far corrispondere questo linguaggio a quello che vogliamo.
+#### Esempio:
+![[Pasted image 20241014192459.png]]
+#### Codifiche arbitrarie:
+Non esiste una sola codifica per ciascun elemento degli elementi che si vogliono rappresentare. Ipotizziamo di avere N elementi da rappresentare, n cifre binarie disponibili per la codifica e $m=[\log_{2}N]$, ci sono due possibilità:
+- Se $n=m$, allora il codice è irridondante
+-  Se $n>m$, allora il codice è ridondante
+Ecco alcuni Esempi:
+##### Codifica ASCII (Irridondante):
+American Standard Code for Information Interchange (ASCII), basata su un byte, superata da unicode per estendere la quantità di simboli rappresentati.
+###### Tradizionale:
 - 7 Bit
 - 128 caratteri rappresentabili
 - l'ottavo bit era utilizzato come codice di controllo di errore![[Pasted image 20240930151055.png]]
-##### Esteso:
+###### Esteso:
 - 8 bit
 - 256 caratteri rappresentabili (compresi i codici di controllo)
  
-#### Codice Binary Coded Decimal (BCD)
+##### Codice Binary Coded Decimal (BCD), (Irridondante)
+- è un codice irridondante per rappresentare le 10 cifre decimali usando quattro cifre binarie
+- ciascuna cifra è codificata indipendentemente
+- Tipicamente, due cifre sono memorizzate in un singolo bye (packed BCD)
+- Di facile interpretazione per gli umani, comodo per consentire alle macchine una conversione per la stampa
+- Molti bit sono sprecati (circa 1/6) rispetto alla rappresentazione binaria
 ![[Pasted image 20240930151346.png]]
-
-
-#### Codice di Gray:
-![[Pasted image 20240930151419.png]]
-
-
-### #Distanza di Hamming (h)
+##### Codice di Gray (Irridondante):
+- La rappresentazione è tale per cui tra due numeri adiacenti cambia una sola cifra binaria.
+- è un codice particolarmente utile per i casi di contatori elettronici, per evitare fenomeni transitori. Questo concetto è spiegabile attraverso un esempio, consideriamo la transizione: $(3_{10}\to (4_{10})) \equiv (011)_{2}\to(100)_2$ 
+	- Possono verificarsi molte sequenze intermedie, ad esempio:$$(001)_{2}\to(010)_{2}\to(000)_{2}\to(100)_{2}$$Ed il sistema non può distinguere tra configurazioni transitorie e corrette.
+	![[Pasted image 20240930151419.png]]
+#### Distanza di Hamming (h)
 Si dice distanza di Hamming il numero minimo di cifre diverse tra due parole del codice.
 ##### Esempio:
 
@@ -161,26 +269,41 @@ d(**10**0**10**, **01**0**01**) = 4
 Esso è scrivibile come:
 $$h =min(d(x,y))$$
 - Nel caso di codice irridondante, la distanza è 1
-- Un codice ridontante è capace di rivelare errori di peso $$\le~
+- Un codice ridondante è capace di rivelare errori di peso $$\le~
 h-1$$
 #### Codici Ridondanti:
 - Permetti di riconoscere o correggere gli errori
 - Amplissimi spazi di applicazione:
 	- aerospazio
-	- supercomputer
+	- super computer
 	- Reti di calcolatori
 ![[Pasted image 20240930152540.png]]
 Dove con la linea rossa indico la causa dell'errore
-Come riveliamo l'errore?
-Esempio
-Ho questi due codici:![[Pasted image 20240930152700.png]]
+##### Come riveliamo l'errore?
+Per capirlo, vediamo un esempio.
+Ho questi due codici:
+![[Pasted image 20240930152700.png]]
 Il modo in cui utilizziamo lo spazio disponibile per rappresentare gli elementi può consentire di rivelare la presenza di errori:
 ![[Pasted image 20240930152759.png]]
-#### Codice di parità:
+##### Codice di parità o disparità (Ridondante):
 Si tratta di un codice ridondante con h = 2 e si ottiene aggiungendo una cifra di parità ad un codice irridondante. Vi sono due tipologie: 
-##### Parità:
-vale 1 se il numero di 1 nella codifica irridondante è dispari.
-##### Disparità:
-vale 1 se il numero di 1 nella codifica è pari.
+###### Parità:
+vale 1 se il numero di 1 nella codifica irridondante è dispari, sennò 0
+###### Disparità:
+vale 1 se il numero di 1 nella codifica è pari, sennò 0
+###### Tabella riassuntiva: 
 ![[Pasted image 20240930182922.png]]
-a
+###### Come funziona?
+Supponiamo di usare un codice di _Parità_, si può determinare se c'è stato un **singolo** errore di trasmissione, vedremo perché è importante "singolo":
+- se la parità varrà 0, allora non ci sono stati errori di trasmissione.
+![[Pasted image 20241015000730.png]]
+###### Esempio:
+Voglio trasmettere 101.
+Il generatore di parità aggiungerà 0 alla fine, trasmettendo 1010.
+Vediamo diversi casi:
+![[Pasted image 20241015001244.png]]
+1) Se ricevo lo stesso bit, non avrò nessun segnale di errore perché la parità continua a valere 0, visto che la somma degli 1 è pari.
+2) Nel secondo caso ricevo un valore con un valore diverso, riceverò un segnale di errore poiché  la parità è diversa da 0, visto che la somma degli 1 è dispari
+3) Infine se gli elementi ad essere cambiati sono due (più in generale a coppie) la parità tornerà ad essere 0, quindi non riceverò alcun messaggio di errore,  questo è **totalmente sbagliato**.
+###### [Per capire meglio il funzionamento](https://www.edscuola.it/archivio/software/bit/bitfaq58.html)
+##### Codice di Hamming:

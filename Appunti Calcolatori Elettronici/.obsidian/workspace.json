@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "c80e316aa91a156f",
+        "id": "8c00af1cdbb1e960",
         "type": "tabs",
         "children": [
           {
-            "id": "6eb505c4ddf69306",
+            "id": "56fe9a8a2bd8a622",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#Distanza",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -146,22 +146,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b306cb88f4c5dcb3",
+  "active": "56fe9a8a2bd8a622",
   "lastOpenFiles": [
-    "Immagini/Pasted image 20241012170320.png",
-    "Immagini/Pasted image 20240930182922.png",
-    "Immagini/Pasted image 20240930152759.png",
-    "Immagini/Pasted image 20240930152700.png",
-    "Immagini/Pasted image 20240930152540.png",
-    "Immagini/Pasted image 20240930151419.png",
-    "Immagini/Pasted image 20240930151346.png",
-    "Immagini/Pasted image 20240930151055.png",
-    "Immagini/Pasted image 20240927184618.png",
-    "Immagini/Pasted image 20240927183515.png",
-    "Immagini/Pasted image 20240927180033.png",
-    "Immagini",
-    "Calcolatori elettronici/Teoria.md",
     "Calcolatori elettronici/Esercizi.md",
+    "Calcolatori elettronici/Teoria.md",
+    "().md",
+    "Immagini/Pasted image 20241015001244.png",
+    "Immagini/Pasted image 20241015000730.png",
+    "Immagini/Pasted image 20240930182922.png",
+    "Immagini/Pasted image 20241014132810.png",
+    "Immagini/Pasted image 20241014113848.png",
+    "Immagini/Pasted image 20241012170320.png",
+    "Immagini/Pasted image 20241014155605.png",
+    "Immagini/Pasted image 20241014163515.png",
+    "Immagini/Pasted image 20241014173928.png",
+    "Immagini/Pasted image 20241014174950.png",
+    "Immagini",
     "Calcolatori elettronici",
     "Welcome.md"
   ]
