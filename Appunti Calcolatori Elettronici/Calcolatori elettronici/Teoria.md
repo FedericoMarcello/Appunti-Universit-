@@ -1,9 +1,10 @@
+## Capitolo 2 Rappresentazioni:
 ### Conversione da base decimale a una base di destinazione qualsiasi:
 #### Se ho parte intera:
 1) Divisioni intere per la base di destinazione
 2) Fermarsi quando si è arrivati al valore 0
 3) Si ordinano i resti dall'ultimo al primo
-#### Esempio
+##### Esempio
 (10) in base decimale a base due:
 10 |5, Resto= 0
 5   |2, resto = 1
@@ -17,7 +18,7 @@ quindi 10 in base 2 si scrive (0,11)
 3) Ci si ferma quando si è arrivati al valore 0 o un periodo
 4) Si ordinano le parti intere sottratte dalla prima all'ultima dopo 
 
-#### Esempio
+##### Esempio
 (0.75) in base decimale a base due:
 0,75|1.5 unità = 1
 0,5  |1 , unità  = 1
@@ -40,7 +41,7 @@ esistono diversi sistemi di codifica, i più comuni sono
 - Base 10
 - Alfabeto I = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}
 
-### Esistono delle scorciatoie per la conversione:
+### Scorciatoie per la conversione:
 - Se parto da una base 2 ed arrivo ad una base 8, varranno le seguenti corrispondenze, o viceversa.
 ![[Pasted image 20240927161949.png]]
 
@@ -283,6 +284,7 @@ Dove con la linea rossa indico la causa dell'errore
 Per capirlo, vediamo un esempio.
 Ho questi due codici:
 ![[Pasted image 20240930152700.png]]
+
 Il modo in cui utilizziamo lo spazio disponibile per rappresentare gli elementi può consentire di rivelare la presenza di errori:
 ![[Pasted image 20240930152759.png]]
 ##### Codice di parità o disparità (Ridondante):
@@ -297,6 +299,8 @@ vale 1 se il numero di 1 nella codifica è pari, sennò 0
 Supponiamo di usare un codice di _Parità_, si può determinare se c'è stato un **singolo** errore di trasmissione, vedremo perché è importante "singolo":
 - se la parità varrà 0, allora non ci sono stati errori di trasmissione.
 ![[Pasted image 20241015000730.png]]
+[Per capire meglio il funzionamento](https://www.edscuola.it/archivio/software/bit/bitfaq58.html) 
+
 ###### Esempio:
 Voglio trasmettere 101.
 Il generatore di parità aggiungerà 0 alla fine, trasmettendo 1010.
@@ -304,6 +308,97 @@ Vediamo diversi casi:
 ![[Pasted image 20241015001244.png]]
 1) Se ricevo lo stesso bit, non avrò nessun segnale di errore perché la parità continua a valere 0, visto che la somma degli 1 è pari.
 2) Nel secondo caso ricevo un valore con un valore diverso, riceverò un segnale di errore poiché  la parità è diversa da 0, visto che la somma degli 1 è dispari
-3) Infine se gli elementi ad essere cambiati sono due (più in generale a coppie) la parità tornerà ad essere 0, quindi non riceverò alcun messaggio di errore,  questo è **totalmente sbagliato**.
-###### [Per capire meglio il funzionamento](https://www.edscuola.it/archivio/software/bit/bitfaq58.html)
+3) Infine se gli elementi ad essere cambiati sono due (più in generale a coppie) la parità tornerà ad essere 0, quindi non riceverò alcun messaggio di errore,  questo è **totalmente sbagliato**. 
 ##### Codice di Hamming:
+è un metodo per la costruzione di codici a distanza  $h \ge 3$. Data una parole di codice di $m = n+k~cifre, con~n \le 2^k - k-1$, avremo:
+- i bit in posizione $2^i$ sono bit di parità
+- ciascun bit di parità controlla la correttezza dei bit di informazione la cui posizione, espressa in binario, ha un 1 nella potenza di 2 corrispondente
+![[Pasted image 20241015104730.png]]
+###### Esempio 1:
+![[Pasted image 20241015105120.png]]
+###### Esempio 2:
+![[Pasted image 20241015105157.png]]
+###### Esempio 3:
+![[Pasted image 20241015105332.png]]
+
+## Capitolo 3 Algebra Booleana:
+### Cos'è?
+è un tipo di algebra definita dal matematico George Boole e fu inizialmente proposta nel tentativo di verificare la verità o la falsità di affermazioni in linguaggio naturale, partendo da alcune verità di base.
+Nel 1936 venne utilizzata da Shannon per studiare i circuiti basati su relé. Questo poiché l'algebra di Boole si basa sui concetti di vero/falso, quella di relé su aperto/chiuso
+Possiamo dunque dire che gli elementi fondamentali dei circuiti elettronici, al giusto livello di astrazione, rispettano ancora le regole dell'algebra booleana.
+
+### Proprietà, assiomi ed elementi introduttivi: 
+#### Variabili ed elementi di commutazione:
+- Una variabile booleana (o di commutazione) è una quantità algebrica x definita su un insieme S= {0, 1}, ossia che può assumere solo due valori.
+
+- Una funzione di commutazione di una variabile booleana è definita come la proiezione di {0,1} su {0,1}
+	- $f:[{0,1}]\to [{0,1}]$
+	- $y = f(x)$
+- Una funzione di commutazione di n variabili booleane è una funzione il cui dominio è dato da tutte le n-uple $(x_{1}, x_{2},...,x_{n})~in~[0,1]^{n}$ ed il codominio è $[0,1]$:
+	- $f:[0,1]^{n}\to [0,1]$
+	- $y=f(x_{1},x_{2},...,x_{n})$
+#### Operatori ed Assiomi fondamentali:
+- Somma logica: indicata con il segno +
+- Prodotto logico: indicato con il segno $*$ 
+- Negazione: dato un valore x, il suo valore negato è $\bar{x}$
+Questi permettono di definire gli **assiomi** fondamentali sul dominio S:
+- $\forall a, b \in S; a + b \in S, a * b \in S~(chiusura)$
+- $\exists0 \in S|\forall a \in s, a+0 =a; \exists 1 \in S |\forall a\in S, a*1=a~(elemento~idendità)$     
+- $a+b=b+a~(proprità~commutativa)$
+- $(a+b)+c = a+(b+c);(a*b)*c=a*(b*c)~(proprietà~associativa)$
+- $a*(b+c)=a*b+a*c;a+b*c=(a+b)*(a+c)~(proprietà~distributiva)$
+- $\forall a \in S \exists \bar{a} \in S|a+\bar{a}=1;a*\bar{a}=0~(elemento~inverso)$
+- $|S|=2^{n}; n=1,2,3,...,(cardinalità)$
+#### Legge di dualità:
+##### Teorema:
+Ogni identità booleana rimane invariata scambiando $+~con~*,e~0~con~1$
+##### Esempi:
+$Se~0+1 = 1,ponendo~1\to\alpha~e~0\to\beta~otteniamo~\alpha+\beta=\alpha$
+$Se~0+1 = 1,ponendo~1\to0~e~0\to1~otteniamo~0+1=0$
+$Se~0*1 = 0,ponendo~+\to*~e~*\to+~otteniamo~1*0=0$
+#### Proprietà di idempotenza:
+Nell'algebra booleana binaria vale $a+a=a~e~a*a=a$
+##### Dimostrazione:
+- $a= a+ 0$
+-  $a= a+ a*\bar{a}$
+- $a=(a+a)*(a+\bar{a})$
+- $a=a+a$
+- Di conseguenza, per la legge di dualità vale anche: $a=a*a$
+#### Annichilatori funzionali:
+Nell'algebra booleana binaria vale $a+1=1~e~a*0=0$
+##### Dimostrazione:
+La dimostrazione si basa sulla [[#Proprietà di idempotenza]]:
+- $a+1=a+a+\bar{a}$
+- $a+1=a+\bar{a}$
+- $a+1=1$
+- Di conseguenza, per la legge di dualità vale anche: $a*0=0$
+#### Legge dell'assorbimento:
+Nell'algebra booleana binaria vale $a+a*b=a~e~a*(a+b)=a$
+##### Dimostrazione:
+- $a+a*b=a*1+a*b$
+- $a+a*b=a*(1+b)$
+- $a+a*b=a*1$
+- $a+a*b=a$
+- Di conseguenza, per la legge di dualità vale anche: $a+a*b=a$
+#### Teorema di De Morgan:
+Il teorema di De Morgan è un teorema importante perché permette di esprimere gli operatori + e * in funzione degli altri due operatori fondamentali$$\overline {a+b}= \bar a* \bar b~~~~~~~~~~\overline{a*b}=\bar a+\bar b$$
+##### Dimostrazione:
+Per dimostrare il teorema è sufficiente verificare che $\bar a*\bar b$ è il complemento di $a+b$
+- $(a+b)+(\bar a*\bar b)=(a+b+\bar a)*(a+b+\bar b)$
+- $(a+b)*(\bar a+\bar b)=(1+b)*(1+a)$
+- $(a+b)*(\bar a+\bar b)=1*1=1$
+- La seconda si ottiene per la legge di dualità
+
+#### Funzioni di commutazione:
+Riprendiamo il discorso iniziato in [[#Variabili ed elementi di commutazione]] e vediamo come rappresentare le funzioni di commutazione attraverso gli operatori appena citati:
+- Una funzione di commutazione di n variabili $y=f(x_{1},x_{2},...,x_{n})$ e il codominio è l'insieme $[0,1]$
+- $f:[0,1]^{n}\to [0,1]$
+Ci sono diversi modi per esprimere una funzione di commutazione:
+- forma tabellare (tabelle di verità)
+- forme canoniche 
+- forme decimali
+##### Tabelle di verità:
+Crea una relazione fra le variabili di input ed il valore di output della funzione. In queste tabelle si utilizza speso in maniera interscambiabile il vettore **x**=$[x_{1},x_{2},..,x_n]$ e le variabili che lo compongono. 
+Una tabella di verità di una funzione di n variabili è costituita da $2^{n}$ righe:![[Pasted image 20241015175418.png]]
+###### Esempi:
+Si possono vedere come funzioni di commutazione anche gli operatori fondamentali, attraverso 1 o 2 variabili di commutazione:![[Pasted image 20241015175353.png]]
