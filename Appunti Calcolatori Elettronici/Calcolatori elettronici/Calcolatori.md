@@ -1,3 +1,6 @@
+# Esempi:
+
+# Teoria:
 ## Capitolo 2 Rappresentazioni:
 ### Conversione da base decimale a una base di destinazione qualsiasi:
 #### Se ho parte intera:
@@ -94,7 +97,7 @@ Questo tipo di rappresentazione, però, crea problemi quando svolgo operazioni d
 La rappresentazione più efficiente è data dal complemento a 2, una rappresentazione ad n cifre, il complemento a due di un numero x è definita come il complemento a 2^n
 $$2^n-x$$
 Per calcolare il complemento a due di x possiamo ragionare sulla proprietà fondamentale del complemento a 1. 
-([[Teoria#Complemento a uno]])
+([[Calcolatori#Complemento a uno]])
 essendo il complemento a 1:
 $$x+x'=2^n-1$$
 invertendo l'1 e x, otterrò:
@@ -402,3 +405,163 @@ Crea una relazione fra le variabili di input ed il valore di output della funzio
 Una tabella di verità di una funzione di n variabili è costituita da $2^{n}$ righe:![[Pasted image 20241015175418.png]]
 ###### Esempi:
 Si possono vedere come funzioni di commutazione anche gli operatori fondamentali, attraverso 1 o 2 variabili di commutazione:![[Pasted image 20241015175353.png]]
+
+#### Operatori derivati:
+Sulla base degli [[#Operatori ed Assiomi fondamentali]] è possibile definire i seguenti operatori derivati:
+1) OR esclusivo (XOR), indicato con il simbolo $\bigoplus$ 
+ 2) Not AND, indicato con |.
+ 3) NOR, indicato con $\downarrow$ 
+ 4) NOR esclusivo (XNOR), indicato con il simbolo $\bigodot$
+ 
+##### OR esclusivo (XOR)
+Esso è equivalente alla somma modulo 2 ed è definito così:$$a~\oplus~b = \bar a b+a\bar b $$
+Viene utilizzato per verificare la disuguaglianza tra due variabili.
+ ![[Pasted image 20241016115031.png]]
+###### Proprietà Principali:
+- $a\oplus b = b\oplus a~(proprietà~commutativa)$
+- $a\oplus(b\oplus c)=(a\oplus b)\oplus c~(proprietà~associativa)$
+- $a\oplus a=0$
+- $a\oplus \bar a = 1$
+- $a\oplus 1=\bar a$
+- $\bar a \oplus b = a \oplus \bar b= \overline{a\oplus b}$
+
+
+##### Not AND (NAND):
+Definito così:$$a|b=\overline{a * b}=\bar a +\bar b$$
+![[Pasted image 20241016115216.png]]
+###### Proprietà:
+- $a|b=b|a~(Proprietà~commutativa)$
+- $a|1=\bar a$
+- $a|0=1$
+- $a|\bar a = 1$
+- $a|(b|c)\neq (a|b)|c~(l'operatore~non~è~associativo)$    
+
+
+##### NOR
+Si tratta del duale dell'operatore NAND ed è definito cosi:$$a\downarrow b = \overline{a+b}=\bar a *\bar b$$ ![[Pasted image 20241016121655.png]]
+###### Proprietà:
+- $a\downarrow b = b\downarrow a~(proprietà~commutativa)$
+- $a\downarrow 1 = 0$
+- $a\downarrow 0 = \bar a$
+- $a\downarrow \bar a = 0$
+- $a\downarrow(b\downarrow c)\neq (a\downarrow b) \downarrow c~(l'operatore~non~è~associativo)$
+
+
+##### Nor esclusivo (XNOR)
+Definito come segue:$$a\odot b=(\bar a+b)*(a+\bar b)$$ ![[Pasted image 20241016121907.png]]
+###### Proprietà:
+- $a\odot b = b\odot a~(proprietà~commutativa)$
+- $a\odot(b\odot c)=(a\odot b)\odot c~(proprietà~associativa)$
+- $a\odot 1= a$
+- $a \odot \bar a =0$
+- $a \odot 0 =\bar a$
+
+#### Teorema di Shannon:
+Il teorema afferma che una qualsiasi funzione $y= f(x_{1}, x_{2},...,x_{n})$ può essere rappresentata in una delle due seguenti forme duali:
+$f(x_{1}, x_{2},...,x_{n})=x_{1}*f(1,x_{2},...,x_n)+\overline{x_1}*f(0,x_2,...,x_n)$ 
+$f(x_{1}, x_{2},...,x_{n})=(x_1+f(0,x_{2},..,x_{2}))*(\overline {x_1}+f(1,x_2,..,x_n))$  
+I termini che moltiplicano o si sommano a $x_{1}$ sono chiamati i residui della funzione. Ciò è vero nel caso di variabili indipendenti.
+Questo teorema può essere applicato iterativamente a tutte le variabili della funzione.
+Se svolgo questo processo otterrò:$$f(x_{1},...,x_{n})=\overline{x_{1}}*\overline {x_{2}}*...*\overline {x_{n}}*f(0,0,...,0)+ {x_{1}}*\overline {x_{2}}*...*\overline {x_{n}}*f(1,0,...,0)+\\ $$$$+\overline {x_{1}}*{x_{2}}*...*\overline {x_{n}}*f(0,1,...,0)+...+{x_{1}}*{x_{2}}*...*\overline {x_{n}}*f(1,1,...,0)+{x_{1}}*{x_{2}}*...*{x_{n}}*f(1,1,...,1)$$ Che può essere riassunto, per ogni termine cosi:$$x_1^{\alpha_1}x_2^{\alpha_2}...x_n^{\alpha_n}*f(\alpha_1,\alpha_2,...,\alpha_2)$$
+con $\alpha_i=[0,1]~e~x_{i}^{\alpha_{i}}=x_{i}~se~\alpha_i=1,x_{i}^{\alpha_{i}}=\overline{x_i}~se~\alpha_{i}=0$
+#### Forme canoniche:
+Sono rappresentazioni uniformi utilizzate per descrivere una funzione di commutazione. Qualsiasi funzione può essere trasformata in forma canonica:
+- Tabelle di verità e utilizzare la tecnica dei mintermini o maxtermini
+- Si possono effettuare trasformazioni analitiche: se una variabile $x_i$ non è presente, si può moltiplicare per $(x_{i}+\overline{x_i})$ 
+##### Prima tecnica: Min e Max termini
+###### Prima forma canonica: _somma di prodotti_
+(o forma canonica disgiuntiva):$$f(x_{1},x_2,...,x_n)=\sum_{k=0}^{2^n-1}m_kf(k)$$
+- il termine $m_k$ viene chiamato mintermine ed è nella forma $x_1^{\alpha_1}x_2^{\alpha_2}...x_n^{\alpha_n}$
+- In ciascun mintermine, le variabili compaiono una ed una sola volta in forma diretta o negata.
+###### Seconda  forma canonica: _prodotti di somme_
+Utilizzando il teorema di De Morgan possiamo trasformare la forma canonica precedente in :$$\overline{f(x_{1},x_2,...,x_n)}=\sum_{k=0}^{2^{n}-1} m_{k}\overline{f(k)}$$Che possiamo scrivere come:$${f(x_{1},x_2,...,x_n)}=\overline{\sum_{k=0}^{2^{n}-1} m_{k}\overline{f(k)}}=\prod_{k=0}^{2^{n}-1} \overline{m_{k}\overline{f(x)}}=\prod_{k=0}^{2^{n}-1} (M_{k}+f(k))$$
+Dove il termine $M_k$ viene chiamato maxtermine ed è nella forma:
+$M_k=$ $\sum_{i=0}^{n-1}x_i^{a_{i}}$ con $\alpha_{i}=[0,1]$ e $~x_{i}^{\alpha_{i}}=x_{i}~se~\alpha_i=0,x_{i}^{\alpha_{i}}=\overline{x_i}~se~\alpha_{i}=1$
+###### Esempio:
+Consideriamo la seguente funzione di commutazione definita mediante tabella di verità:
+![[Pasted image 20241016194746.png]]
+- I **mintermini** corrispondono alle configurazioni k = 0,4,5,7
+- I **maxtermini** corrispondono alle configurazioni k= 1,2,3,6
+A questo punto, dai mintermini possiamo definire la seguente rappresentazione in somme di prodotto:$$f(x_1,x_2,x_3)=\overline{x_1}~\overline{x_2}~\overline{x_3}+x_1~\overline{x_2}~\overline{x_3}+x_1~\overline{x_2}~{x_3}+x_1~{x_2}~{x_3}$$
+![[Pasted image 20241016195321.png]]
+
+
+Invece dai maxtermini possiamo definire la seguente rappresentazione in somme di prodotti:$$f(x_{1}, x_{2},x_{3})=(x_{1}+x_{2}+\overline{x_3})(x_{1}+ \overline{x_2}+x_{3})(x_{1}+\overline{x_{2}}+\overline{x_3})(\overline{x_{1}}+\overline{x_{2}}+x_{3})$$ ![[Pasted image 20241017094726.png]]
+
+###### Forma decimale:
+Si indica l'interpretazione decimale delle variabili booleane associate a mintermini e maxtermini:$$f(k)=\sum\limits(0,4,5,7)=\prod(1,2,3,6)
+$$![[Pasted image 20241017105808.png]]
+
+##### Seconda tecnica: Trasformazioni Analitiche:
+Per capire meglio, utilizziamo il seguente esempio:$$x_{1}x_{3}+\overline{x_{1}}(x_{2}+\overline{x_{3}})$$ questa funzione può essere trasformata come segue:$$x_{1}x_{3}+\overline{x_{1}}(x_{2}+\overline{x_{3}})=x_{1}x_{3}(x_{2}+\overline{x_{2}})+\overline{x_{1}}x_{2}(x_{3}+\overline{x_{3}})+\overline{x_{1}}\overline{x_{3}}(x_{2}+\overline{x_{2}})$$Risolvendo la moltiplicazione otterremo:$$x_{1}x_{2}x_{3}+x_{1}\overline{x_{2}}x_{3}+\overline{x_{1}}x_{2}x_{3}+2(\overline{x_{1}}x_{2}\overline{x_{3}})+\overline{x_{1}x_{2}x_{3}}$$
+
+#### Forme semplificate:
+Le forme canoniche non sono necessariamente le forme minime per rappresentare una funzione booleana.
+Identificare una forma minima è importante poiché permetterà di realizzare circuiti più compatti ed il processo può essere svolto attraverso due metodi:
+- analitici
+- algoritmici
+##### Metodi analitici:
+I metodi analitici richiedono di applicare le proprietà dell'algebra e teoremi visti fin ora.
+Non esiste un tipo di risoluzione corretto per ogni forma.
+###### Esempio:
+![[Pasted image 20241017110240.png]]![[Pasted image 20241017110409.png]]
+
+#### Mappe di Karnaugh:
+Le mappe di Karnaugh sono una rappresentazione differente delle tabelle di verità.
+##### Caratteristiche:
+- Le variabili vengono organizzate in tabelle quadrate o rettangolari, a seconda del loro numero
+- I valori che possono assumere le variabili vengono ordinati secondo un Codice di Gray (distanza di Hamming=1)
+- In questo modo, spostandosi da una cella all'altra, si causa il cambiamento del valore di _una sola variabile_
+- Poiché $(a+\overline{a})=1$ è possibile eliminare (semplificare) una variabile se la funzione assume lo stesso valore in gruppi di celle adiacenti
+- Esso è un metodo facile per gli umani (max 6 variabili), di difficile realizzazione automatizzata per un algoritmo
+##### Mappe di Karnaugh (funzioni a 2,3,4 variabili):
+![[Pasted image 20241017154632.png]]
+E' importante notare che l'uso del codice di Gray garantisce che anche le celle agli estremi siano _adiacenti_.
+###### Funzioni a 4 variabili:
+Studiando la funzione a 4 variabili osserviamo che le adiacenze ai bordi e agli angoli sono valide poiché la mappa è lo sviluppo di un solido multidimensionale.
+Ad esempio, per 4 variabili la mappa è lo sviluppo di un _toro_:
+![[Pasted image 20241017160109.png]]
+##### Mappe di Karnaugh (funzioni a 5 variabili):
+![[Pasted image 20241017160244.png]]
+L'adiacenza è anche tra le due tabelle, come se queste fossero sovrapposte.
+##### Mappe di Karnaugh (funzioni a 6 variabili):
+Come nel caso di cinque variabili, anche qui le adiacenze valgono per tabelle sovrapposte:
+![[Pasted image 20241017160509.png]]
+
+##### Mappe di Karnaugh e tabelle di verità:
+Per trasforma una tabella di verità in una mappa di Karnaugh è sufficiente riempire le celle della mappa con il valore della funzione in corrispondenza delle variabili di ingresso:
+![[Pasted image 20241017161537.png]]
+[Approfondimento ChatGPT](https://chatgpt.com/share/67112f87-4d14-8008-be3c-1e64b19238ec)
+###### Semplificazioni mediante mappe di Karnaugh:
+Per sfruttare le adiacenze è possibile costruire insiemi di copertura di dimensione 1,2,4,8,16,... celle, raddoppiando via via la dimensione. Questi insiemi devono coprire tutti i termini 1. 
+Così facendo, si identificano gli implicanti primi, ossia gli insiemi di termini che determinano la funzione equivalente minima. Tuttavia è possibile lavorare anche con i maxtermini, in tal caso si parla di implicanti minimi e le coperture avvengono sugli 0.
+Non è detto che, data una funzione, esista un solo insieme di implicanti minimi.
+
+###### Esempio:
+Consideriamo la funzione:$$f(x,y,z,w)=\sum\limits(0,1,3,7.15)$$
+Andiamo a scrivere la tabella di verità, sappiamo che:
+- deve avere $x^{n}~righe$
+- in questo caso, l'output(ovvero l'ultima colonna) sarà 0 se il numero corrispondente non è tra i mintermini, viceversa si otterrà 1, per esempio $f(0,0,0,1)=1$ poiché 1 è un mintermine. 
+
+| $x_1$ | $x_{2}$ | $x_{3}$ | $x_4$ | $f(x,y,z,w)$ |
+| ----- | ------- | ------- | ----- | ------------ |
+| 0     | 0       | 0       | 0     | 1            |
+| 0     | 0       | 0       | 1     | 1            |
+| 0     | 0       | 1       | 0     | 0            |
+| 0     | 0       | 1       | 1     | 1            |
+| 0     | 1       | 0       | 0     | 0            |
+| 0     | 1       | 0       | 1     | 0            |
+| 0     | 1       | 1       | 0     | 0            |
+| 0     | 1       | 1       | 1     | 1            |
+| 1     | 0       | 0       | 0     | 0            |
+| 1     | 0       | 0       | 1     | 0            |
+| 1     | 0       | 1       | 0     | 0            |
+| 1     | 0       | 1       | 1     | 0            |
+| 1     | 1       | 0       | 0     | 0            |
+| 1     | 1       | 0       | 1     | 0            |
+| 1     | 1       | 1       | 0     | 0            |
+| 1     | 1       | 1       | 1     | 1            |
+Ora rappresentiamo la tabella di verità su una mappa di Karnaugh:
+![[Pasted image 20241017164132.png]]
+a questo punto, identifichiamo gli **implicanti primi** selezionando degli insiemi di dimensione 1,2,4,... fino a coprire tutti gli 1 almeno una volta(semplificazione con mintermini).
+

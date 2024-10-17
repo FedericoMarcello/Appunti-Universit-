@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Calcolatori elettronici/Teoria.md",
+                "file": "Calcolatori elettronici/Calcolatori.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Calcolatori elettronici/Teoria.md",
+                "file": "Calcolatori elettronici/Calcolatori.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Calcolatori elettronici/Teoria.md",
+                "file": "Calcolatori elettronici/Calcolatori.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Calcolatori elettronici/Teoria.md"
+                "file": "Calcolatori elettronici/Calcolatori.md"
               }
             }
           }
@@ -146,22 +146,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b306cb88f4c5dcb3",
+  "active": "56fe9a8a2bd8a622",
   "lastOpenFiles": [
-    "Immagini/Pasted image 20241015175418.png",
-    "Immagini/Pasted image 20241015175353.png",
-    "Immagini/Pasted image 20241015175025.png",
-    "Immagini/Pasted image 20241015105332.png",
-    "Immagini/Pasted image 20241015105157.png",
-    "Immagini/Pasted image 20241015105120.png",
-    "Immagini/Pasted image 20241015104730.png",
+    "Pasted image 20241017164132.png",
+    "Pasted image 20241017161537.png",
     "Calcolatori elettronici/Esercizi.md",
-    "Calcolatori elettronici/Teoria.md",
+    "Immagini/Pasted image 20241017160509.png",
+    "Immagini/Pasted image 20241017161237.png",
+    "Calcolatori elettronici/Calcolatori.md",
+    "Immagini/Pasted image 20241017160244.png",
+    "Immagini/Pasted image 20241017160109.png",
+    "Immagini/Pasted image 20241017154632.png",
+    "Immagini/Pasted image 20241017110409.png",
+    "Immagini/Pasted image 20241017110250.png",
+    "Immagini/Pasted image 20241017110240.png",
+    "Immagini/Pasted image 20241017105808.png",
     "().md",
-    "Immagini/Pasted image 20241015001244.png",
-    "Immagini/Pasted image 20241015000730.png",
-    "Immagini/Pasted image 20240930182922.png",
-    "Immagini/Pasted image 20241014132810.png",
     "Immagini",
     "Calcolatori elettronici",
     "Welcome.md"

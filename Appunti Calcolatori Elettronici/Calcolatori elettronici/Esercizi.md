@@ -18,6 +18,6 @@ Questo numero può essere "tradotto" anche in base 16, come?
 Raccolgo a quattro a quattro: 
 $$ 11000010010101000110011001100110=1100~0010~0101~0100~0110~0110~0110~0110 $$
 E trovo il corrispettivo nell'alfabeto esadecimale 
-[[Teoria#Esistono delle scorciatoie per la conversione]]:
+[[Calcolatori#Esistono delle scorciatoie per la conversione]]:
 che corrisponde a $$ C~2~5~4~6~6~6~6 $$
 l'uguaglianza fra questo termine in base 16 e il termine -53,1 in base 10 non è una uguaglianza matematica, ma una corrispondenza nei rispettivi sistemi di riferimento, cioè il numero (-53,1) in base 10 corrisponde a (C 2 5 4 6 6 6 6) in base 16, ma i due numeri non sono obbligatoriamente uguali.
