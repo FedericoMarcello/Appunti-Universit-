@@ -1,4 +1,27 @@
 # Esempi:
+## 1)  Sistema di monitoraggio
+Progettare il sistema di monitoraggio di un'azienda manifatturiera. Il sistema monitora il funzionamento di due macchine di produzione (M1 e M2) e controlla un sistema di raffreddamento ed allarme, in base alle condizioni operative delle due macchine:
+- M1 indica se la macchina M1 è in funzione (1 si, 0 no)
+- M2 indica se la macchina M2 è in funzione (1 si,0 no)
+- T indica se la temperatura della stanza è elevata
+- A attiva l'allarme se le macchine sono in funzione a la temperatura è elevata, o se nessuna macchina è in funzione
+- V attiva la ventola di raffreddamento se almeno una delle due macchine è attiva e se la temperatura è elevata
+Svolgimento:
+$A=M_{1}*M_{2}*T+\overline{M_1}*\overline{M_2}$
+$V=(M_{1}+M_{2})T=M_{1}*T+M_{2}*T$
+
+Costruisco la tabella collegata alle equazioni e ai singoli casi
+
+| $M_1$ | $M_2$ | T   | A   | V   |
+| ----- | ----- | --- | --- | --- |
+| 0     | 0     | 0   | 1   | 0   |
+| 0     | 0     | 1   | 1   | 0   |
+| 0     | 1     | 0   | 0   | 0   |
+| 0     | 1     | 1   | 0   | 1   |
+| 1     | 0     | 0   | 0   | 0   |
+| 1     | 0     | 1   | 0   | 1   |
+| 1     | 1     | 0   | 0   | 0   |
+| 1     | 1     | 1   | 1   | 1   |
 
 # Teoria:
 ## Capitolo 2 Rappresentazioni:
@@ -532,7 +555,7 @@ Come nel caso di cinque variabili, anche qui le adiacenze valgono per tabelle so
 Per trasforma una tabella di verità in una mappa di Karnaugh è sufficiente riempire le celle della mappa con il valore della funzione in corrispondenza delle variabili di ingresso:
 ![[Pasted image 20241017161537.png]]
 [Approfondimento ChatGPT](https://chatgpt.com/share/67112f87-4d14-8008-be3c-1e64b19238ec)
-###### Semplificazioni mediante mappe di Karnaugh:
+##### Semplificazioni mediante mappe di Karnaugh:
 Per sfruttare le adiacenze è possibile costruire insiemi di copertura di dimensione 1,2,4,8,16,... celle, raddoppiando via via la dimensione. Questi insiemi devono coprire tutti i termini 1. 
 Così facendo, si identificano gli implicanti primi, ossia gli insiemi di termini che determinano la funzione equivalente minima. Tuttavia è possibile lavorare anche con i maxtermini, in tal caso si parla di implicanti minimi e le coperture avvengono sugli 0.
 Non è detto che, data una funzione, esista un solo insieme di implicanti minimi.
@@ -564,4 +587,266 @@ Andiamo a scrivere la tabella di verità, sappiamo che:
 Ora rappresentiamo la tabella di verità su una mappa di Karnaugh:
 ![[Pasted image 20241017164132.png]]
 a questo punto, identifichiamo gli **implicanti primi** selezionando degli insiemi di dimensione 1,2,4,... fino a coprire tutti gli 1 almeno una volta(semplificazione con mintermini).
+A questo punto, identifichiamo gli implicanti primi selezionando degli insiemi di dimensione 1,2,4,.. fino a coprire tutti gli 1 almeno una volta:
+![[Pasted image 20241018092648.png]]
+Le variabili che cambiano valore nelle celle adiacenti in ciascun insieme possono essere semplificate:
+- $f(x,y,z,t)=\bar{x}\bar{y}\bar{z}+\bar{x}zw+yzw$ (insiemi di sinistra)
+- $f(x,y,z,t)=\bar{x}\bar{y}\bar{z}+\bar{x}\bar{z}w+yzw$ (insiemi di sinistra)
+###### Esempio mediante prodotto di somme:
+è possibile effettuare la semplificazione creando insiemi che ricoprano gli zeri:
+- le funzioni minime ottenute sono equivalenti
+In questo caso dobbiamo esprimere la funzione come prodotto di somme:
 
+Quale usare?
+- Una regola non universale ma molto pratica e quella di utilizzare i max termini se gli 1 sono meno della metà e se invece sono gli zeri ad essere meno della metà, si usano i mintermini.
+- In generale è opportuno identificare la strategia che porta al numero minore di termini o di termini con meno variabili.
+![[Pasted image 20241018182259.png]]
+![[Pasted image 20241018182314.png]]
+###### Esempi di adiacenze: funzioni di 4 variabili
+![[Pasted image 20241018182405.png]]
+###### Esempi di adiacenze: funzioni di 5 variabili
+![[Pasted image 20241018182445.png]]
+###### Don't Care Condition:
+A volte, una funzione è parzialmente specificata.
+In questi casi il valore dell'uscita non è definito per tutte le configurazioni delle variabili di ingresso:
+- variabili dipendenti
+- Configurazioni non di interesse.
+In questi casi, i mintermini/maxtermini vengono associati (nella notazione decimale) a un insieme $\sum\limits_\frac{0}{1}$ che rappresenta il fatto che non è noto (o di interesse) che il valore della funzione sia 0 o 1.
+Nel caso delle mappe di Karnaugh, si indica tale condizione con un trattino (-) e si più comodo per la minimizzazione.
+![[Pasted image 20241018183317.png]]
+###### Esempio di funzioni con 6 variabili:
+L'insieme azzurro costruisce un insieme di copertura che racchiude 4 termini, permettendo una riduzione di due variabili.
+Se avessimo considerato il solo mintermine $\bar{a}bcd\bar{e}\bar{f}$ l'espressione sarebbe stata più complessa.
+![[Pasted image 20241018183609.png]]
+##### Operatori Universali:
+Essi sono utili nell'implementazione dei circuiti perché la loro implementazione in hardware può richiedere un numero minore di componenti elettroniche
+###### Operatore NAND
+L'operatore NAND permette, da solo, di esprimere tutta l'algebra booleana (_operatore universale_). Infatti è possibile esprimere tutte le costanti e gli operatori fondamentali dell'algebra sfruttando solo ed esclusivamente l'operatore NAND
+$a|a=\bar a$
+$(a|a)|(b|b)=\overline{\bar{a}~\bar{b}}= a+b$ 
+$(a|b)|(a|b)=\overline{\overline{(ab)}~\overline{(ab)}}=(ab)+(ab)=ab$ 
+$a|(a|a)=\overline{a\bar{a}}=a+\bar a=1$
+$(a|(a|a))|(a|(a|a))=1|1=0$
+###### Operatore NOR:
+L'operatore NOR è stato definito come duale dell'operatore NAND, quindi anch'esso deve essere universale.
+$a\downarrow a=\bar a$
+$(a\downarrow a)\downarrow(b\downarrow b)=\overline{\bar{a}~\bar{b}}= a*b$ 
+$(a\downarrow b)\downarrow(a\downarrow b)=\overline{\overline{(a+b)}}=a+b$ 
+$a\downarrow(a\downarrow a)=0$
+$(a\downarrow (a\downarrow a))\downarrow(a\downarrow(a\downarrow a))=1$ 
+## Capitolo 4: circuiti combinatori:
+### Circuiti logici (o di commutazione):
+Sono reti di componenti che accettano variabili booleane in input e le restituiscono in output. Per capirle meglio è utile affidarsi all'algebra booleana. Gli operatori booleani sono implementati in hardware da circuiti chiamate porte logiche che vengono astratte con i seguenti simboli:
+![[Pasted image 20241019134140.png]]
+#### Negazioni e porte a più ingressi:
+Circuitalmente è più efficiente inserire il calcolo della negazione degli input direttamente nelle porte logiche:
+![[Pasted image 20241019224740.png]]
+Inoltre è possibile costruire porte a più ingrassi, dipendentemente dalla tecnologia costruttiva:
+![[Pasted image 20241019224829.png]]
+La maggior parte degli operatori è associativo e commutativo
+##### NAND a più ingressi:
+Abbiamo visto che l'operatore NAND non è associativo,([[#Not AND (NAND)]]), quindi 
+$$x_{1}|(x_{2}|x_{3})=\overline{x_{1}}+x_{2}x_{3}\ne x_{1}x_2+\overline {x_3}=(x_{1}|x_{2})|x_{3}$$
+ciò significa che i seguenti cicli non sono equivalenti:
+![[Pasted image 20241020120231.png]]
+E' però possibile costruire la seguente porta logica:
+![[Pasted image 20241020120308.png]]
+ed il suo significato è dato da $x_{1}|x_{2}|x_{3}=\overline{x_{1}x_{2}x_{3}}$ costruendo quindi un operatore NAND associativo. 
+Questo operatore calcolare una funzione differente dal NAND booleano.
+##### NOR a più ingressi:
+vale lo stesso ragionamento per l'operatore NOR, infatti:![[Pasted image 20241020125034.png]]
+##### Porte logiche a diodi:
+###### Tipo di porta AND:
+E' possibile costruire un selettore di velocità secondo il circuito in figura e poichè 
+operiamo con circuiti di commutazione, assumiamo che siano possibili solo due livelli di tensione:$V_{L}~e~V_{H}$.
+Il circuito rappresentato funziona attraverso le caratteristiche dei singoli componenti:![[Pasted image 20241020190238.png]]
+- diodi: sono degli interruttori che funzionano come dei conduttori solo se il lato che è collegato a $V_{1}~o~a~V_{2}$ 
+- resistenza: collega l'uscita $V_{out}$ alla tensione di alimentazione $V_{CC}$ 
+ Sapendo che i diodi funzionano in un modo specifico, possiamo analizzare le condizioni di tensione:
+- Se $V_{1}$ è positivo, ci sarà un blocco di tensione in posizione del diodo corrispondente, condurrà la corrente a $V_{2}$.
+	- Se $V_{2}$ è positivo, allora ci sarà un blocco anche in corrispondenza del secondo diodo, dunque la tensione in $V_{out}$ sarà alta.
+	- Se $V_{2}$ è negativo, non ci sarà blocco e la corrente passerà fino ad arrivare in $V_{2}$, quindi la tensione in $V_{out}$ sarà bassa.
+- se entrambi gli ingressi sono bassi, nessun diodo condurrà e $V_{out}$ sarà mantenuto alto grazie a $V_{CC}$ attraverso la resistenza R, quindi la corrente sarà alta.
+Questo circuito si comporta come una porta AND, poiché il caso di tensione alta si può verificare in $V_{2}$ SE E SOLO SE le altre due sono alte.
+Se anche una delle due è bassa, allora il risultato sarà basso. In termini booleani, $V_{out}$ sarà 1 se sia $V_{1}$, sia $V_{2}$ sono 1.
+###### Tipo di porta OR:
+Immaginiamo un circuito ideale di questo tipo, per implementare una porta logica di tipo OR:
+![[Pasted image 20241021122123.png]]
+Implementa la porta OR poiché la tensione in $V_{out}$ sia alta, basta che si verifichi che o $V_{1}$ sia alta o $V_{2}$ lo sia, come anche spiegato dalla tabella. In termini booleani $V_{out}$ è 1 se o$V_{1}$ è 1 o $V_{2}$  lo è
+
+###### Problemi:
+Le porte basate su diodi provocano un'attenuazione del segnale. Collegando in cascata più porte, il segnale subirà un'attenuazione progressiva che può distruggere la differenza tra $V_{L}$ e $V_{H}$. Questo fenomeno ha portato al progressivo abbandono di queste porte negli anni '60 a favore delle porte a transistor.
+##### Logica TTL:
+La Transistor/Transistor Logic si basa sull'uso di alcuni transistor per la realizzazione  della funzione di commutazione e di alcuni transistor per l'amplificazione del segnale, per eliminare il fenomeno dell'attenuazione.
+Si basano sul concetto di resistenze _pull up_.
+###### Esempio (Inverter TTL):
+Implementa una porta NOT:
+![[Pasted image 20241021123942.png]]
+##### Logica CMOS:
+si basa sull'uso di transistor pMOS e nMOS nella stessa rete, rispettivamente la prima si comporta da _pull up_, mentre la seconda implementa la parte di _pull down_ il vantaggio è che l'area utilizzata è estremamente piccola.
+###### Esempio: (inverter CMOS):
+![[Pasted image 20241021131220.png]]
+##### Porta NAND:
+![[Pasted image 20241021133808.png]]
+
+##### Porta NOR:
+![[Pasted image 20241021133839.png]]
+
+##### Riduzione del costo nelle operazioni AND/OR:
+Immaginiamo di avere una funzione composta del tipo:
+$$y=\sum\limits_{i=1}^{n}f_{i}~oppure~y=\prod_{i=1}^{n}f_{i}$$
+Il circuito logico risultante è del tipo:
+![[Pasted image 20241021134252.png]]
+Vi sono però dei problemi, in particolare nei "puntini", infatti visto che il numero di ingressi cresce, aumenterà anche il numero di transistor, ma non è detto che si conoscono a priori il numero di input da considerare. Nel caso in cui gli input fossero in grande numero, il relativo accumulo di corrente potrebbe danneggiare i dispositivi elettronici.
+#### Tecnologia in Open Collector:
+Le porte Open collector utilizzano un transistor aggiuntivo in cui il collettore è connesso all'uscita della porta che funziona come un circuito aperto o come come circuito connesso a massa. Visto che si lavora in logica negata,viene utilizzata una resistenza di pull up che fa salire la tensione quando il circuito è chiuso:
+![[Pasted image 20241021172205.png]]
+Per indicare un operatore logico in open collector, viene utilizzato il simbolo della porta logica negata, marcato con "OC". Esempio: NAND in Open Collector, dove la resistenza di pull up diventa esterna alla porta:![[Pasted image 20241021175210.png]]
+Le porte in open collector vengono usate quando c'è la necessit di collegare insieme più porte che possono fornire corrente in uscita contemporaneamente. L'accumulo di corrente in uscita, nel caso di un numero elevato di componenti, può produrre un danno fisico al circuito. Con l'uso dell'open collector la quantità di corrente che fluisce nel circolo non è più in funzione del numero di porte con l'uscita attiva:
+![[Pasted image 20241021175530.png]]
+##### Buffer Three-State :
+è un circuito che viene utilizzato per collegare tra loro parti di un circuito complesso. E' un circuito a tre canali:
+- un segnale di ingresso
+- un segnale di uscita
+- un segnale di controllo
+Il segnale di uscita è uguale al segnale di ingresso se questo è attivo, altrimenti l'uscita è ad alta impedenza. Si comporta quindi da interruttore:![[Pasted image 20241021180854.png]]
+#### Dalle funzioni booleane ai circuiti e viceversa:
+Grazie alle parti logiche introdotte si può partire da una funzione e arrivare ad un circuito e viceversa, vediamo i due casi:
+##### Da una funzione booleana a un circuito:
+1. Si considerano i termini più interni (per precedenza) e si realizza quella parte della funzione come circuito
+2. Le uscite delle porte così definitite vengono usate come input delle funzione esterne
+###### Esempio:
+![[Pasted image 20241021181258.png]]![[Pasted image 20241021181539.png]]![[Pasted image 20241021181603.png]]
+##### Dalla funzione al circuito:
+- Si assegna un nume all'uscita di ogni porta
+- Queste variabili ausiliare vengono progressivamente eliminate fino a quando non si ha un'espressione che usa solo le variabili di input.
+###### Esempio:
+![[Pasted image 20241021181341.png]]
+##### Efficienza del circuito realizzato:
+Una volta costruito il circuito, dobbiamo chiederci quanto esso sia efficiente. Possiamo rispondere attraverso due definizioni:
+- Costo: quante componenti elettroniche utilizziamo per realizzare il circuito?
+- Tempo: quanto è veloce il circuito a calcolare l'uscita dati gli ingressi?
+La differenza tra una funzione booleana e un circuito, è che la funzione è impulsiva mentre un circuito di commutazione ha un ritardo di calcolo.
+###### Ritardo di commutazione:
+![[Pasted image 20241021183902.png]]
+I circuiti sono componenti fisiche, pertanto se applichiamo un gradino in ingresso, l'uscita si stabilizzerà dopo un po' di tempo:
+- $\tau_{d}:$ ritardo di commutazione (tempo per arrivare al 10% del valore finale)
+- $\tau_{r}$ : tempo di salita (tempo per arrivare al 90% del valore finale)
+Per semplicità si considera di solito un unico tempo di propagazione $\tau_{p}$ 
+###### Ritardo su un circuito complesso:
+Il tempo di propagazione si accumula quando ci sono più porte in cascata che implementano una funzione.
+Per stimare le prestazione, si può ricorrere al crital path:
+- il percorso più lungo che un segnale di input attraversa in un circuito.
+![[Pasted image 20241021184053.png]]
+Possiamo stimarer un ritardo pari a $4\tau_{p}$ : è un circuito a quattro livelli.
+##### Costo:
+possiamo sfruttare le tecniche di minimizzazione delle funzioni booleane per cercare di minimizzare il costo e massimizzare le prestazioni:
+![[Pasted image 20241021184252.png]]
+Queste tecniche ci permettono di identificare l'equivalenza tra i due circuiti seguenti:
+![[Pasted image 20241021184603.png]]
+##### Forme canoniche come reti:
+Ogni funzione booleana può essere espressa in forma canonica. Queste possono essere realizzate usando 2 soli livelli di porte logiche (AND/OR).
+Non è detto che una rappresentazione in forma canonica sia in forma minima.
+##### Esempio:
+![[Pasted image 20241021184924.png]]
+#### Componenti:
+##### Codificatore:
+Il codificatore è un circuito che realizza la funzione di codifica binaria. Associa ad ogni elemento di un certo insieme di codifica composto da m simboli una sequenza distinta di n bit.
+Per ogni simbolo, generale il codice corrispondente (con $2^{n}>=m$)
+Il circuito ha quindi m linee di ingresso $x_{0},...,x_{m-1}$ ed n linee di uscita $y_0,...,y_{n-1}$
+![[Pasted image 20241021185626.png]]
+###### Esempio:
+![[Pasted image 20241021185654.png]]
+##### Decodificatore:
+Realizza la funzione inversa del codificatore: a partire da una parola di un codice binario, genera una uscita che identifica uno dei simboli dell'insieme di interesse. Per ciascuna configurazione di ingresso, una sola uscita vale 1, le altre 0.
+###### Esempio:
+![[Pasted image 20241021185841.png]]
+![[Pasted image 20241021185853.png]]![[Pasted image 20241021185913.png]]
+##### Multiplexer:
+In alcuni casi è necessario scegliere tra più segnali in input/output, per esempio quando forniamo input diversi ad una stessa funzione booleana implementata in hardware:
+Il _multiplexer_ è un circuito che permette di selezionare tra un insieme di input, un solo output.
+Esso si basa su n segnali di controllo (**x**),$2^n$ segnali dati(**d**) e una sola uscita (y)
+![[Pasted image 20241018114739.png]]
+
+L'uscita assume il valore $d_i$ quando x=i
+possiamo quindi scrivere la funzione di uscita come somma logica tra il prodotto di tutti i mintermini di x e i dati d:$$y=\sum\limits_{i=o}^{2^{n}-1}d_{i}m_{i}$$![[Pasted image 20241018114914.png]]![[Pasted image 20241018114958.png]]
+
+Un multiplexer può essere utilizzato per implementare qualsiasi funzione booleana di n variabili. Questa rappresentazione in forma tabellare di una funzione determina per ogni configurazione dell'input il valore dell'output.
+un multiplexer può implementare tale tabella.
+![[Pasted image 20241018115308.png]] 
+##### Demultiplexer:
+il circuito duale del multiplexer è il demultiplexer. l'uscita i esima assume i valore y quando la variabile di controllo x=i. Possiamo trovare una somiglianza con il decoder.
+![[Pasted image 20241018115503.png]]
+##### Read Only Memory:
+è una memoria in sola lettura. Le locazioni di memoria possono essere lette specificandone l'indirizzo:
+![[Pasted image 20241018115643.png]]
+è un'implementazione alternativa di un circuito combinatorio, dato un'ingresso, c'è una sola uscita.
+###### Schema logico di una ROM:
+Le funzioni di commutazione sono realizzate come OR di mintermini:![[Pasted image 20241018115834.png]]
+e questa è la rispettiva implementazione.
+![[Pasted image 20241018115902.png]]
+###### ROM Paginata:
+Per motivi di ottimizzazione di superficie, si cerca di realizzare le ROM in forma quadrata. 
+Viene quindi organizzata in "pagine", con una parte dei bit dell'indirizzo viene usata per selezionare la pagina. 
+La restante parte seleziona la parola all'interno della pagina.![[Pasted image 20241018120202.png]]
+##### PLA
+Una ROM è una matrice di AND (con cui sostituisco il decoder) che implementa tutti i mintermini, accoppiata ad una matrice di OR che implementa le varie funzioni. Si potrebbe rendere programmabile sia la rete AND che OR:
+La Programmable Logic Array (PLA) realizza questa struttura:
+![[Pasted image 20241018120605.png]]
+Come nel caso della ROM, la programmazione avviene a tempo di sintesi. 
+Dei fusibili possono essere utilizzati per collegare i fila sia nella rete AND che nella rete OR. 
+###### Esempio:
+![[Pasted image 20241018121830.png]]
+Studio il grafico attraverso le equazioni delle singole y:
+$$y_{1}=\bar{x_{1}}x_{2}\bar{x_4}+\bar{x_{1}}x_{3}{x_4}+x_{1}$$
+Questo perché presi $x_{1},x_{2},x_{4}$ notiamo che dobbiamo studiare il loro comportamento e quello dei rispettivi negati. $y_{1}$ presenta 3 fusibili e studiandoli singolarmente noto che le "linee" tracciate di $\bar{x_{1}}x_{2}\bar{x_4}$ mi restituiscono 1 se sono  sulla stessa linea. Nella precedente formula, la moltiplicazione fra le varie x dell'input, corrisponde all'operatore "AND", questo significa che il fusibile che si trova nella prima riga della colonna di $y_1$ si illumina se tutti e tre i fusibili corrispondenti sulla stessa riga sono accesi. Lo stesso vale per le righe successive. Da questo ne deduciamo che la somma fra le i tre elementi corrisponde all'operatore "OR". Nel complesso cosa significa questo? 
+Il fusibile che si trova in corrispondenza della prima riga e sulla colonna di $y_1$ si illumina SE E SOLO SE tutti e tre i fusibili sulla stessa riga si illuminano, restituendo quindi come valore 1. Affinché $y_{1}$ ritorni 1, è necessario che SOLO 1 dei 3 fusibili della colonna y si illumini. In termini numerici questo significa y torna 1 SE E SOLO SE uno tra $\bar{x_{1}}x_{2}\bar{x_4},~~\bar{x_{1}}x_{3}{x_4},~~x_{1}$ ritorni 1.
+ Queste sono le due equazioni di $y_{2},y_{3}$
+ $$y_{2}=\overline{x_{2}}x_{3}{x_4}+\overline{x_{3}}~\overline{x_{4}}+{x_1}{x_3}+x_{2}\overline{x_{4}}$$
+ $$y_{3}={x_{1}}x_{2}+\overline{x_{1}}~\overline{x_{2}}+{x_1}{x_3}+x_{2}{x_{4}}$$
+ 
+ 
+## Capitolo 5: Reti iterative:
+### Reti combinatorie iterative:
+I metodi di sintesi che abbiamo analizzato fino a questo punto permettono la sintesi di circuiti in cui sono poche le variabili in inout.
+Per progettare una CPU, dobbiamo essere in grado di gestire dati a 16, 32, 64 bit. Un circuito di questo tipo può essere difficile da sintetizzare. Per ovviare a questo problema possiamo organizzare i circuiti in maniera iterativa. Ciò significa che uno stesso circuito elementare tratta un sottoinsieme dei bit dei dati, riducendo il numero di variabili. Più circuiti elementari sono interconnessi fra loro per calcolare la funzione finale.
+![[Pasted image 20241021152258.png]]
+- Vettore **y** rappresenta le informazioni di stato trasferite da un modulo al successivo. L'ultimo modulo può esporre parte di questa informazione all'esterno, ad esempio per notificare dettagli circa il risultato finale dell'operazione.
+- Vettore **x** rappresenta il dato in input, decomposto tra i vari moduli.
+- Vettore **z** rappresenta l'output, calcolato iteramente dai moduli 
+#### Comparatori:
+I comparatori sono dei circuiti che confrontano il valore di due numeri, A e B, rappresentati in formato binario.
+Il risultato di un comparatore determina se A=B, il confronto può essere effettuato su ciascuna coppia di bit in moduli separati, tuttavia è necessario propagare il risultato della comparazione dai moduli precedenti:
+![[Pasted image 20241021161118.png]]
+##### Esempio:
+Considero due numeri 10110 e 10010, il comparatore agirà calcolando a due a due le cifre partendo da destra:
+				!	 $\longleftarrow$	     $\longleftarrow$ 
+
+| Bit 5 | Bit 4 | Bit 3 | Bit 2 | Bit 1 |
+| ----- | ----- | ----- | ----- | ----- |
+| 1     | 0     | 1     | 1     | 0     |
+| 1     | 0     | 0     | 1     | 0     |
+Il controllo inizia e appena trova un bit diverso, propaga il segnale ai moduli successivi, indipendentemente dall'uguaglianza dei singoli termini.
+##### Esempio con le tabelle di verità:
+![[Pasted image 20241021163449.png]]
+Ed i mintermini della funzione sono soltanto due:$$z_{i}=z_{i-1}\bar{a}~\bar{ b}+z_{i-1}*a*b=z_{i-1}(a\odot b)$$
+e la sua rappresentazione circuitale è:![[Pasted image 20241021163840.png]]
+##### Problema delle reti iterative:
+Analizzando la struttura del comparatore realizzato è evidente quale sia il limite di queste reti:![[Pasted image 20241021164044.png]]
+Il tempo di calcolo della funzione può diventare inaccettabile se il numero di bit da processare è troppo elevato.
+##### Comparatore veloce:
+I bit dei numeri da confrontare vengono divisi in h blocchi di k bit. Ciascun blocco viene confrontato da un comparatore iterativo dedicato.
+Le uscite dei vari comparatori vengono processate da un comparatore aggiuntivo.
+![[Pasted image 20241021164246.png]]
+###### Comparatore veloce ad albero:
+Poiché il numero di bit è tipicamente una potenza di due, si possono organizzare i comparatori in una struttura ad albero a più livelli.
+Per esempio, per interi a 16 bit:
+![[Pasted image 20241021165712.png]]
+##### Half adder:
+Il circuito più semplice per effettuare una somma di operandi ad un solo bit deve calcolare il valore della somma e il valore del riporto:$$s=a⊕b,~~~c=a*b$$
+![[Pasted image 20241021165901.png]]
+##### Full adder:
+Per calcolare la somma di un inter a n bit, possiamo realizzare una rete iterativa composta da n sommatori, dove il circuito del modulo va modificato per considerare anche il riporto proveniente dai moduli precedenti.
+![[Pasted image 20241021170130.png]]
+![[Pasted image 20241021170145.png]]
+![[Pasted image 20241021170219.png]]
