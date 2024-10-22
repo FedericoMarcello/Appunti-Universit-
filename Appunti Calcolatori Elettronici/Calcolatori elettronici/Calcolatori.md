@@ -850,3 +850,30 @@ Per calcolare la somma di un inter a n bit, possiamo realizzare una rete iterati
 ![[Pasted image 20241021170130.png]]
 ![[Pasted image 20241021170145.png]]
 ![[Pasted image 20241021170219.png]]
+##### Carry Lookahead Adder:
+l **carry lookahead adder (CLA)** è un tipo di sommatore binario progettato per migliorare la velocità delle operazioni di somma rispetto a un sommatore binario tradizionale (come il **ripple-carry adder**). L'idea principale del CLA è di **calcolare il bit di carry in modo parallelo** piuttosto che in modo sequenziale, rendendo l'addizione molto più veloce, specialmente per numeri binari lunghi. Per comprenderne il funzionamento, devo 
+##### Shifter:
+L'operazione di shift consiste nel muovere a destra o a sinistra i bit di una parola binaria:
+- alcune cifre possono venire scartate
+- quelle libere possono essere riempite con degli zeri
+Considerando la possibilità di spostare un bit di una sola posizione,
+dobbiamo prevedere i seguenti “comandi” per un circuito:
+- SH=0 non effettuare alcun cambiamento, SH=1 effettua la traslazione
+- D=0 trasla a sinistra, D=1 trasla a destra
+Possiamo descrivere il circuito che calcola il valore del bit in uscita con il seguente sistema:
+
+quindi l'equazione che calcola il valore del bit diventa:$$z_{i}=\overline{SH}a_{i}+SH*(a_{i-1}*\overline D)+a_{i+1}*d$$![[Pasted image 20241022124822.png]]
+Per supportare una traslazione di più posizioni possiamo costruire una rete iterativa di shifter
+Utilizzando un vettore di controllo SH possiamo controllare i vari livelli:
+![[Pasted image 20241022124948.png]]
+Può infatti essere implementato al fine di essere utilizzato per la criptazione di dati, infatti con un numero a 4 bit potremmo utilizzare lo shift classico a sinistra per 3 cifre e la quarta la porto come prima cifra: $0111\longleftarrow1011$
+###### Esempio:
+$1101\longrightarrow0110$ 
+$1010\longleftarrow1101$ 
+In entrambi i casi, però, se lavoriamo esclusivamente a 4 bit ci troveremo nella condizione di overflow. Diversamente, la funzione di shift funziona come una divisione per 2 se eseguita verso destra, mentre come una moltiplicazione, sempre per 2, se eseguita verso sinistra.
+##### Barrel Shifter:
+Il costo della rete può essere elevato. Si può utilizzare una rete basata su interruttori posti in posizione predefinite. Ed attivando gli interruttori corretti, è possibile implementare in tempo costante, tutte le traslazione a destra e a sinistra
+
+##### Operazioni di shift tipiche:
+![[Pasted image 20241022125820.png]]
+Esistono altre operazioni tipiche, ovvero rotazioni e shif aritmetico. In alcuni casi viene preso in considerazione anche un bit di carry (il quadrato C in figura).
