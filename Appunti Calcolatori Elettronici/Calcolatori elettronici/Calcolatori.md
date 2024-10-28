@@ -340,11 +340,11 @@ Vediamo diversi casi:
 - i bit in posizione $2^i$ sono bit di parità
 - ciascun bit di parità controlla la correttezza dei bit di informazione la cui posizione, espressa in binario, ha un 1 nella potenza di 2 corrispondente
 ![[Pasted image 20241015104730.png]]
-###### Esempio 1:
+##### Esempio:
 ![[Pasted image 20241015105120.png]]
-###### Esempio 2:
+###### 1 caso:
 ![[Pasted image 20241015105157.png]]
-###### Esempio 3:
+###### 2 Caso:
 ![[Pasted image 20241015105332.png]]
 
 ## Capitolo 3 Algebra Booleana:
@@ -512,8 +512,7 @@ A questo punto, dai mintermini possiamo definire la seguente rappresentazione in
 Invece dai maxtermini possiamo definire la seguente rappresentazione in somme di prodotti:$$f(x_{1}, x_{2},x_{3})=(x_{1}+x_{2}+\overline{x_3})(x_{1}+ \overline{x_2}+x_{3})(x_{1}+\overline{x_{2}}+\overline{x_3})(\overline{x_{1}}+\overline{x_{2}}+x_{3})$$ ![[Pasted image 20241017094726.png]]
 
 ###### Forma decimale:
-Si indica l'interpretazione decimale delle variabili booleane associate a mintermini e maxtermini:$$f(k)=\sum\limits(0,4,5,7)=\prod(1,2,3,6)
-$$![[Pasted image 20241017105808.png]]
+Si indica l'interpretazione decimale delle variabili booleane associate a mintermini e maxtermini:$$f(k)=\sum\limits(0,4,5,7)=\prod(1,2,3,6)$$![[Pasted image 20241017105808.png]]
 
 ##### Seconda tecnica: Trasformazioni Analitiche:
 Per capire meglio, utilizziamo il seguente esempio:$$x_{1}x_{3}+\overline{x_{1}}(x_{2}+\overline{x_{3}})$$ questa funzione può essere trasformata come segue:$$x_{1}x_{3}+\overline{x_{1}}(x_{2}+\overline{x_{3}})=x_{1}x_{3}(x_{2}+\overline{x_{2}})+\overline{x_{1}}x_{2}(x_{3}+\overline{x_{3}})+\overline{x_{1}}\overline{x_{3}}(x_{2}+\overline{x_{2}})$$Risolvendo la moltiplicazione otterremo:$$x_{1}x_{2}x_{3}+x_{1}\overline{x_{2}}x_{3}+\overline{x_{1}}x_{2}x_{3}+2(\overline{x_{1}}x_{2}\overline{x_{3}})+\overline{x_{1}x_{2}x_{3}}$$
@@ -877,3 +876,105 @@ Il costo della rete può essere elevato. Si può utilizzare una rete basata su i
 ##### Operazioni di shift tipiche:
 ![[Pasted image 20241022125820.png]]
 Esistono altre operazioni tipiche, ovvero rotazioni e shif aritmetico. In alcuni casi viene preso in considerazione anche un bit di carry (il quadrato C in figura).
+##### Alu:
+![[Pasted image 20241025115114.png]]
+![[Pasted image 20241025115212.png]]
+
+### Capitolo 6:
+I circuiti visti fin ad ora possono essere definiti combinatori, infatti dato un certo input, essi calcolano un certo output, secondo la relazione:$$y=f(x)$$
+Tali circuiti quindi hanno un’uscita che dipende esclusivamente dall’input. Se avessimo a disposizione solo questo tipo di circuito, non potremmo implementare elementi di memoria.
+#### Circuito latch: 
+Circuito che cattura il valore di input utilizzando degli anelli a retroazione.
+È un circuito analogico che consente di immagazzinare un’informazione digitale.
+Non funzione se uno utilizza come output 1,1 poiché non riesce a memorizzare un valore, restituirà infatti 0,0.
+In una configurazione io devo dare un valore di reset R ed un valore di set S, otterrò Q e $\overline{Q}$.
+($Q’$ è $\neq\overline Q$)
+Attraverso le tre combinazioni:$$(0,0),(0,1),(1,0)$$ possono chiedere di ottenere un valore o di salvarlo.
+![[Pasted image 20241025121034.png]]
+##### Problemi del latch:
+Una configurazione di ingresso in cui S= 1 e R = 1 manda il circuito
+in uno stato oscillante
+• I valori di S ed R possono essere calcolati da altre reti combinatorie
+• Non è possibile garantire che, a causa dei ritardi di propagazione, nosi
+osservi mai una configurazione transiente pari a S = 1 e R = 1
+• Soluzione: campionare il valore di S ed R quando siamo certi che gli
+input si sono stabilizzati
+• In questo caso il circuito assume il nome di flip flop
+
+###### Flip Flop SR:
+Si basa sull’aggiunta di un segnale di clock al latch:
+Funziona come un orologio, serve a tenere il tempo e vedere se il circuito funziona regolarmente. Si usano dei quarzi che creano circuito elettromagnetico e lo invertono.
+![[Pasted image 20241025121344.png]]
+Rimane il problema dell’input con S ed R = 1.
+Possiamo costruire un circuito che prevenga l’insorgere di configurazioni oscillanti.
+###### Flip Flop JK:
+Aggiunge una rete di controllo ai segnali di ingresso. Questa rete rende impossibile che is verifichi la condizione che avevamo enunciato prima in input:
+![[Pasted image 20241025121742.png]]
+###### Flip Flop D:
+I due precedenti Flip Flop hanno la necessità di due segnali di controllo opposti, spesso infatti si vuole utilizzare un flip flop per immagazzinare un bit generato da una funzione di commutazione. Per non dover negare esplicitamente il bit, si può usare un flip flop D. Tale circuito si comporta da **ritardo**(delay):
+- l’input viene propagato in output dopo un periodo di clock. ![[Pasted image 20241025200118.png]]
+
+###### Flip Flop T:
+Può essere anche utile avere a disposizione un flip flop che si comporta come switch:
+- Al primo segnale, commuta da 0 a 1
+- Al secondo segnale, commuta da 1 a 0
+Il flip flop T (**toggle**) implementa questo comportamento:
+![[Pasted image 20241025200553.png]]
+
+
+##### Fronti di commutazione.
+Per funzionare correttamente, questi flip flop devono avere i segnali di controllo stabili per tutta la durata del periodo di clock. È utile prevedere circuiti che effettuino la commutazione in finestre temporali precise e di durata più breve. _Edge-triggeredd_ flip flop: commutano su fronte di salita o di discesa:
+![[Pasted image 20241025122354.png]]
+
+Andiamo a studiare i diversi comportamenti eseguiti dallo stesso flip flop: 
+![[Pasted image 20241025122321.png]]
+Se studiamo i fronti di salita, di costanza del valore o di discesa, posso notare come nella figura, in corrispondenza di una discesa o salita sono corrisposte diverse uscite dipendentemente dal grafico. 
+Per capire se i calcolatori sono corretti si valuta il tempo di salita o il tempo di discesa, se i risultati in questo intervallo sono gli stessi allora si continua nello studio, sennò si resetta il funzionamento e si inverte il bit. Se un segnale nello istante risponde in due modi differenti, uno dei due viene resettato ed invertito il bit di uscita.
+
+#### Reti combinatorie:
+##### Cosa sono?
+Con tutto questo studio si è capito che l’algebra booleana non è in grado di descrivere completamente i circuiti, visto che, come scritto nella tabella, il risultato finale Q’ non dipende più solo dall’input,  ma anche dallo stato Q (che dipende dall’input); abbiamo dunque bisogno delle funzioni (che rimangono booleane), quindi per analizzarlo abbiamo bisogno di altro:
+##### Tipi di reti sequenziali:
+Esistono due classi principali di reti sequenziali:
+- Sincrone: se la transizione di stato avviene in instanti temporali controllabili dall’esterno
+- Asincrone: non controllabili dall’esterno.
+Studieremo le prime:
+![[Pasted image 20241025123622.png]]
+##### Macchine a stati finiti:
+Si tratta di un modello matematico per la descrizione della computazione. È una macchina astratta:
+- in un dato istante si trova in uno stato (tra un insieme finito di stati)
+- Eventi esterni provocano una transizione da uno stato all’altro
+- La macchina può generare output verso l’esterno.
+Esistono due principali varianti:
+- macchina di Moore: l’output dipende unicamente dallo stato:
+- macchina di Mealy: l’output dipende dallo stato e dalla transizione innescata:
+###### Macchina di Moore:
+![[Pasted image 20241025124159.png]]
+###### Macchina di Mealy:
+![[Pasted image 20241025124240.png]]
+
+##### Rappresentazioni:
+È possibile utilizzare due formalismi:
+###### Diagramma degli stati: 
+Mostra graficamente le relazioni tra gli stati e le transizioni, identificando anche i caratteri di output:
+![[Pasted image 20241025124448.png]]
+###### Tabella degli stati:
+![[Pasted image 20241025124608.png]]
+
+##### Equivalenza fra modelli:
+Esiste sempre una trasformazione tra una macchina di Mealy e una macchina di Moore, poichè essi sono equivalenti.
+###### Trasformazione da Moore a Mealy:
+- Gli alfabeti di input ed output sono gli stessi
+- Gli stati sono gli stessi
+- Se in uno stato $S_{i}$ raggiunto da una transizione causata da un carattere $i_{j}$, viene generato un output $o_{k}$ quello stesso output viene generato durante la transizione $i_{j}$ verso lo stato $s_{i}$.
+###### Trasformazione da Mealy a Moore:
+![[Pasted image 20241025125158.png]]
+##### Sintesi delle macchine:
+Per realizzare circuitalmente una macchina è necessario:
+- Realizzare il blocco M: questo può essere fatto utilizzando un numero sufficiente di flip flop D
+- Realizzare la rete $\delta$: è necessario realizzare un circuito di commutazione per aggiornare lo stato di ciascun flip flop D (cioè l’equazione di eccitazione di un flip flop)
+- Realizzare la rete $\omega$: è necessario realizzare un circuito di commutazione per generare ciascun bit dei caratteri di output.
+Trattandosi di reti combinatorie, è possibile utilizzare le tecniche di sintesi e minimizzazione che abbiamo studiato per le funzioni booleane.
+La sintesi può essere svolta a partire dalla tabella degli stati e transizioni.
+###### Esempio:
+![[Pasted image 20241025194318.png]]

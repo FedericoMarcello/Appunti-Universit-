@@ -88,3 +88,55 @@ DFT opera su sequenze (campionamenti di una funzione).
 $$f_j,j=0,...,N-1 $$
 e si definisce come $$\sum_{j=0}^{N-1} e^{\frac{2\pi ijk},{}} $$
 E' evidente che a
+
+
+
+### Capitolo 5:
+#### Puntatori:
+##### Cosa sono?
+Un puntatore in C è una variabile che contiene un indirizzo:
+![[Pasted image 20241024161337.png]] 
+L’operatore & consente di accedere all’indirizzo di un’altra variabile, quindi di assegnarlo ad un puntatore. I puntatori hanno normalmente un tipo associato, ma ne esistono anche di generici:![[Pasted image 20241024161633.png]]
+##### Come si usano?
+- per dichiarare una varibile:
+		type * ptr,
+- Accedere al valore “puntato”(ossia, all’indirizzo corrispondente)
+		val= * ptr
+- Accedere ad un indirizzo
+		Type * ptr
+- Aritmetica dei puntatori:
+		vs = * (ptr+i)
+		ptr++
+##### Incrementare un puntatore:
+Cosa vuol dire incrementare un puntatore?
+		ptr++
+Aumentare il valore dell’indirizzo di un numero di byte pari alla dimensione del tipo di base:
+
+	int * prt=1000; /se “sizeof(int)“ == 4 allora: *\(ptr+2) == 1000>
+	
+    char * cp=2000; /se ”sizeof(int)” == 1, allora *\(cp+3) == 2003>
+Operazioni valide con puntatori:
+- somma e sottrazioni con interi
+- Sottrazione tra puntatori
+- Confronto per uguaglianza di puntator
+N.B incrementare un puntatore void * è un operazione illegale
+#### Memoria dinamica:
+Come gesitre necessità di memoria di dimensioni non prevedibili al momento della scrittura del programma?
+- ottenere memoria con malloc:
+		void * malloc(size_t size)
+- Rilasciare la memoria con 
+		Void free(void* ptr)
+##### Esempio:
+Se abbiamo bisogno di un array di K numeri interi, possiamo eseguire:![[Pasted image 20241024172634.png]]
+#### Errori con puntatori:
+Quali errori vanno evitati?
+- controllare sempre che malloc sia andata a buon fine:
+![[Pasted image 20241024172908.png]]
+- tentare di rilasciare un puntatore non allocato:
+![[Pasted image 20241024173001.png]]
+- creare una memory leak:
+![[Pasted image 20241024173156.png]]
+- fare attenzione all’uso delle stringe
+	- quando si alloca una stringa, ricordare sempre il carattere di terminazione: ‘\0’
+	- Usare le funzioni di copia strcpy, strncpy
+	- Concatenazione e “tokenizzazione” di stringhe sono una fonte di errori
