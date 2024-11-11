@@ -1,3 +1,6 @@
 {
-  "cssTheme": "Neo"
+  "cssTheme": "ITS Theme",
+  "baseFontSize": 16,
+  "accentColor": "#e03800",
+  "theme": "moonstone"
 }

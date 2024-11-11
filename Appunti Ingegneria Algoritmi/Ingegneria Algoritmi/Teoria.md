@@ -1,4 +1,5 @@
-### Complessità Computazionale:
+# Appunti
+## Capitolo 1: Complessità Computazionale:
 
 #### Esempio di istruzioni su quantità scalari:
 ![[Pasted image 20241003161425.png]]
@@ -91,7 +92,7 @@ E' evidente che a
 
 
 
-### Capitolo 5:
+## Capitolo 5:
 #### Puntatori:
 ##### Cosa sono?
 Un puntatore in C è una variabile che contiene un indirizzo:
@@ -140,3 +141,70 @@ Quali errori vanno evitati?
 	- quando si alloca una stringa, ricordare sempre il carattere di terminazione: ‘\0’
 	- Usare le funzioni di copia strcpy, strncpy
 	- Concatenazione e “tokenizzazione” di stringhe sono una fonte di errori
+
+
+
+
+## Capitolo 10
+### Strutture ad albero:
+![[Pasted image 20241104102237.png]]![[Pasted image 20241104102258.png]]
+
+#### Visita:
+##### Cos'è?
+L'esame di un albero è l'esame di tutti i nodi di un albero secondo un ordine prestabilito
+##### Tipi di visita:
+###### Visita in preordine:
+![[Pasted image 20241104100407.png]]
+
+###### Visita in postordine:
+![[Pasted image 20241104100503.png]]
+
+###### Visita in inordine:
+![[Pasted image 20241104100524.png]]
+
+###### Visita in ampiezza:
+![[Pasted image 20241104100548.png]]
+#### Operatori:
+##### Operatore di creazione: tree(v):
+crea un albero nuovo con un solo nodo
+##### Operazione di scrittura: write(Item v):
+scrive informazioni in un nodo
+##### Operatore di lettura: item read ():
+legge il  contenuto di un solo nodo
+##### Operazione genitore: Tree parent():
+restituisce il nodo genitore
+##### Operatore primo figlio: Tree leftmostChild():
+restituisce il primo figlio oppure nil
+##### Operatore primo figlio: Tree leftmostChild():
+restituisce il prossimo figlio oppure nil
+##### Operatore inserimento primo figlio: 
+insertChild(Tree t):
+inserisce il sottoalbero t come primo figlio (t.parent deve essere nil)
+##### Operatore inserimento prossimo figlio: insertSibiling(Tree t):
+inserisce il sottoalbero t come prossimo figlio (t.parent deve essere nil)
+##### Operatore eliminazione primo figlio: deleteChild():
+elimina il sottoalbero con radice il primo figlio corrente
+##### Operatore eliminazione prossimo figlio: deleteChild():
+elimina il sottoalbero con radice il prossimo figlio 
+#### Realizzazione:
+![[Pasted image 20241104104213.png]]
+### Alberi binari:
+è un caso particolare in cui ogni nodo ha al più due figli, il figlio _sinistro_ e quello _destro_:
+Un albero binario può essere memorizzato in un vettore: se il padre è in posizione i i due fili sono nelle posizioni 2i e 2i+1
+Esempio:
+![[Pasted image 20241104104512.png]]
+
+| figli     | 2   | 3   | 6   | 4   | 7   | 1   | 5   |
+| --------- | --- | --- | --- | --- | --- | --- | --- |
+| posizione | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+la comparazione è logaritmica, avendo come nell'esempio 3 livelli, e visto che la complessità sarà data dai livelli, la complessità sa
+#### Esempio di funzioni di riferimento:
+![[Pasted image 20241104104934.png]]
+
+#### Esempio pratico:
+Un esempio pratico è la realizzazione di un _dizionario_, ovvero il mantenimento di un insieme di dati ordinato per chiavi:
+
+- A ciascun nodo è associato un record, con la sua chiave del nodo corrente
+- Per ciascun nodo, tutte le chiavi nel sottoalbero radicato nel figlio sinistro sono minori della chiave del nodo corrente 
+- Per ciascun nodo, tutte le chiavi nel sottoalbero radicato nel figlio destro sono maggiori della chiave del nodo corrente
+![[Pasted image 20241104111450.png]]

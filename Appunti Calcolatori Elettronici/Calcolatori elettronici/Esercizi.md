@@ -24,7 +24,7 @@ che corrisponde a $$ C~2~5~4~6~6~6~6 $$
 l'uguaglianza fra questo termine in base 16 e il termine -53,1 in base 10 non è una uguaglianza matematica, ma una corrispondenza nei rispettivi sistemi di riferimento, cioè il numero (-53,1) in base 10 corrisponde a (C 2 5 4 6 6 6 6) in base 16, ma i due numeri non sono obbligatoriamente uguali.
 ## Scambio ferroviario:
 ### Testo:
-![[Pasted image 20241022145529.png]]
+![[Pasted image 20241022145529 1.png]]
 alla stazione arriva un treno per volta, ma i treni possono sostare sui marciapiedi per un tempo arbitrario. Normalmente il treno viene indirizzato al marciapiede A, se questo è occupato a B, e cosi via fino a D. Un marciapiede libero viene rappresentato dal valore 0, mentre un marciapiede occupato viene rappresentato dal valore 1.
 Vi è poi un semaforo che viene tenuto a 1 (verde) se vi sono marciapiedi liberi e portato a 0(rosso) se sono tutti occupati, al fine di far arrestare un eventuale altro convoglio in arrivo.
 L'indirizzamento avviene mediante tre scambi: 

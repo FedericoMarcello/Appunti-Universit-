@@ -167,7 +167,7 @@ con due caratteristiche principali:
 - L'intervallo rappresentabile è $[-2^{n-1},2^{n-1}-1]$
 ### Numeri in virgola mobile:
 Esistono molte quantità di numeri reali che possono essere memorizzate in numeri interi:
-- lunghuezza
+- lunghezza
 - prezzi
 - temperature
 - frequenze delle note musicali
@@ -189,14 +189,14 @@ Un numero reale (float) ha dimensione 32 bit così utilizzati:
 - esponente e: 8 bit
 - mantissa m: 23 bit
 #### Caratteristiche:
-L'esponente decimale E è rappresentato in eccesso a 127:$$e= E +127
-$$
+L'esponente decimale E è rappresentato in eccesso a 127:
+$$e= E +127$$
 La mantissa rappresenta il valore binario $$(1.m)_2$$
 - dove la parte intera viene omessa nella rappresentazione
 Il valore decimale può essere calcolato come $$(-1)^{s}*2^{è-127}*(1.m)$$ questa viene chiamata rappresentazione _normalizzata_
 ##### Tipologie di numero:
 - numeri normalizzati: sono la maggior parte dei numeri rappresentabili dallo standard
-- numeri denormalizzati: valori molto prossii allo zero. Generano alcuni problemi nella gestione degli errori di arrotondamento.
+- numeri denormalizzati: valori molto prossimi allo zero. Generano alcuni problemi nella gestione degli errori di arrotondamento.
 	- la parte intera omessa non è 1, bensì 0
 - zeri: è possibile rappresentare ±0
 	- la maggior parte delle operazioni ignora il segno, ma dividere per ±0 può dare come risultato $\pm\infty$ 
@@ -880,7 +880,7 @@ Esistono altre operazioni tipiche, ovvero rotazioni e shif aritmetico. In alcuni
 ![[Pasted image 20241025115114.png]]
 ![[Pasted image 20241025115212.png]]
 
-### Capitolo 6:
+## Capitolo 6: Reti sequenziali:
 I circuiti visti fin ad ora possono essere definiti combinatori, infatti dato un certo input, essi calcolano un certo output, secondo la relazione:$$y=f(x)$$
 Tali circuiti quindi hanno un’uscita che dipende esclusivamente dall’input. Se avessimo a disposizione solo questo tipo di circuito, non potremmo implementare elementi di memoria.
 #### Circuito latch: 
@@ -978,3 +978,259 @@ Trattandosi di reti combinatorie, è possibile utilizzare le tecniche di sintesi
 La sintesi può essere svolta a partire dalla tabella degli stati e transizioni.
 ###### Esempio:
 ![[Pasted image 20241025194318.png]]
+
+## Capitolo 7:
+
+
+
+
+### Registri:
+Sono delle unità di memoria interne al processore:
+- compongono la parte di memoria di lavoro interna alla CPU. 
+- Permettono  di memorizzare parole binarie
+- La quantità di memoria disponibile è estremamente limitate.
+- Sono realizzate attraverso un insieme di flip flop:
+![[Pasted image 20241029114605.png]]
+Vengono utilizzate tante componenti hardware per memorizzare gli elementi, questo è utile perché i registri lavorano alla stessa velocità del processore e l'abilità si trova nel metterci proprio le informazioni giuste.
+#### Suddivisione:
+Possono essere suddivisi in più classi.
+- Registri fondamentali: sono i registri senza i quali non è possibile realizzare un 'architettura di von Neumann
+- Registri visibili al programmatore: sono registri che il programmatore può utilizzare esplicitamente nel suo programma
+- Registri invisibili al programmatore: sono registri che il programmatore può modificare solo indirettamente e non programmaticamente.
+##### Registri Visibili:
+Ci sono 16 registri _general purpose_ a 64 bit che il programmatore può utilizzare esplicitamente come _operandi_ delle istruzioni:
+![[Pasted image 20241029120051.png]]
+Alcuni di questi registri hanno un significato particolare e sono utilizzabili implicitamente utilizzando specifiche istruzioni assembly
+
+##### Come si interconnettono i registri?
+###### Necessità di interconnessione tra registri:
+###### Prima modalità, interconnessione diretta:
+Possiamo prevedere la seguente interconnessione se vogliamo supportare l'esecuzione dei segnali: _mov, %rax, %rbx_:
+![[Pasted image 20241029120514.png]]
+quindi ci saranno 64 x 15 fili che collegano:
+Possiede il vantaggio della semplicità di progettazione, ma lo svantaggio di interconnettere più registri fra loro.
+###### Seconda modalità, Interconnessione tramitre multiplexer:
+![[Pasted image 20241029120711.png]]
+Presenta i seguenti vantaggi:
+- semplici da implementare
+- possibilità di trasferire più dati contemporaneamente
+###### Terza modalità:
+costruzione di un Bus interno, cioè un gruppo di 64 fili che corrono all'interno del processore:
+- collega tra loro tutti i registri interni.
+Occorre smistare i dati sul bus:
+- recupero di dati: i bit presenti sul BUS sono memorizzati in un registro
+- immissioni di dati: il contenuto di un registro è posto sul BUS
+Utilizzo di più segnali di controllo opportunamente generati dalla CU:
+- Wirte enable per abilitare la scrittura
+- Buffer Three-State per abilitarne la lettura.
+
+Ricordandosi che si può avere una sola immissione per volta sul BUS, il modo per interconnettere i registri tramite BUS solamente andando ad utilizzare il buffer three state per evitare che un output di un circuito arrivi ad un altro e questi messaggi viaggiano attraverso i bus. ![[Pasted image 20241029121943.png]]
+Quindi per leggere quello che è scritto nel RAX (registro) mi basta un Buffer-Three-State, il tipo di registro iniziale attraverso 4 bit, visto che questi compongono i registri. Quindi per leggerne uno in entrata ed in uscita, necessitò in totale di 6 bit, 4 di "costruzione" e 2 per o scriverlo o leggerlo.
+###### Ottimizzazione del banco dei registri:
+Ottimizzazione: banco dei registri (o file dei registri o memoria dei registri). I registri sono codificati con un codice numerico identificativo $\in[0,15]$ totali. (per questo motivo per calcolare i registri bastano 4 bit (4!=16)).
+![[Pasted image 20241029122232.png]]
+###### Processamento di dati a dimensione differente:
+Un processore può operare su dati di dimensione differente:
+- Esempi tipici: 8, 16, 32, 64 bit
+- Non è vantaggioso e pratico avere più banchi di registri:
+- E' utile poter accedere a sottoporzioni dei dati nei registri
+ ![[Pasted image 20241029123311.png]]
+ i rispettivi registri a 8,16,32,64 si rappresentano:
+ AL|H|AX|EAX|$\overline\epsilon \le |f(x_{2})|f(z_{k})$ ?
+
+###### Registri virtuali:
+Le istruzioni assembly usano un suffisso per indicare la dimensione:$$MOVx <sorgente>, <destinazione>$$
+B: byte (8 bit), W:word(16 bit), L: longword (32 bit), Q: quadword (64 bit)
+Il suffisso fornisce parte del contesto alla CU per poter trattare i dati correttamente.
+![[Pasted image 20241029124214.png]]
+![[Pasted image 20241029124443.png]]
+###### Instruction Registrer:
+Sapendo che accedere alla memoria è un'operazione costosa, i registri dei processori sono realizzati con tecnologia molto più veloce, ma più costosa. La memoria, avendo dimensione più grande, è realizzata con tecnologia più economiche ma meno veloci.
+I circuiti combinatori e sequenziali interni alla CPU devono avere gli input stabili fino alla loro stabilizzazione. Non è ragionevole mantenere stabili gli input direttamente dalla RAM, dunque si introduce un registro tampone, ovvero l'Instruction Registrer: esso mantiene una _copia_ della codifica di un'istruzione assembly  prelevata dalla memoria. 
+In questa codifica, sono mantenuti i codici del registro e della taglia dei dati:
+![[Pasted image 20241029130144.png]]
+
+###### Componenti per il processamento dei dati :
+I circuiti elementari costruiti fin'ora sono la ALU e lo shifter.
+![[Pasted image 20241104142712.png]] 
+I dati da fornire in input a questi due circuiti sono contenuti nel banco dei registri.
+C'è un problema, la ALU ha bisogno di due operandi (da mantenere stabili) ed è possibile eseguire una sola immissione di dati sul BUS interno. La soluzione è quella di utilizzare dei registri tampone:
+![[Pasted image 20241104142940.png]]
+##### Registro FLAGS:
+ALU e Shifter sono reti iterative che emettono dei bit di stato. E' utile esporre lo stato al programmatore: occorre memorizzarli. Si utilizza il registro fondamentale in FLAGS. 
+I bit al suo interno si dividono in status e control:
+![[Pasted image 20241104143326.png]]i bit di stato sono aggiornati dalla ALU e dallo Shifter per memorizzare informazioni sull'ultima operazione eseguita. I bit di controllo sono modificabili dal programmatore per alterare alcune funzionalità del processore.
+###### Utilizzo del registro Flags:
+![[Pasted image 20241104143833.png]]
+#### Interazioni con la memoria:
+La restante parte della memoria di lavoro è esterna alla CPU. E' necessario prevedere un interfacciamento con essa ed un protocollo di scambio dati.
+![[Pasted image 20241104144017.png]]
+##### Modello astratto di memoria di lavoro:
+![[Pasted image 20241104144111.png]]
+##### Trasferimento di dati con memoria esterna:
+Il bus di sistema è un insieme di fili che "corrono" alla memoria dal sistema. Poiché esistono tre componenti, vengono organizzati su viaggi differenti:
+![[Pasted image 20241104144242.png]]
+Il numero minimo di fili che ci deve essere è 8, poiché nel  modello astratto di memoria ci sono almeno 8 bit. Ad oggi il numero massimo è di 48 bit, quindi posso indirizzare fino a $2^{48}$cavi.
+Sappiamo che la memoria è più lenta del processore e si comporta come un circuito combinatorio, e le altre componenti sul BUS di controllo devono rimanere stabili. Visto che il data BUS è unico, sarà sempre la CPU a scegliere in quale modo utilizzarlo, se per leggere o scrivere. Questo poiché è il processore che "svolge" i programmi.
+Visto che occorre utilizzare un tampone tra i dispositivi, allora dovrò posizionare gli elementi in questo modo:
+![[Pasted image 20241104145115.png]]
+ >MAR sta per memory address bus quindi l'indirizzo di riferimento del BUS
+ 
+ Sul memory data bus si scrivono i dati raccolti:
+ possiamo disaccoppiare, quindi scinderlo in modo tale da non collegare memory data BUS e memory address BUS.
+###### Zoom della logistica della memoria: 
+![[Pasted image 20241104145723.png]]
+#### Anatomia dei programmi in memoria:
+ogni dato è identificabile solo attraverso gli indirizzi:
+![[Pasted image 20241104150644.png]]
+Questo tipo di architettura è "a stack". Utilizza una pila per immagazzinare valori, nel nostro caso cresce verso il basso. Per esempio, ipotizziamo di utilizzare una variabile, essa deve essere dichiarata nella parte dello stack, non può occupare spazio in "data", perchè andrebbe a creare problemi di memoria con  i dati che sono presenti nel livello.
+
+#### Come capire il punto in cui si è arrivati
+Se .text è una sequenza lineare di istruzioni la CPU deve tenere traccia del punto in cui è arrivata ad eseguire le istruzioni.
+Viene utilizzato un altro registro fondamentale: _**l'instruction pointer.**_
+Questo registro si aggiorna in continuazione e trascrive la prossima istruzione da eseguire. 
+RIP mantiene (quasi) sempre l'indirizzo della prossima istruzione (è un puntatore a memoria che punterà al bit successivo appena letto):
+![[Pasted image 20241104151545.png]]
+
+##### Come incrementarlo?
+Se utilizzassi la ALU, il programma sarebbe molto lento. Poiché il processo di somma andrebbe ripetuto ad ogni istruzione e non si potrebbe svolgere in contemporanea l'istruzione. Si pone come registro a incremento, il quale è accoppiato ad un sommatore veloce dedicato. E' un circuito più complesso ma il processo può svolgersi in parallelo all'esecuzione dell'istruzione corrente.
+
+#### Lo stack di programma:
+Il processore ha un numero estremamente limitato di registri, un programma potrebbe avere bisogno di gestire tante variabili o alcune molto grandi.
+E' possibile utilizzare un'area di memoria come "area di appoggio": lo stack di programma.
+##### Cos'è?
+Essa è una struttura dati di tipo LIFO (Last-In-First-Out):: il primo elemento che può essere prelevato è l'ultimo ad essere memorizzato.
+Si possono effettuare due operazioni su questa struttura dati:
+	• push: viene inserito un elemento sulla sommità (top) della pila
+	• pop: viene prelevato l’elemento affiorante (top element) dalla pila
+Data l’importanza di questa struttura dati, molte ISA forniscono
+istruzioni dedicate per la sua manipolazione.
+##### Gestione dello stack nello z64:
+Lo stack è composto da quadword (non si può eseguire una push di un singolo byte)
+La cima dello stack è individuata dall'indirizzo memorizzato in un registro specifico chiamato stack pointer
+Lo stack “cresce” se il valore contenuto in SP diminuisce, “decresce” se il valore contenuto in SP cresce
+Le istruzioni che implementano le operazioni di push e pop utilizzano il registro RSP in modo implicito
+Modificare esplicitamente il valore di RSP significa perdere il riferimento alla cima dello stack, e quindi a tutto il suo contenuto
+È però accessibile al programmatore: si può decidere di utilizzare più stack
+È quello che fanno i sistemi operativi per eseguire più processi contemporaneamente 
+
+##### Utilizzo stack 
+Posso utilizzare più stack per far funzionare meglio un computer, per esempio qualsiasi pc utilizza un singolo stack per ogni singolo programma												
+![[Pasted image 20241105121704.png]]
+
+##### Undefined behaviour:
+è un comportamento del programma per il quale ogni messaggio inviato risponde corretto, poiché potrebbe essere che ci sia stato un overflow dello stack, cioè ha sovrascritto "logicamente" il livello dei dati. Se infatti si vanno a sommare più elementi alla pila dello stack esso può essere che vada ad occupare uno spazio maggiore ed interferire proprio con i dati.										
+
+### Modalità di indirizzamento:
+#### Strutture dati e modello di memoria lineare:
+Il modello astratto di memoria è lineare, quindi indirizzato al byte.
+I linguaggi di programmazione offrono astrazioni diverse:
+	• Vettori: x = A[i];
+	• Strutture dati: x = str.member;
+Il programmatore (o il compilatore) può scrivere un programma assembly per tradurre un accesso ad un elemento di struttura dati in un indirizzo effettivo di memoria:
+![[Pasted image 20241105122721.png]]
+Ad esempio, un accesso all’elemento i-esimo di un vettore può essere “tradotto” in un indirizzo effettivo applicando l’operatore **spiazzamento**
+Se la variabile a è associata all'indirizzo di base del vettore e tutti gli elementi hanno la stessa dimensione, allora vale:
+![[Pasted image 20241105123021.png]]
+Strutture dati più complesse posso utilizzare celle di memoria
+contigue per memorizzare dati di tipo differente. 
+La memoria è lineare: occorre dare un contesto a ciascun membro della struttura.
+![[Pasted image 20241105123156.png]]
+
+Se una variabile di tipo struttura libro è associata all’indirizzo di
+base in memoria in cui si trova la struttura, accedere a un membro
+equivale a calcolare:
+libro.year ⟺ libro + spiazzamento(titolo) + spiazzamento(autore).
+
+E dal punto di vista della programmazione si presenta:
+
+Poiché stiamo realizzando un’architettura CISC, è sensato offrire un
+supporto migliore al calcolo degli indirizzi effettivi a livello di CPU.
+Nei casi (molto comuni) di vettori e strutture, gli elementi ricorrenti
+per il calcolo di un indirizzo effettivo sono stati:
+
+• indirizzo di base
+
+• indice
+
+• spiazzamento
+
+Per quanto riguarda l’indice dei vettori, è utile anche conoscere la
+taglia dei singoli elementi del vettore:
+					a[i] ⟺ a + size ∗ i
+					
+• Poiché i tipi primitivi della CPU sono a 8, 16, 32 e 64 bit, è utile
+prevedere una scala pari a questi valori
+
+##### Operando in memoria:
+Serve a definire delle "definizioni" ricorrenti.
+Le istruzioni assembly possono accettare anche operandi in memoria
+• Per motivi di codifica, al più uno solo
+• MOVx $<sorgente>,~<destinazione>$ 
+• Uno tra $<sorgente>~e~<destinazione>$può essere un operando in memoria
+Per supportare le operazioni comuni, gli operandi in memoria hanno la forma:
+			spiazzamento(base, indice, scala)
+Base e indice sono registri general purpose
+• base: si può riusare lo stesso codice per accedere, ad esempio, a vettori differenti
+• indice: si può utilizzare la stessa istruzione all’interno di un ciclo per scandire un vettore
+Sappiamo che scala e spiazzamento sono delle costanti codificate nell'istruzione.
+###### Esempi:
+
+
+#### Implementazione della modalità di indirizzamento:
+La determinazione di un indirizzo di memoria è un'operazione più complessa. E' necessario fare affidamento sulla PU per calcolare questo indirizzo.
+Ho due possibilità:
+- introduzione di hardware dedicato
+- utilizzo dell'hardware già presente 
+La seconda opzione è la più conveniente, per evitare di appesantire ulteriormente:
+![[Pasted image 20241105125002.png]]![[Pasted image 20241105125021.png]]
+### Istruzioni dello z64: 
+Definire una codifica della istruzioni è fondamentale per progettare un'ISA: 
+- Determina in che modo la CU interpreta le istruzioni
+- Determina quali sequenze di parole binarie il compilatore inserisce in .text
+Sono organizzate in otto classi:
+- Classe 0: Controllo dell’hardware
+- Classe 1: Spostamento dati
+- Classe 2: Aritmetiche (su interi) e logiche
+- Classe 3: Rotazione e shift
+- Classe 4: Operazioni sui bit di FLAGS
+- Classe 5: Controllo del flusso d’esecuzione del programma
+- Classe 6: Controllo condizionale del flusso d’esecuzione del programma
+- Classe 7: Ingresso/uscita di dati
+Le istruzioni hanno un formato a lunghezza variabile:
+![[Pasted image 20241111142825.png]]
+La lunghezza variabile permette la generazione di programmi più compatti (meno consumo di memoria e spazio su disco).
+#### Il campo Opcode:
+![[Pasted image 20241111142953.png]]
+Il campo Opcode:
+- Class è un codice di 4 bit che identifica la famiglia di istruzioni cui
+appartiene quella corrente
+- Type è un codice di quattro bit che identifica la precisa istruzione
+nella famiglia
+- Questa differenziazione ci consentirà di realizzare una CU più ottimizzata
+...
+
+#### Quali sono le istruzioni?
+Le seguenti convenzioni vengono utilizzate per rappresentare gli
+operandi delle istruzioni:
+- B — L’operando è un registro di uso generale, un indirizzo di memoria o un valore immediato. In caso di un indirizzo di memoria, qualsiasi combinazione delle modalità di indirizzamento è lecita. In caso di un immediato, la sua posizione dipende dalla possibile presenza dello spiazzamento e dalla sua dimensione.
+- E — L’operando è un registro di uso generale, o un indirizzo di memoria. In caso di un indirizzo di memoria, qualsiasi combinazione delle modalità di indirizzamento è lecita.
+- G — L’operando è un registro di uso generale.
+- K — L’operando è una costante numerica non segnata di valore fino a 232 − 1
+- M — L’operando è una locazione di memoria, codificata come uno spiazzamento a partire dal contenuto del registro RIP dopo l’esecuzione della
+  fase di fetch  
+- ImmK — L’operando è un dato immediato di K cifre binarie
+##### Classe 0: Controllo hardware
+Le istruzioni di controllo hardware consentono di modificare lo stato della CPU, oppure eseguono istruzioni particolari.
+![[Pasted image 20241111143327.png]]
+Hit può essere utilizzata per esempio se la CPU si surriscalda.
+Nop indica nessuna operazione.
+##### Classe 1: Istruzioni di movimento dati:
+![[Pasted image 20241111144914.png]]
+L'istruzione movzX supporta le stesse combinazioni di suffissi.
+I nomi dei registri virtuali devono essere coerenti con i suffissi.
+L'istruzione lea valuta la modalità di indirizzamento, salva il risultato in G.
+###### Comandi per il movimento di dati:
+![[Pasted image 20241111145016.png]]
+##### Classe 2: Istruzioni logico aritmetiche (1):
+![[Pasted image 20241111145926.png]]
