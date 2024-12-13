@@ -1,7 +1,12 @@
 [
   "quick-latex",
-  "obsidian-completr",
   "obsidian-style-settings",
   "colored-text",
-  "code-styler"
+  "code-styler",
+  "table-editor-obsidian",
+  "contribution-graph",
+  "dataview",
+  "obsidian-excalidraw-plugin",
+  "obsidian-pandoc",
+  "obsidian-enhancing-export"
 ]

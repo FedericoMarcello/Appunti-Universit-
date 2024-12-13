@@ -1,0 +1,10 @@
+{
+  "break-page:insert-break-page": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "B"
+    }
+  ]
+}

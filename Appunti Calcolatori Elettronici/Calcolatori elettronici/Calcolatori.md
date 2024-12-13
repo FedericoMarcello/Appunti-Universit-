@@ -69,10 +69,10 @@ esistono diversi sistemi di codifica, i più comuni sono
 
 ### Scorciatoie per la conversione:
 - Se parto da una base 2 ed arrivo ad una base 8, varranno le seguenti corrispondenze, o viceversa.
-![[Pasted image 20240927161949.png]]
+![[Pasted image 20240927161949 1.png]]
 
 - Se parto da una base 2 ed arrivo ad una base 16, varranno le seguente corrispondenze, o viceversa:
-![[Pasted image 20240927163327.png]] 
+![[Pasted image 20240927163327 1.png]] 
 ### Intervalli rappresentabili con la notazione posizionale
 Dato un numero k di cifre di un alfabeto associato al sistema numerico in base b, è possibile rappresentare tutti i valori nell'intervallo: 
 $${[0, b^k-1]}$$
@@ -82,7 +82,7 @@ $$k=log_{b}(n)$$
 
 ### Operazioni aritmetiche in altre basi:
 Sono simili a quelle in base 10, ma introduciamo i concetti di riporto e prestiti:
-![[Pasted image 20240927171217.png]]
+![[Pasted image 20240927171217 1.png]]
 questo è un esempio in base 2.
 Analizzando la prima operazione, 
 - 0+0 = 0, 
@@ -98,20 +98,20 @@ Analizzando la seconda operazione,
 Per studiare come si rappresenta il numero negativo esistono diversi metodi:
 #### La rappresentazione in modulo e segno:
 vado quindi a inserire nel primo bit significativo il valore opposto a quello iniziale.
-![[Pasted image 20240927174102.png]]
+![[Pasted image 20240927174102 1.png]]
 Attraverso questa operazione però otterrò due zeri:
-![[Pasted image 20240927174149.png]]
+![[Pasted image 20240927174149 1.png]]
 E' una rappresentazione inefficiente però, quindi non sarà quella utilizzata.
 #### Complemento a uno:
 Questo metodo consiste nell'invertire tutti i bit.
-![[Pasted image 20240927175528.png]]
+![[Pasted image 20240927175528 1.png]]
 Il nome deriva dal fatto che sommando ogni valore otterremo una sequenza di tutti 1. Rimangono però due zeri.
 Con n cifre, si rappresentano i numeri nell'intervallo:
 $$[-(2^{n-1}-1), 2^{n-1}-1]$$
 Ciò significa che il complemento a 1 di x è quel valore x' tale che se sommato a x mi restituisce una sequenza n di 1, ovvero:
 $$x+x'=2^n-1$$
 Questo tipo di rappresentazione, però, crea problemi quando svolgo operazioni di somma fra numeri negativi:
-![[Pasted image 20240927180033.png]]
+![[Pasted image 20240927180033 1.png]]
 - Il risultato è sbagliato
 - Il fenomeno si chiama end-around carry (riporto di fine giro)
 - Per ottenere il risultato corretto, è necessario sommare al risultato ottenuto anche il bit di riporto.
@@ -135,14 +135,14 @@ Osservando con attenzione notiamo che le due cifre meno significative di x e x'+
 Quindi, in modo più generale, per calcolare il complemento a due di un numero, si parte dal bit meno significativo. Si lasciano inalterati tutti i bit fino a quando non si trova il primo 1. A questo punto, si invertono tutti i bit rimanenti.
 ##### Organizzazione della codifica: 
 L'esempio di un caso di 4 cifre binarie:
-![[Pasted image 20240927183515.png]] 
+![[Pasted image 20240927183515 1.png]] 
 Notiamo che vi è un solo zero, ma si può codificare -8 e non 8 (chiamato per questo numero strano)
 
 Con n cifre, si rappresentano i numeri nell'intervallo:
 $$[-2^{n-1}, 2^{n-1}-1]$$
 ##### Somma e Differenza in complemento a 2:
 Può essere svolta ignorando il segno:
-![[Pasted image 20240927184618.png]]
+![[Pasted image 20240927184618 1.png]]
 - questo significa che per effettuare le sottrazioni basta negare il sottraendo ed effettuare la somma
 - in questo modo utilizzo lo stesso circuito per implementare due operazioni differenti.
 - Il riporto può essere tralasciato.
@@ -153,7 +153,7 @@ Viceversa, esistono due casi in cui il risultato di una somma (in complemento a 
 - somma algebrica di due numeri positivi A e B. Si ha un overflow se $$ A + B >=  2^{n-1} $$
 - somma algebrica di due numeri negativi A e B. Si ha overflow se  $$ A + B >= 2^{n-1} $$
 Tali due condizioni si verificano se gli ultimi due riporti sono discordi:
-![[Pasted image 20241012170320.png]]
+![[Pasted image 20241012170320 1.png]]
 
 Guardando l'immagine orizzontalmente, i primi due numeri sono entrambi somme di numeri positivi, mentre gli altri due sono numeri negativi (presenza dell'1 davanti al vero numero).
 ##### Rappresentazione in eccesso:
@@ -167,7 +167,7 @@ con due caratteristiche principali:
 - L'intervallo rappresentabile è $[-2^{n-1},2^{n-1}-1]$
 ### Numeri in virgola mobile:
 Esistono molte quantità di numeri reali che possono essere memorizzate in numeri interi:
-- lunghezza
+- lunghuezza
 - prezzi
 - temperature
 - frequenze delle note musicali
@@ -183,20 +183,20 @@ Attraverso la Floating Point Unit possiamo manipolare numeri reali.
 
 - sono state proposte diverse rappresentazioni nel tempo, ma studieremo lo standard IEEE 754 a 32 bit:
 #### Rappresentazione IEEE 754 a 32 bit:
-![[Pasted image 20241014113848.png]]
+![[Pasted image 20241014113848 1.png]]
 Un numero reale (float) ha dimensione 32 bit così utilizzati:
 - segno s: 1 bit
 - esponente e: 8 bit
 - mantissa m: 23 bit
 #### Caratteristiche:
-L'esponente decimale E è rappresentato in eccesso a 127:
-$$e= E +127$$
+L'esponente decimale E è rappresentato in eccesso a 127:$$e= E +127
+$$
 La mantissa rappresenta il valore binario $$(1.m)_2$$
 - dove la parte intera viene omessa nella rappresentazione
 Il valore decimale può essere calcolato come $$(-1)^{s}*2^{è-127}*(1.m)$$ questa viene chiamata rappresentazione _normalizzata_
 ##### Tipologie di numero:
 - numeri normalizzati: sono la maggior parte dei numeri rappresentabili dallo standard
-- numeri denormalizzati: valori molto prossimi allo zero. Generano alcuni problemi nella gestione degli errori di arrotondamento.
+- numeri denormalizzati: valori molto prossii allo zero. Generano alcuni problemi nella gestione degli errori di arrotondamento.
 	- la parte intera omessa non è 1, bensì 0
 - zeri: è possibile rappresentare ±0
 	- la maggior parte delle operazioni ignora il segno, ma dividere per ±0 può dare come risultato $\pm\infty$ 
@@ -304,15 +304,15 @@ h-1$$
 	- aerospazio
 	- super computer
 	- Reti di calcolatori
-![[Pasted image 20240930152540.png]]
+![[Pasted image 20240930152540 1.png]]
 Dove con la linea rossa indico la causa dell'errore
 ##### Come riveliamo l'errore?
 Per capirlo, vediamo un esempio.
 Ho questi due codici:
-![[Pasted image 20240930152700.png]]
+![[Pasted image 20240930152700 1.png]]
 
 Il modo in cui utilizziamo lo spazio disponibile per rappresentare gli elementi può consentire di rivelare la presenza di errori:
-![[Pasted image 20240930152759.png]]
+![[Pasted image 20240930152759 1.png]]
 ##### Codice di parità o disparità (Ridondante):
 Si tratta di un codice ridondante con h = 2 e si ottiene aggiungendo una cifra di parità ad un codice irridondante. Vi sono due tipologie: 
 ###### Parità:
@@ -320,18 +320,18 @@ vale 1 se il numero di 1 nella codifica irridondante è dispari, sennò 0
 ###### Disparità:
 vale 1 se il numero di 1 nella codifica è pari, sennò 0
 ###### Tabella riassuntiva: 
-![[Pasted image 20240930182922.png]]
+![[Pasted image 20240930182922 1.png]]
 ###### Come funziona?
 Supponiamo di usare un codice di _Parità_, si può determinare se c'è stato un **singolo** errore di trasmissione, vedremo perché è importante "singolo":
 - se la parità varrà 0, allora non ci sono stati errori di trasmissione.
-![[Pasted image 20241015000730.png]]
+![[Pasted image 20241015000730 1.png]]
 [Per capire meglio il funzionamento](https://www.edscuola.it/archivio/software/bit/bitfaq58.html) 
 
 ###### Esempio:
 Voglio trasmettere 101.
 Il generatore di parità aggiungerà 0 alla fine, trasmettendo 1010.
 Vediamo diversi casi:
-![[Pasted image 20241015001244.png]]
+![[Pasted image 20241015001244 1.png]]
 1) Se ricevo lo stesso bit, non avrò nessun segnale di errore perché la parità continua a valere 0, visto che la somma degli 1 è pari.
 2) Nel secondo caso ricevo un valore con un valore diverso, riceverò un segnale di errore poiché  la parità è diversa da 0, visto che la somma degli 1 è dispari
 3) Infine se gli elementi ad essere cambiati sono due (più in generale a coppie) la parità tornerà ad essere 0, quindi non riceverò alcun messaggio di errore,  questo è **totalmente sbagliato**. 
@@ -339,13 +339,13 @@ Vediamo diversi casi:
 è un metodo per la costruzione di codici a distanza  $h \ge 3$. Data una parole di codice di $m = n+k~cifre, con~n \le 2^k - k-1$, avremo:
 - i bit in posizione $2^i$ sono bit di parità
 - ciascun bit di parità controlla la correttezza dei bit di informazione la cui posizione, espressa in binario, ha un 1 nella potenza di 2 corrispondente
-![[Pasted image 20241015104730.png]]
+![[Pasted image 20241015104730 1.png]]
 ##### Esempio:
-![[Pasted image 20241015105120.png]]
+![[Pasted image 20241015105120 1.png]]
 ###### 1 caso:
-![[Pasted image 20241015105157.png]]
+![[Pasted image 20241015105157 1.png]]
 ###### 2 Caso:
-![[Pasted image 20241015105332.png]]
+![[Pasted image 20241015105332 1.png]]
 
 ## Capitolo 3 Algebra Booleana:
 ### Cos'è?
@@ -425,9 +425,9 @@ Ci sono diversi modi per esprimere una funzione di commutazione:
 - forme decimali
 ##### Tabelle di verità:
 Crea una relazione fra le variabili di input ed il valore di output della funzione. In queste tabelle si utilizza speso in maniera interscambiabile il vettore **x**=$[x_{1},x_{2},..,x_n]$ e le variabili che lo compongono. 
-Una tabella di verità di una funzione di n variabili è costituita da $2^{n}$ righe:![[Pasted image 20241015175418.png]]
+Una tabella di verità di una funzione di n variabili è costituita da $2^{n}$ righe:![[Pasted image 20241015175418 1.png]]
 ###### Esempi:
-Si possono vedere come funzioni di commutazione anche gli operatori fondamentali, attraverso 1 o 2 variabili di commutazione:![[Pasted image 20241015175353.png]]
+Si possono vedere come funzioni di commutazione anche gli operatori fondamentali, attraverso 1 o 2 variabili di commutazione:![[Pasted image 20241015175353 1.png]]
 
 #### Operatori derivati:
 Sulla base degli [[#Operatori ed Assiomi fondamentali]] è possibile definire i seguenti operatori derivati:
@@ -439,7 +439,7 @@ Sulla base degli [[#Operatori ed Assiomi fondamentali]] è possibile definire i 
 ##### OR esclusivo (XOR)
 Esso è equivalente alla somma modulo 2 ed è definito così:$$a~\oplus~b = \bar a b+a\bar b $$
 Viene utilizzato per verificare la disuguaglianza tra due variabili.
- ![[Pasted image 20241016115031.png]]
+ ![[Pasted image 20241016115031 1.png]]
 ###### Proprietà Principali:
 - $a\oplus b = b\oplus a~(proprietà~commutativa)$
 - $a\oplus(b\oplus c)=(a\oplus b)\oplus c~(proprietà~associativa)$
@@ -451,7 +451,7 @@ Viene utilizzato per verificare la disuguaglianza tra due variabili.
 
 ##### Not AND (NAND):
 Definito così:$$a|b=\overline{a * b}=\bar a +\bar b$$
-![[Pasted image 20241016115216.png]]
+![[Pasted image 20241016115216 1.png]]
 ###### Proprietà:
 - $a|b=b|a~(Proprietà~commutativa)$
 - $a|1=\bar a$
@@ -461,7 +461,7 @@ Definito così:$$a|b=\overline{a * b}=\bar a +\bar b$$
 
 
 ##### NOR
-Si tratta del duale dell'operatore NAND ed è definito cosi:$$a\downarrow b = \overline{a+b}=\bar a *\bar b$$ ![[Pasted image 20241016121655.png]]
+Si tratta del duale dell'operatore NAND ed è definito cosi:$$a\downarrow b = \overline{a+b}=\bar a *\bar b$$ ![[Pasted image 20241016121655 1.png]]
 ###### Proprietà:
 - $a\downarrow b = b\downarrow a~(proprietà~commutativa)$
 - $a\downarrow 1 = 0$
@@ -471,7 +471,7 @@ Si tratta del duale dell'operatore NAND ed è definito cosi:$$a\downarrow b = \o
 
 
 ##### Nor esclusivo (XNOR)
-Definito come segue:$$a\odot b=(\bar a+b)*(a+\bar b)$$ ![[Pasted image 20241016121907.png]]
+Definito come segue:$$a\odot b=(\bar a+b)*(a+\bar b)$$ ![[Pasted image 20241016121907 1.png]]
 ###### Proprietà:
 - $a\odot b = b\odot a~(proprietà~commutativa)$
 - $a\odot(b\odot c)=(a\odot b)\odot c~(proprietà~associativa)$
@@ -502,17 +502,17 @@ Dove il termine $M_k$ viene chiamato maxtermine ed è nella forma:
 $M_k=$ $\sum_{i=0}^{n-1}x_i^{a_{i}}$ con $\alpha_{i}=[0,1]$ e $~x_{i}^{\alpha_{i}}=x_{i}~se~\alpha_i=0,x_{i}^{\alpha_{i}}=\overline{x_i}~se~\alpha_{i}=1$
 ###### Esempio:
 Consideriamo la seguente funzione di commutazione definita mediante tabella di verità:
-![[Pasted image 20241016194746.png]]
+![[Pasted image 20241016194746 1.png]]
 - I **mintermini** corrispondono alle configurazioni k = 0,4,5,7
 - I **maxtermini** corrispondono alle configurazioni k= 1,2,3,6
 A questo punto, dai mintermini possiamo definire la seguente rappresentazione in somme di prodotto:$$f(x_1,x_2,x_3)=\overline{x_1}~\overline{x_2}~\overline{x_3}+x_1~\overline{x_2}~\overline{x_3}+x_1~\overline{x_2}~{x_3}+x_1~{x_2}~{x_3}$$
-![[Pasted image 20241016195321.png]]
+![[Pasted image 20241016195321 1.png]]
 
 
-Invece dai maxtermini possiamo definire la seguente rappresentazione in somme di prodotti:$$f(x_{1}, x_{2},x_{3})=(x_{1}+x_{2}+\overline{x_3})(x_{1}+ \overline{x_2}+x_{3})(x_{1}+\overline{x_{2}}+\overline{x_3})(\overline{x_{1}}+\overline{x_{2}}+x_{3})$$ ![[Pasted image 20241017094726.png]]
+Invece dai maxtermini possiamo definire la seguente rappresentazione in somme di prodotti:$$f(x_{1}, x_{2},x_{3})=(x_{1}+x_{2}+\overline{x_3})(x_{1}+ \overline{x_2}+x_{3})(x_{1}+\overline{x_{2}}+\overline{x_3})(\overline{x_{1}}+\overline{x_{2}}+x_{3})$$ ![[Pasted image 20241017094726 1.png]]
 
 ###### Forma decimale:
-Si indica l'interpretazione decimale delle variabili booleane associate a mintermini e maxtermini:$$f(k)=\sum\limits(0,4,5,7)=\prod(1,2,3,6)$$![[Pasted image 20241017105808.png]]
+Si indica l'interpretazione decimale delle variabili booleane associate a mintermini e maxtermini:$$f(k)=\sum\limits(0,4,5,7)=\prod(1,2,3,6)$$![[Pasted image 20241017105808 1.png]]
 
 ##### Seconda tecnica: Trasformazioni Analitiche:
 Per capire meglio, utilizziamo il seguente esempio:$$x_{1}x_{3}+\overline{x_{1}}(x_{2}+\overline{x_{3}})$$ questa funzione può essere trasformata come segue:$$x_{1}x_{3}+\overline{x_{1}}(x_{2}+\overline{x_{3}})=x_{1}x_{3}(x_{2}+\overline{x_{2}})+\overline{x_{1}}x_{2}(x_{3}+\overline{x_{3}})+\overline{x_{1}}\overline{x_{3}}(x_{2}+\overline{x_{2}})$$Risolvendo la moltiplicazione otterremo:$$x_{1}x_{2}x_{3}+x_{1}\overline{x_{2}}x_{3}+\overline{x_{1}}x_{2}x_{3}+2(\overline{x_{1}}x_{2}\overline{x_{3}})+\overline{x_{1}x_{2}x_{3}}$$
@@ -526,7 +526,7 @@ Identificare una forma minima è importante poiché permetterà di realizzare ci
 I metodi analitici richiedono di applicare le proprietà dell'algebra e teoremi visti fin ora.
 Non esiste un tipo di risoluzione corretto per ogni forma.
 ###### Esempio:
-![[Pasted image 20241017110240.png]]![[Pasted image 20241017110409.png]]
+![[Pasted image 20241017110240 1.png]]![[Pasted image 20241017110409 1.png]]
 
 #### Mappe di Karnaugh:
 Le mappe di Karnaugh sono una rappresentazione differente delle tabelle di verità.
@@ -537,22 +537,22 @@ Le mappe di Karnaugh sono una rappresentazione differente delle tabelle di verit
 - Poiché $(a+\overline{a})=1$ è possibile eliminare (semplificare) una variabile se la funzione assume lo stesso valore in gruppi di celle adiacenti
 - Esso è un metodo facile per gli umani (max 6 variabili), di difficile realizzazione automatizzata per un algoritmo
 ##### Mappe di Karnaugh (funzioni a 2,3,4 variabili):
-![[Pasted image 20241017154632.png]]
+![[Pasted image 20241017154632 1.png]]
 E' importante notare che l'uso del codice di Gray garantisce che anche le celle agli estremi siano _adiacenti_.
 ###### Funzioni a 4 variabili:
 Studiando la funzione a 4 variabili osserviamo che le adiacenze ai bordi e agli angoli sono valide poiché la mappa è lo sviluppo di un solido multidimensionale.
 Ad esempio, per 4 variabili la mappa è lo sviluppo di un _toro_:
-![[Pasted image 20241017160109.png]]
+![[Pasted image 20241017160109 1.png]]
 ##### Mappe di Karnaugh (funzioni a 5 variabili):
-![[Pasted image 20241017160244.png]]
+![[Pasted image 20241017160244 1.png]]
 L'adiacenza è anche tra le due tabelle, come se queste fossero sovrapposte.
 ##### Mappe di Karnaugh (funzioni a 6 variabili):
 Come nel caso di cinque variabili, anche qui le adiacenze valgono per tabelle sovrapposte:
-![[Pasted image 20241017160509.png]]
+![[Pasted image 20241017160509 1.png]]
 
 ##### Mappe di Karnaugh e tabelle di verità:
 Per trasforma una tabella di verità in una mappa di Karnaugh è sufficiente riempire le celle della mappa con il valore della funzione in corrispondenza delle variabili di ingresso:
-![[Pasted image 20241017161537.png]]
+![[Pasted image 20241017161537 1.png]]
 [Approfondimento ChatGPT](https://chatgpt.com/share/67112f87-4d14-8008-be3c-1e64b19238ec)
 ##### Semplificazioni mediante mappe di Karnaugh:
 Per sfruttare le adiacenze è possibile costruire insiemi di copertura di dimensione 1,2,4,8,16,... celle, raddoppiando via via la dimensione. Questi insiemi devono coprire tutti i termini 1. 
@@ -584,10 +584,10 @@ Andiamo a scrivere la tabella di verità, sappiamo che:
 | 1     | 1       | 1       | 0     | 0            |
 | 1     | 1       | 1       | 1     | 1            |
 Ora rappresentiamo la tabella di verità su una mappa di Karnaugh:
-![[Pasted image 20241017164132.png]]
+![[Pasted image 20241017164132 1.png]]
 a questo punto, identifichiamo gli **implicanti primi** selezionando degli insiemi di dimensione 1,2,4,... fino a coprire tutti gli 1 almeno una volta(semplificazione con mintermini).
 A questo punto, identifichiamo gli implicanti primi selezionando degli insiemi di dimensione 1,2,4,.. fino a coprire tutti gli 1 almeno una volta:
-![[Pasted image 20241018092648.png]]
+![[Pasted image 20241018092648 1.png]]
 Le variabili che cambiano valore nelle celle adiacenti in ciascun insieme possono essere semplificate:
 - $f(x,y,z,t)=\bar{x}\bar{y}\bar{z}+\bar{x}zw+yzw$ (insiemi di sinistra)
 - $f(x,y,z,t)=\bar{x}\bar{y}\bar{z}+\bar{x}\bar{z}w+yzw$ (insiemi di sinistra)
@@ -599,12 +599,12 @@ In questo caso dobbiamo esprimere la funzione come prodotto di somme:
 Quale usare?
 - Una regola non universale ma molto pratica e quella di utilizzare i max termini se gli 1 sono meno della metà e se invece sono gli zeri ad essere meno della metà, si usano i mintermini.
 - In generale è opportuno identificare la strategia che porta al numero minore di termini o di termini con meno variabili.
-![[Pasted image 20241018182259.png]]
-![[Pasted image 20241018182314.png]]
+![[Pasted image 20241018182259 1.png]]
+![[Pasted image 20241018182314 1.png]]
 ###### Esempi di adiacenze: funzioni di 4 variabili
-![[Pasted image 20241018182405.png]]
+![[Pasted image 20241018182405 1.png]]
 ###### Esempi di adiacenze: funzioni di 5 variabili
-![[Pasted image 20241018182445.png]]
+![[Pasted image 20241018182445 1.png]]
 ###### Don't Care Condition:
 A volte, una funzione è parzialmente specificata.
 In questi casi il valore dell'uscita non è definito per tutte le configurazioni delle variabili di ingresso:
@@ -612,11 +612,11 @@ In questi casi il valore dell'uscita non è definito per tutte le configurazioni
 - Configurazioni non di interesse.
 In questi casi, i mintermini/maxtermini vengono associati (nella notazione decimale) a un insieme $\sum\limits_\frac{0}{1}$ che rappresenta il fatto che non è noto (o di interesse) che il valore della funzione sia 0 o 1.
 Nel caso delle mappe di Karnaugh, si indica tale condizione con un trattino (-) e si più comodo per la minimizzazione.
-![[Pasted image 20241018183317.png]]
+![[Pasted image 20241018183317 1.png]]
 ###### Esempio di funzioni con 6 variabili:
 L'insieme azzurro costruisce un insieme di copertura che racchiude 4 termini, permettendo una riduzione di due variabili.
 Se avessimo considerato il solo mintermine $\bar{a}bcd\bar{e}\bar{f}$ l'espressione sarebbe stata più complessa.
-![[Pasted image 20241018183609.png]]
+![[Pasted image 20241018183609 1.png]]
 ##### Operatori Universali:
 Essi sono utili nell'implementazione dei circuiti perché la loro implementazione in hardware può richiedere un numero minore di componenti elettroniche
 ###### Operatore NAND
@@ -636,29 +636,29 @@ $(a\downarrow (a\downarrow a))\downarrow(a\downarrow(a\downarrow a))=1$
 ## Capitolo 4: circuiti combinatori:
 ### Circuiti logici (o di commutazione):
 Sono reti di componenti che accettano variabili booleane in input e le restituiscono in output. Per capirle meglio è utile affidarsi all'algebra booleana. Gli operatori booleani sono implementati in hardware da circuiti chiamate porte logiche che vengono astratte con i seguenti simboli:
-![[Pasted image 20241019134140.png]]
+![[Pasted image 20241019134140 1.png]]
 #### Negazioni e porte a più ingressi:
 Circuitalmente è più efficiente inserire il calcolo della negazione degli input direttamente nelle porte logiche:
-![[Pasted image 20241019224740.png]]
+![[Pasted image 20241019224740 1.png]]
 Inoltre è possibile costruire porte a più ingrassi, dipendentemente dalla tecnologia costruttiva:
-![[Pasted image 20241019224829.png]]
+![[Pasted image 20241019224829 1.png]]
 La maggior parte degli operatori è associativo e commutativo
 ##### NAND a più ingressi:
 Abbiamo visto che l'operatore NAND non è associativo,([[#Not AND (NAND)]]), quindi 
 $$x_{1}|(x_{2}|x_{3})=\overline{x_{1}}+x_{2}x_{3}\ne x_{1}x_2+\overline {x_3}=(x_{1}|x_{2})|x_{3}$$
 ciò significa che i seguenti cicli non sono equivalenti:
-![[Pasted image 20241020120231.png]]
+![[Pasted image 20241020120231 1.png]]
 E' però possibile costruire la seguente porta logica:
-![[Pasted image 20241020120308.png]]
+![[Pasted image 20241020120308 1.png]]
 ed il suo significato è dato da $x_{1}|x_{2}|x_{3}=\overline{x_{1}x_{2}x_{3}}$ costruendo quindi un operatore NAND associativo. 
 Questo operatore calcolare una funzione differente dal NAND booleano.
 ##### NOR a più ingressi:
-vale lo stesso ragionamento per l'operatore NOR, infatti:![[Pasted image 20241020125034.png]]
+vale lo stesso ragionamento per l'operatore NOR, infatti:![[Pasted image 20241020125034 1.png]]
 ##### Porte logiche a diodi:
 ###### Tipo di porta AND:
 E' possibile costruire un selettore di velocità secondo il circuito in figura e poichè 
 operiamo con circuiti di commutazione, assumiamo che siano possibili solo due livelli di tensione:$V_{L}~e~V_{H}$.
-Il circuito rappresentato funziona attraverso le caratteristiche dei singoli componenti:![[Pasted image 20241020190238.png]]
+Il circuito rappresentato funziona attraverso le caratteristiche dei singoli componenti:![[Pasted image 20241020190238 1.png]]
 - diodi: sono degli interruttori che funzionano come dei conduttori solo se il lato che è collegato a $V_{1}~o~a~V_{2}$ 
 - resistenza: collega l'uscita $V_{out}$ alla tensione di alimentazione $V_{CC}$ 
  Sapendo che i diodi funzionano in un modo specifico, possiamo analizzare le condizioni di tensione:
@@ -670,7 +670,7 @@ Questo circuito si comporta come una porta AND, poiché il caso di tensione alta
 Se anche una delle due è bassa, allora il risultato sarà basso. In termini booleani, $V_{out}$ sarà 1 se sia $V_{1}$, sia $V_{2}$ sono 1.
 ###### Tipo di porta OR:
 Immaginiamo un circuito ideale di questo tipo, per implementare una porta logica di tipo OR:
-![[Pasted image 20241021122123.png]]
+![[Pasted image 20241021122123 1.png]]
 Implementa la porta OR poiché la tensione in $V_{out}$ sia alta, basta che si verifichi che o $V_{1}$ sia alta o $V_{2}$ lo sia, come anche spiegato dalla tabella. In termini booleani $V_{out}$ è 1 se o$V_{1}$ è 1 o $V_{2}$  lo è
 
 ###### Problemi:
@@ -680,54 +680,54 @@ La Transistor/Transistor Logic si basa sull'uso di alcuni transistor per la real
 Si basano sul concetto di resistenze _pull up_.
 ###### Esempio (Inverter TTL):
 Implementa una porta NOT:
-![[Pasted image 20241021123942.png]]
+![[Pasted image 20241021123942 1.png]]
 ##### Logica CMOS:
 si basa sull'uso di transistor pMOS e nMOS nella stessa rete, rispettivamente la prima si comporta da _pull up_, mentre la seconda implementa la parte di _pull down_ il vantaggio è che l'area utilizzata è estremamente piccola.
 ###### Esempio: (inverter CMOS):
-![[Pasted image 20241021131220.png]]
+![[Pasted image 20241021131220 1.png]]
 ##### Porta NAND:
-![[Pasted image 20241021133808.png]]
+![[Pasted image 20241021133808 1.png]]
 
 ##### Porta NOR:
-![[Pasted image 20241021133839.png]]
+![[Pasted image 20241021133839 1.png]]
 
 ##### Riduzione del costo nelle operazioni AND/OR:
 Immaginiamo di avere una funzione composta del tipo:
 $$y=\sum\limits_{i=1}^{n}f_{i}~oppure~y=\prod_{i=1}^{n}f_{i}$$
 Il circuito logico risultante è del tipo:
-![[Pasted image 20241021134252.png]]
+![[Pasted image 20241021134252 1.png]]
 Vi sono però dei problemi, in particolare nei "puntini", infatti visto che il numero di ingressi cresce, aumenterà anche il numero di transistor, ma non è detto che si conoscono a priori il numero di input da considerare. Nel caso in cui gli input fossero in grande numero, il relativo accumulo di corrente potrebbe danneggiare i dispositivi elettronici.
 #### Tecnologia in Open Collector:
 Le porte Open collector utilizzano un transistor aggiuntivo in cui il collettore è connesso all'uscita della porta che funziona come un circuito aperto o come come circuito connesso a massa. Visto che si lavora in logica negata,viene utilizzata una resistenza di pull up che fa salire la tensione quando il circuito è chiuso:
-![[Pasted image 20241021172205.png]]
-Per indicare un operatore logico in open collector, viene utilizzato il simbolo della porta logica negata, marcato con "OC". Esempio: NAND in Open Collector, dove la resistenza di pull up diventa esterna alla porta:![[Pasted image 20241021175210.png]]
+![[Pasted image 20241021172205 1.png]]
+Per indicare un operatore logico in open collector, viene utilizzato il simbolo della porta logica negata, marcato con "OC". Esempio: NAND in Open Collector, dove la resistenza di pull up diventa esterna alla porta:![[Pasted image 20241021175210 1.png]]
 Le porte in open collector vengono usate quando c'è la necessit di collegare insieme più porte che possono fornire corrente in uscita contemporaneamente. L'accumulo di corrente in uscita, nel caso di un numero elevato di componenti, può produrre un danno fisico al circuito. Con l'uso dell'open collector la quantità di corrente che fluisce nel circolo non è più in funzione del numero di porte con l'uscita attiva:
-![[Pasted image 20241021175530.png]]
+![[Pasted image 20241021175530 1.png]]
 ##### Buffer Three-State :
 è un circuito che viene utilizzato per collegare tra loro parti di un circuito complesso. E' un circuito a tre canali:
 - un segnale di ingresso
 - un segnale di uscita
 - un segnale di controllo
-Il segnale di uscita è uguale al segnale di ingresso se questo è attivo, altrimenti l'uscita è ad alta impedenza. Si comporta quindi da interruttore:![[Pasted image 20241021180854.png]]
+Il segnale di uscita è uguale al segnale di ingresso se questo è attivo, altrimenti l'uscita è ad alta impedenza. Si comporta quindi da interruttore:![[Pasted image 20241021180854 1.png]]
 #### Dalle funzioni booleane ai circuiti e viceversa:
 Grazie alle parti logiche introdotte si può partire da una funzione e arrivare ad un circuito e viceversa, vediamo i due casi:
 ##### Da una funzione booleana a un circuito:
 1. Si considerano i termini più interni (per precedenza) e si realizza quella parte della funzione come circuito
 2. Le uscite delle porte così definitite vengono usate come input delle funzione esterne
 ###### Esempio:
-![[Pasted image 20241021181258.png]]![[Pasted image 20241021181539.png]]![[Pasted image 20241021181603.png]]
+![[Pasted image 20241021181258 1.png]]![[Pasted image 20241021181539 1.png]]![[Pasted image 20241021181603 1.png]]
 ##### Dalla funzione al circuito:
 - Si assegna un nume all'uscita di ogni porta
 - Queste variabili ausiliare vengono progressivamente eliminate fino a quando non si ha un'espressione che usa solo le variabili di input.
 ###### Esempio:
-![[Pasted image 20241021181341.png]]
+![[Pasted image 20241021181341 1.png]]
 ##### Efficienza del circuito realizzato:
 Una volta costruito il circuito, dobbiamo chiederci quanto esso sia efficiente. Possiamo rispondere attraverso due definizioni:
 - Costo: quante componenti elettroniche utilizziamo per realizzare il circuito?
 - Tempo: quanto è veloce il circuito a calcolare l'uscita dati gli ingressi?
 La differenza tra una funzione booleana e un circuito, è che la funzione è impulsiva mentre un circuito di commutazione ha un ritardo di calcolo.
 ###### Ritardo di commutazione:
-![[Pasted image 20241021183902.png]]
+![[Pasted image 20241021183902 1.png]]
 I circuiti sono componenti fisiche, pertanto se applichiamo un gradino in ingresso, l'uscita si stabilizzerà dopo un po' di tempo:
 - $\tau_{d}:$ ritardo di commutazione (tempo per arrivare al 10% del valore finale)
 - $\tau_{r}$ : tempo di salita (tempo per arrivare al 90% del valore finale)
@@ -736,66 +736,66 @@ Per semplicità si considera di solito un unico tempo di propagazione $\tau_{p}$
 Il tempo di propagazione si accumula quando ci sono più porte in cascata che implementano una funzione.
 Per stimare le prestazione, si può ricorrere al crital path:
 - il percorso più lungo che un segnale di input attraversa in un circuito.
-![[Pasted image 20241021184053.png]]
+![[Pasted image 20241021184053 1.png]]
 Possiamo stimarer un ritardo pari a $4\tau_{p}$ : è un circuito a quattro livelli.
 ##### Costo:
 possiamo sfruttare le tecniche di minimizzazione delle funzioni booleane per cercare di minimizzare il costo e massimizzare le prestazioni:
-![[Pasted image 20241021184252.png]]
+![[Pasted image 20241021184252 1.png]]
 Queste tecniche ci permettono di identificare l'equivalenza tra i due circuiti seguenti:
-![[Pasted image 20241021184603.png]]
+![[Pasted image 20241021184603 1.png]]
 ##### Forme canoniche come reti:
 Ogni funzione booleana può essere espressa in forma canonica. Queste possono essere realizzate usando 2 soli livelli di porte logiche (AND/OR).
 Non è detto che una rappresentazione in forma canonica sia in forma minima.
 ##### Esempio:
-![[Pasted image 20241021184924.png]]
+![[Pasted image 20241021184924 1.png]]
 #### Componenti:
 ##### Codificatore:
 Il codificatore è un circuito che realizza la funzione di codifica binaria. Associa ad ogni elemento di un certo insieme di codifica composto da m simboli una sequenza distinta di n bit.
 Per ogni simbolo, generale il codice corrispondente (con $2^{n}>=m$)
 Il circuito ha quindi m linee di ingresso $x_{0},...,x_{m-1}$ ed n linee di uscita $y_0,...,y_{n-1}$
-![[Pasted image 20241021185626.png]]
+![[Pasted image 20241021185626 1.png]]
 ###### Esempio:
-![[Pasted image 20241021185654.png]]
+![[Pasted image 20241021185654 1.png]]
 ##### Decodificatore:
 Realizza la funzione inversa del codificatore: a partire da una parola di un codice binario, genera una uscita che identifica uno dei simboli dell'insieme di interesse. Per ciascuna configurazione di ingresso, una sola uscita vale 1, le altre 0.
 ###### Esempio:
-![[Pasted image 20241021185841.png]]
-![[Pasted image 20241021185853.png]]![[Pasted image 20241021185913.png]]
+![[Pasted image 20241021185841 1.png]]
+![[Pasted image 20241021185853 1.png]]![[Pasted image 20241021185913 1.png]]
 ##### Multiplexer:
 In alcuni casi è necessario scegliere tra più segnali in input/output, per esempio quando forniamo input diversi ad una stessa funzione booleana implementata in hardware:
 Il _multiplexer_ è un circuito che permette di selezionare tra un insieme di input, un solo output.
 Esso si basa su n segnali di controllo (**x**),$2^n$ segnali dati(**d**) e una sola uscita (y)
-![[Pasted image 20241018114739.png]]
+![[Pasted image 20241018114739 1.png]]
 
 L'uscita assume il valore $d_i$ quando x=i
-possiamo quindi scrivere la funzione di uscita come somma logica tra il prodotto di tutti i mintermini di x e i dati d:$$y=\sum\limits_{i=o}^{2^{n}-1}d_{i}m_{i}$$![[Pasted image 20241018114914.png]]![[Pasted image 20241018114958.png]]
+possiamo quindi scrivere la funzione di uscita come somma logica tra il prodotto di tutti i mintermini di x e i dati d:$$y=\sum\limits_{i=o}^{2^{n}-1}d_{i}m_{i}$$![[Pasted image 20241018114914 1.png]]![[Pasted image 20241018114958 1.png]]
 
 Un multiplexer può essere utilizzato per implementare qualsiasi funzione booleana di n variabili. Questa rappresentazione in forma tabellare di una funzione determina per ogni configurazione dell'input il valore dell'output.
 un multiplexer può implementare tale tabella.
-![[Pasted image 20241018115308.png]] 
+![[Pasted image 20241018115308 1.png]] 
 ##### Demultiplexer:
 il circuito duale del multiplexer è il demultiplexer. l'uscita i esima assume i valore y quando la variabile di controllo x=i. Possiamo trovare una somiglianza con il decoder.
-![[Pasted image 20241018115503.png]]
+![[Pasted image 20241018115503 1.png]]
 ##### Read Only Memory:
 è una memoria in sola lettura. Le locazioni di memoria possono essere lette specificandone l'indirizzo:
-![[Pasted image 20241018115643.png]]
+![[Pasted image 20241018115643 1.png]]
 è un'implementazione alternativa di un circuito combinatorio, dato un'ingresso, c'è una sola uscita.
 ###### Schema logico di una ROM:
-Le funzioni di commutazione sono realizzate come OR di mintermini:![[Pasted image 20241018115834.png]]
+Le funzioni di commutazione sono realizzate come OR di mintermini:![[Pasted image 20241018115834 1.png]]
 e questa è la rispettiva implementazione.
-![[Pasted image 20241018115902.png]]
+![[Pasted image 20241018115902 1.png]]
 ###### ROM Paginata:
 Per motivi di ottimizzazione di superficie, si cerca di realizzare le ROM in forma quadrata. 
 Viene quindi organizzata in "pagine", con una parte dei bit dell'indirizzo viene usata per selezionare la pagina. 
-La restante parte seleziona la parola all'interno della pagina.![[Pasted image 20241018120202.png]]
+La restante parte seleziona la parola all'interno della pagina.![[Pasted image 20241018120202 1.png]]
 ##### PLA
 Una ROM è una matrice di AND (con cui sostituisco il decoder) che implementa tutti i mintermini, accoppiata ad una matrice di OR che implementa le varie funzioni. Si potrebbe rendere programmabile sia la rete AND che OR:
 La Programmable Logic Array (PLA) realizza questa struttura:
-![[Pasted image 20241018120605.png]]
+![[Pasted image 20241018120605 1.png]]
 Come nel caso della ROM, la programmazione avviene a tempo di sintesi. 
 Dei fusibili possono essere utilizzati per collegare i fila sia nella rete AND che nella rete OR. 
 ###### Esempio:
-![[Pasted image 20241018121830.png]]
+![[Pasted image 20241018121830 1.png]]
 Studio il grafico attraverso le equazioni delle singole y:
 $$y_{1}=\bar{x_{1}}x_{2}\bar{x_4}+\bar{x_{1}}x_{3}{x_4}+x_{1}$$
 Questo perché presi $x_{1},x_{2},x_{4}$ notiamo che dobbiamo studiare il loro comportamento e quello dei rispettivi negati. $y_{1}$ presenta 3 fusibili e studiandoli singolarmente noto che le "linee" tracciate di $\bar{x_{1}}x_{2}\bar{x_4}$ mi restituiscono 1 se sono  sulla stessa linea. Nella precedente formula, la moltiplicazione fra le varie x dell'input, corrisponde all'operatore "AND", questo significa che il fusibile che si trova nella prima riga della colonna di $y_1$ si illumina se tutti e tre i fusibili corrispondenti sulla stessa riga sono accesi. Lo stesso vale per le righe successive. Da questo ne deduciamo che la somma fra le i tre elementi corrisponde all'operatore "OR". Nel complesso cosa significa questo? 
@@ -809,14 +809,14 @@ Il fusibile che si trova in corrispondenza della prima riga e sulla colonna di $
 ### Reti combinatorie iterative:
 I metodi di sintesi che abbiamo analizzato fino a questo punto permettono la sintesi di circuiti in cui sono poche le variabili in inout.
 Per progettare una CPU, dobbiamo essere in grado di gestire dati a 16, 32, 64 bit. Un circuito di questo tipo può essere difficile da sintetizzare. Per ovviare a questo problema possiamo organizzare i circuiti in maniera iterativa. Ciò significa che uno stesso circuito elementare tratta un sottoinsieme dei bit dei dati, riducendo il numero di variabili. Più circuiti elementari sono interconnessi fra loro per calcolare la funzione finale.
-![[Pasted image 20241021152258.png]]
+![[Pasted image 20241021152258 1.png]]
 - Vettore **y** rappresenta le informazioni di stato trasferite da un modulo al successivo. L'ultimo modulo può esporre parte di questa informazione all'esterno, ad esempio per notificare dettagli circa il risultato finale dell'operazione.
 - Vettore **x** rappresenta il dato in input, decomposto tra i vari moduli.
 - Vettore **z** rappresenta l'output, calcolato iteramente dai moduli 
 #### Comparatori:
 I comparatori sono dei circuiti che confrontano il valore di due numeri, A e B, rappresentati in formato binario.
 Il risultato di un comparatore determina se A=B, il confronto può essere effettuato su ciascuna coppia di bit in moduli separati, tuttavia è necessario propagare il risultato della comparazione dai moduli precedenti:
-![[Pasted image 20241021161118.png]]
+![[Pasted image 20241021161118 1.png]]
 ##### Esempio:
 Considero due numeri 10110 e 10010, il comparatore agirà calcolando a due a due le cifre partendo da destra:
 				!	 $\longleftarrow$	     $\longleftarrow$ 
@@ -827,28 +827,28 @@ Considero due numeri 10110 e 10010, il comparatore agirà calcolando a due a due
 | 1     | 0     | 0     | 1     | 0     |
 Il controllo inizia e appena trova un bit diverso, propaga il segnale ai moduli successivi, indipendentemente dall'uguaglianza dei singoli termini.
 ##### Esempio con le tabelle di verità:
-![[Pasted image 20241021163449.png]]
+![[Pasted image 20241021163449 1.png]]
 Ed i mintermini della funzione sono soltanto due:$$z_{i}=z_{i-1}\bar{a}~\bar{ b}+z_{i-1}*a*b=z_{i-1}(a\odot b)$$
-e la sua rappresentazione circuitale è:![[Pasted image 20241021163840.png]]
+e la sua rappresentazione circuitale è:![[Pasted image 20241021163840 1.png]]
 ##### Problema delle reti iterative:
-Analizzando la struttura del comparatore realizzato è evidente quale sia il limite di queste reti:![[Pasted image 20241021164044.png]]
+Analizzando la struttura del comparatore realizzato è evidente quale sia il limite di queste reti:![[Pasted image 20241021164044 1.png]]
 Il tempo di calcolo della funzione può diventare inaccettabile se il numero di bit da processare è troppo elevato.
 ##### Comparatore veloce:
 I bit dei numeri da confrontare vengono divisi in h blocchi di k bit. Ciascun blocco viene confrontato da un comparatore iterativo dedicato.
 Le uscite dei vari comparatori vengono processate da un comparatore aggiuntivo.
-![[Pasted image 20241021164246.png]]
+![[Pasted image 20241021164246 1.png]]
 ###### Comparatore veloce ad albero:
 Poiché il numero di bit è tipicamente una potenza di due, si possono organizzare i comparatori in una struttura ad albero a più livelli.
 Per esempio, per interi a 16 bit:
-![[Pasted image 20241021165712.png]]
+![[Pasted image 20241021165712 1.png]]
 ##### Half adder:
 Il circuito più semplice per effettuare una somma di operandi ad un solo bit deve calcolare il valore della somma e il valore del riporto:$$s=a⊕b,~~~c=a*b$$
-![[Pasted image 20241021165901.png]]
+![[Pasted image 20241021165901 1.png]]
 ##### Full adder:
 Per calcolare la somma di un inter a n bit, possiamo realizzare una rete iterativa composta da n sommatori, dove il circuito del modulo va modificato per considerare anche il riporto proveniente dai moduli precedenti.
-![[Pasted image 20241021170130.png]]
-![[Pasted image 20241021170145.png]]
-![[Pasted image 20241021170219.png]]
+![[Pasted image 20241021170130 1.png]]
+![[Pasted image 20241021170145 1.png]]
+![[Pasted image 20241021170219 1.png]]
 ##### Carry Lookahead Adder:
 l **carry lookahead adder (CLA)** è un tipo di sommatore binario progettato per migliorare la velocità delle operazioni di somma rispetto a un sommatore binario tradizionale (come il **ripple-carry adder**). L'idea principale del CLA è di **calcolare il bit di carry in modo parallelo** piuttosto che in modo sequenziale, rendendo l'addizione molto più veloce, specialmente per numeri binari lunghi. Per comprenderne il funzionamento, devo 
 ##### Shifter:
@@ -861,10 +861,10 @@ dobbiamo prevedere i seguenti “comandi” per un circuito:
 - D=0 trasla a sinistra, D=1 trasla a destra
 Possiamo descrivere il circuito che calcola il valore del bit in uscita con il seguente sistema:
 
-quindi l'equazione che calcola il valore del bit diventa:$$z_{i}=\overline{SH}a_{i}+SH*(a_{i-1}*\overline D)+a_{i+1}*d$$![[Pasted image 20241022124822.png]]
+quindi l'equazione che calcola il valore del bit diventa:$$z_{i}=\overline{SH}a_{i}+SH*(a_{i-1}*\overline D)+a_{i+1}*d$$![[Pasted image 20241022124822 1.png]]
 Per supportare una traslazione di più posizioni possiamo costruire una rete iterativa di shifter
 Utilizzando un vettore di controllo SH possiamo controllare i vari livelli:
-![[Pasted image 20241022124948.png]]
+![[Pasted image 20241022124948 1.png]]
 Può infatti essere implementato al fine di essere utilizzato per la criptazione di dati, infatti con un numero a 4 bit potremmo utilizzare lo shift classico a sinistra per 3 cifre e la quarta la porto come prima cifra: $0111\longleftarrow1011$
 ###### Esempio:
 $1101\longrightarrow0110$ 
@@ -874,13 +874,13 @@ In entrambi i casi, però, se lavoriamo esclusivamente a 4 bit ci troveremo nell
 Il costo della rete può essere elevato. Si può utilizzare una rete basata su interruttori posti in posizione predefinite. Ed attivando gli interruttori corretti, è possibile implementare in tempo costante, tutte le traslazione a destra e a sinistra
 
 ##### Operazioni di shift tipiche:
-![[Pasted image 20241022125820.png]]
+![[Pasted image 20241022125820 1.png]]
 Esistono altre operazioni tipiche, ovvero rotazioni e shif aritmetico. In alcuni casi viene preso in considerazione anche un bit di carry (il quadrato C in figura).
 ##### Alu:
-![[Pasted image 20241025115114.png]]
-![[Pasted image 20241025115212.png]]
+![[Pasted image 20241025115114 1.png]]
+![[Pasted image 20241025115212 1.png]]
 
-## Capitolo 6: Reti sequenziali:
+### Capitolo 6:
 I circuiti visti fin ad ora possono essere definiti combinatori, infatti dato un certo input, essi calcolano un certo output, secondo la relazione:$$y=f(x)$$
 Tali circuiti quindi hanno un’uscita che dipende esclusivamente dall’input. Se avessimo a disposizione solo questo tipo di circuito, non potremmo implementare elementi di memoria.
 #### Circuito latch: 
@@ -890,7 +890,7 @@ Non funzione se uno utilizza come output 1,1 poiché non riesce a memorizzare un
 In una configurazione io devo dare un valore di reset R ed un valore di set S, otterrò Q e $\overline{Q}$.
 ($Q’$ è $\neq\overline Q$)
 Attraverso le tre combinazioni:$$(0,0),(0,1),(1,0)$$ possono chiedere di ottenere un valore o di salvarlo.
-![[Pasted image 20241025121034.png]]
+![[Pasted image 20241025121034 1.png]]
 ##### Problemi del latch:
 Una configurazione di ingresso in cui S= 1 e R = 1 manda il circuito
 in uno stato oscillante
@@ -904,30 +904,30 @@ input si sono stabilizzati
 ###### Flip Flop SR:
 Si basa sull’aggiunta di un segnale di clock al latch:
 Funziona come un orologio, serve a tenere il tempo e vedere se il circuito funziona regolarmente. Si usano dei quarzi che creano circuito elettromagnetico e lo invertono.
-![[Pasted image 20241025121344.png]]
+![[Pasted image 20241025121344 1.png]]
 Rimane il problema dell’input con S ed R = 1.
 Possiamo costruire un circuito che prevenga l’insorgere di configurazioni oscillanti.
 ###### Flip Flop JK:
 Aggiunge una rete di controllo ai segnali di ingresso. Questa rete rende impossibile che is verifichi la condizione che avevamo enunciato prima in input:
-![[Pasted image 20241025121742.png]]
+![[Pasted image 20241025121742 1.png]]
 ###### Flip Flop D:
 I due precedenti Flip Flop hanno la necessità di due segnali di controllo opposti, spesso infatti si vuole utilizzare un flip flop per immagazzinare un bit generato da una funzione di commutazione. Per non dover negare esplicitamente il bit, si può usare un flip flop D. Tale circuito si comporta da **ritardo**(delay):
-- l’input viene propagato in output dopo un periodo di clock. ![[Pasted image 20241025200118.png]]
+- l’input viene propagato in output dopo un periodo di clock. ![[Pasted image 20241025200118 1.png]]
 
 ###### Flip Flop T:
 Può essere anche utile avere a disposizione un flip flop che si comporta come switch:
 - Al primo segnale, commuta da 0 a 1
 - Al secondo segnale, commuta da 1 a 0
 Il flip flop T (**toggle**) implementa questo comportamento:
-![[Pasted image 20241025200553.png]]
+![[Pasted image 20241025200553 1.png]]
 
 
 ##### Fronti di commutazione.
 Per funzionare correttamente, questi flip flop devono avere i segnali di controllo stabili per tutta la durata del periodo di clock. È utile prevedere circuiti che effettuino la commutazione in finestre temporali precise e di durata più breve. _Edge-triggeredd_ flip flop: commutano su fronte di salita o di discesa:
-![[Pasted image 20241025122354.png]]
+![[Pasted image 20241025122354 1.png]]
 
 Andiamo a studiare i diversi comportamenti eseguiti dallo stesso flip flop: 
-![[Pasted image 20241025122321.png]]
+![[Pasted image 20241025122321 1.png]]
 Se studiamo i fronti di salita, di costanza del valore o di discesa, posso notare come nella figura, in corrispondenza di una discesa o salita sono corrisposte diverse uscite dipendentemente dal grafico. 
 Per capire se i calcolatori sono corretti si valuta il tempo di salita o il tempo di discesa, se i risultati in questo intervallo sono gli stessi allora si continua nello studio, sennò si resetta il funzionamento e si inverte il bit. Se un segnale nello istante risponde in due modi differenti, uno dei due viene resettato ed invertito il bit di uscita.
 
@@ -939,7 +939,7 @@ Esistono due classi principali di reti sequenziali:
 - Sincrone: se la transizione di stato avviene in instanti temporali controllabili dall’esterno
 - Asincrone: non controllabili dall’esterno.
 Studieremo le prime:
-![[Pasted image 20241025123622.png]]
+![[Pasted image 20241025123622 1.png]]
 ##### Macchine a stati finiti:
 Si tratta di un modello matematico per la descrizione della computazione. È una macchina astratta:
 - in un dato istante si trova in uno stato (tra un insieme finito di stati)
@@ -949,17 +949,17 @@ Esistono due principali varianti:
 - macchina di Moore: l’output dipende unicamente dallo stato:
 - macchina di Mealy: l’output dipende dallo stato e dalla transizione innescata:
 ###### Macchina di Moore:
-![[Pasted image 20241025124159.png]]
+![[Pasted image 20241025124159 1.png]]
 ###### Macchina di Mealy:
-![[Pasted image 20241025124240.png]]
+![[Pasted image 20241025124240 1.png]]
 
 ##### Rappresentazioni:
 È possibile utilizzare due formalismi:
 ###### Diagramma degli stati: 
 Mostra graficamente le relazioni tra gli stati e le transizioni, identificando anche i caratteri di output:
-![[Pasted image 20241025124448.png]]
+![[Pasted image 20241025124448 1.png]]
 ###### Tabella degli stati:
-![[Pasted image 20241025124608.png]]
+![[Pasted image 20241025124608 1.png]]
 
 ##### Equivalenza fra modelli:
 Esiste sempre una trasformazione tra una macchina di Mealy e una macchina di Moore, poichè essi sono equivalenti.
@@ -968,7 +968,7 @@ Esiste sempre una trasformazione tra una macchina di Mealy e una macchina di Moo
 - Gli stati sono gli stessi
 - Se in uno stato $S_{i}$ raggiunto da una transizione causata da un carattere $i_{j}$, viene generato un output $o_{k}$ quello stesso output viene generato durante la transizione $i_{j}$ verso lo stato $s_{i}$.
 ###### Trasformazione da Mealy a Moore:
-![[Pasted image 20241025125158.png]]
+![[Pasted image 20241025125158 1.png]]
 ##### Sintesi delle macchine:
 Per realizzare circuitalmente una macchina è necessario:
 - Realizzare il blocco M: questo può essere fatto utilizzando un numero sufficiente di flip flop D
@@ -977,260 +977,4 @@ Per realizzare circuitalmente una macchina è necessario:
 Trattandosi di reti combinatorie, è possibile utilizzare le tecniche di sintesi e minimizzazione che abbiamo studiato per le funzioni booleane.
 La sintesi può essere svolta a partire dalla tabella degli stati e transizioni.
 ###### Esempio:
-![[Pasted image 20241025194318.png]]
-
-## Capitolo 7:
-
-
-
-
-### Registri:
-Sono delle unità di memoria interne al processore:
-- compongono la parte di memoria di lavoro interna alla CPU. 
-- Permettono  di memorizzare parole binarie
-- La quantità di memoria disponibile è estremamente limitate.
-- Sono realizzate attraverso un insieme di flip flop:
-![[Pasted image 20241029114605.png]]
-Vengono utilizzate tante componenti hardware per memorizzare gli elementi, questo è utile perché i registri lavorano alla stessa velocità del processore e l'abilità si trova nel metterci proprio le informazioni giuste.
-#### Suddivisione:
-Possono essere suddivisi in più classi.
-- Registri fondamentali: sono i registri senza i quali non è possibile realizzare un 'architettura di von Neumann
-- Registri visibili al programmatore: sono registri che il programmatore può utilizzare esplicitamente nel suo programma
-- Registri invisibili al programmatore: sono registri che il programmatore può modificare solo indirettamente e non programmaticamente.
-##### Registri Visibili:
-Ci sono 16 registri _general purpose_ a 64 bit che il programmatore può utilizzare esplicitamente come _operandi_ delle istruzioni:
-![[Pasted image 20241029120051.png]]
-Alcuni di questi registri hanno un significato particolare e sono utilizzabili implicitamente utilizzando specifiche istruzioni assembly
-
-##### Come si interconnettono i registri?
-###### Necessità di interconnessione tra registri:
-###### Prima modalità, interconnessione diretta:
-Possiamo prevedere la seguente interconnessione se vogliamo supportare l'esecuzione dei segnali: _mov, %rax, %rbx_:
-![[Pasted image 20241029120514.png]]
-quindi ci saranno 64 x 15 fili che collegano:
-Possiede il vantaggio della semplicità di progettazione, ma lo svantaggio di interconnettere più registri fra loro.
-###### Seconda modalità, Interconnessione tramitre multiplexer:
-![[Pasted image 20241029120711.png]]
-Presenta i seguenti vantaggi:
-- semplici da implementare
-- possibilità di trasferire più dati contemporaneamente
-###### Terza modalità:
-costruzione di un Bus interno, cioè un gruppo di 64 fili che corrono all'interno del processore:
-- collega tra loro tutti i registri interni.
-Occorre smistare i dati sul bus:
-- recupero di dati: i bit presenti sul BUS sono memorizzati in un registro
-- immissioni di dati: il contenuto di un registro è posto sul BUS
-Utilizzo di più segnali di controllo opportunamente generati dalla CU:
-- Wirte enable per abilitare la scrittura
-- Buffer Three-State per abilitarne la lettura.
-
-Ricordandosi che si può avere una sola immissione per volta sul BUS, il modo per interconnettere i registri tramite BUS solamente andando ad utilizzare il buffer three state per evitare che un output di un circuito arrivi ad un altro e questi messaggi viaggiano attraverso i bus. ![[Pasted image 20241029121943.png]]
-Quindi per leggere quello che è scritto nel RAX (registro) mi basta un Buffer-Three-State, il tipo di registro iniziale attraverso 4 bit, visto che questi compongono i registri. Quindi per leggerne uno in entrata ed in uscita, necessitò in totale di 6 bit, 4 di "costruzione" e 2 per o scriverlo o leggerlo.
-###### Ottimizzazione del banco dei registri:
-Ottimizzazione: banco dei registri (o file dei registri o memoria dei registri). I registri sono codificati con un codice numerico identificativo $\in[0,15]$ totali. (per questo motivo per calcolare i registri bastano 4 bit (4!=16)).
-![[Pasted image 20241029122232.png]]
-###### Processamento di dati a dimensione differente:
-Un processore può operare su dati di dimensione differente:
-- Esempi tipici: 8, 16, 32, 64 bit
-- Non è vantaggioso e pratico avere più banchi di registri:
-- E' utile poter accedere a sottoporzioni dei dati nei registri
- ![[Pasted image 20241029123311.png]]
- i rispettivi registri a 8,16,32,64 si rappresentano:
- AL|H|AX|EAX|$\overline\epsilon \le |f(x_{2})|f(z_{k})$ ?
-
-###### Registri virtuali:
-Le istruzioni assembly usano un suffisso per indicare la dimensione:$$MOVx <sorgente>, <destinazione>$$
-B: byte (8 bit), W:word(16 bit), L: longword (32 bit), Q: quadword (64 bit)
-Il suffisso fornisce parte del contesto alla CU per poter trattare i dati correttamente.
-![[Pasted image 20241029124214.png]]
-![[Pasted image 20241029124443.png]]
-###### Instruction Registrer:
-Sapendo che accedere alla memoria è un'operazione costosa, i registri dei processori sono realizzati con tecnologia molto più veloce, ma più costosa. La memoria, avendo dimensione più grande, è realizzata con tecnologia più economiche ma meno veloci.
-I circuiti combinatori e sequenziali interni alla CPU devono avere gli input stabili fino alla loro stabilizzazione. Non è ragionevole mantenere stabili gli input direttamente dalla RAM, dunque si introduce un registro tampone, ovvero l'Instruction Registrer: esso mantiene una _copia_ della codifica di un'istruzione assembly  prelevata dalla memoria. 
-In questa codifica, sono mantenuti i codici del registro e della taglia dei dati:
-![[Pasted image 20241029130144.png]]
-
-###### Componenti per il processamento dei dati :
-I circuiti elementari costruiti fin'ora sono la ALU e lo shifter.
-![[Pasted image 20241104142712.png]] 
-I dati da fornire in input a questi due circuiti sono contenuti nel banco dei registri.
-C'è un problema, la ALU ha bisogno di due operandi (da mantenere stabili) ed è possibile eseguire una sola immissione di dati sul BUS interno. La soluzione è quella di utilizzare dei registri tampone:
-![[Pasted image 20241104142940.png]]
-##### Registro FLAGS:
-ALU e Shifter sono reti iterative che emettono dei bit di stato. E' utile esporre lo stato al programmatore: occorre memorizzarli. Si utilizza il registro fondamentale in FLAGS. 
-I bit al suo interno si dividono in status e control:
-![[Pasted image 20241104143326.png]]i bit di stato sono aggiornati dalla ALU e dallo Shifter per memorizzare informazioni sull'ultima operazione eseguita. I bit di controllo sono modificabili dal programmatore per alterare alcune funzionalità del processore.
-###### Utilizzo del registro Flags:
-![[Pasted image 20241104143833.png]]
-#### Interazioni con la memoria:
-La restante parte della memoria di lavoro è esterna alla CPU. E' necessario prevedere un interfacciamento con essa ed un protocollo di scambio dati.
-![[Pasted image 20241104144017.png]]
-##### Modello astratto di memoria di lavoro:
-![[Pasted image 20241104144111.png]]
-##### Trasferimento di dati con memoria esterna:
-Il bus di sistema è un insieme di fili che "corrono" alla memoria dal sistema. Poiché esistono tre componenti, vengono organizzati su viaggi differenti:
-![[Pasted image 20241104144242.png]]
-Il numero minimo di fili che ci deve essere è 8, poiché nel  modello astratto di memoria ci sono almeno 8 bit. Ad oggi il numero massimo è di 48 bit, quindi posso indirizzare fino a $2^{48}$cavi.
-Sappiamo che la memoria è più lenta del processore e si comporta come un circuito combinatorio, e le altre componenti sul BUS di controllo devono rimanere stabili. Visto che il data BUS è unico, sarà sempre la CPU a scegliere in quale modo utilizzarlo, se per leggere o scrivere. Questo poiché è il processore che "svolge" i programmi.
-Visto che occorre utilizzare un tampone tra i dispositivi, allora dovrò posizionare gli elementi in questo modo:
-![[Pasted image 20241104145115.png]]
- >MAR sta per memory address bus quindi l'indirizzo di riferimento del BUS
- 
- Sul memory data bus si scrivono i dati raccolti:
- possiamo disaccoppiare, quindi scinderlo in modo tale da non collegare memory data BUS e memory address BUS.
-###### Zoom della logistica della memoria: 
-![[Pasted image 20241104145723.png]]
-#### Anatomia dei programmi in memoria:
-ogni dato è identificabile solo attraverso gli indirizzi:
-![[Pasted image 20241104150644.png]]
-Questo tipo di architettura è "a stack". Utilizza una pila per immagazzinare valori, nel nostro caso cresce verso il basso. Per esempio, ipotizziamo di utilizzare una variabile, essa deve essere dichiarata nella parte dello stack, non può occupare spazio in "data", perchè andrebbe a creare problemi di memoria con  i dati che sono presenti nel livello.
-
-#### Come capire il punto in cui si è arrivati
-Se .text è una sequenza lineare di istruzioni la CPU deve tenere traccia del punto in cui è arrivata ad eseguire le istruzioni.
-Viene utilizzato un altro registro fondamentale: _**l'instruction pointer.**_
-Questo registro si aggiorna in continuazione e trascrive la prossima istruzione da eseguire. 
-RIP mantiene (quasi) sempre l'indirizzo della prossima istruzione (è un puntatore a memoria che punterà al bit successivo appena letto):
-![[Pasted image 20241104151545.png]]
-
-##### Come incrementarlo?
-Se utilizzassi la ALU, il programma sarebbe molto lento. Poiché il processo di somma andrebbe ripetuto ad ogni istruzione e non si potrebbe svolgere in contemporanea l'istruzione. Si pone come registro a incremento, il quale è accoppiato ad un sommatore veloce dedicato. E' un circuito più complesso ma il processo può svolgersi in parallelo all'esecuzione dell'istruzione corrente.
-
-#### Lo stack di programma:
-Il processore ha un numero estremamente limitato di registri, un programma potrebbe avere bisogno di gestire tante variabili o alcune molto grandi.
-E' possibile utilizzare un'area di memoria come "area di appoggio": lo stack di programma.
-##### Cos'è?
-Essa è una struttura dati di tipo LIFO (Last-In-First-Out):: il primo elemento che può essere prelevato è l'ultimo ad essere memorizzato.
-Si possono effettuare due operazioni su questa struttura dati:
-	• push: viene inserito un elemento sulla sommità (top) della pila
-	• pop: viene prelevato l’elemento affiorante (top element) dalla pila
-Data l’importanza di questa struttura dati, molte ISA forniscono
-istruzioni dedicate per la sua manipolazione.
-##### Gestione dello stack nello z64:
-Lo stack è composto da quadword (non si può eseguire una push di un singolo byte)
-La cima dello stack è individuata dall'indirizzo memorizzato in un registro specifico chiamato stack pointer
-Lo stack “cresce” se il valore contenuto in SP diminuisce, “decresce” se il valore contenuto in SP cresce
-Le istruzioni che implementano le operazioni di push e pop utilizzano il registro RSP in modo implicito
-Modificare esplicitamente il valore di RSP significa perdere il riferimento alla cima dello stack, e quindi a tutto il suo contenuto
-È però accessibile al programmatore: si può decidere di utilizzare più stack
-È quello che fanno i sistemi operativi per eseguire più processi contemporaneamente 
-
-##### Utilizzo stack 
-Posso utilizzare più stack per far funzionare meglio un computer, per esempio qualsiasi pc utilizza un singolo stack per ogni singolo programma												
-![[Pasted image 20241105121704.png]]
-
-##### Undefined behaviour:
-è un comportamento del programma per il quale ogni messaggio inviato risponde corretto, poiché potrebbe essere che ci sia stato un overflow dello stack, cioè ha sovrascritto "logicamente" il livello dei dati. Se infatti si vanno a sommare più elementi alla pila dello stack esso può essere che vada ad occupare uno spazio maggiore ed interferire proprio con i dati.										
-
-### Modalità di indirizzamento:
-#### Strutture dati e modello di memoria lineare:
-Il modello astratto di memoria è lineare, quindi indirizzato al byte.
-I linguaggi di programmazione offrono astrazioni diverse:
-	• Vettori: x = A[i];
-	• Strutture dati: x = str.member;
-Il programmatore (o il compilatore) può scrivere un programma assembly per tradurre un accesso ad un elemento di struttura dati in un indirizzo effettivo di memoria:
-![[Pasted image 20241105122721.png]]
-Ad esempio, un accesso all’elemento i-esimo di un vettore può essere “tradotto” in un indirizzo effettivo applicando l’operatore **spiazzamento**
-Se la variabile a è associata all'indirizzo di base del vettore e tutti gli elementi hanno la stessa dimensione, allora vale:
-![[Pasted image 20241105123021.png]]
-Strutture dati più complesse posso utilizzare celle di memoria
-contigue per memorizzare dati di tipo differente. 
-La memoria è lineare: occorre dare un contesto a ciascun membro della struttura.
-![[Pasted image 20241105123156.png]]
-
-Se una variabile di tipo struttura libro è associata all’indirizzo di
-base in memoria in cui si trova la struttura, accedere a un membro
-equivale a calcolare:
-libro.year ⟺ libro + spiazzamento(titolo) + spiazzamento(autore).
-
-E dal punto di vista della programmazione si presenta:
-
-Poiché stiamo realizzando un’architettura CISC, è sensato offrire un
-supporto migliore al calcolo degli indirizzi effettivi a livello di CPU.
-Nei casi (molto comuni) di vettori e strutture, gli elementi ricorrenti
-per il calcolo di un indirizzo effettivo sono stati:
-
-• indirizzo di base
-
-• indice
-
-• spiazzamento
-
-Per quanto riguarda l’indice dei vettori, è utile anche conoscere la
-taglia dei singoli elementi del vettore:
-					a[i] ⟺ a + size ∗ i
-					
-• Poiché i tipi primitivi della CPU sono a 8, 16, 32 e 64 bit, è utile
-prevedere una scala pari a questi valori
-
-##### Operando in memoria:
-Serve a definire delle "definizioni" ricorrenti.
-Le istruzioni assembly possono accettare anche operandi in memoria
-• Per motivi di codifica, al più uno solo
-• MOVx $<sorgente>,~<destinazione>$ 
-• Uno tra $<sorgente>~e~<destinazione>$può essere un operando in memoria
-Per supportare le operazioni comuni, gli operandi in memoria hanno la forma:
-			spiazzamento(base, indice, scala)
-Base e indice sono registri general purpose
-• base: si può riusare lo stesso codice per accedere, ad esempio, a vettori differenti
-• indice: si può utilizzare la stessa istruzione all’interno di un ciclo per scandire un vettore
-Sappiamo che scala e spiazzamento sono delle costanti codificate nell'istruzione.
-###### Esempi:
-
-
-#### Implementazione della modalità di indirizzamento:
-La determinazione di un indirizzo di memoria è un'operazione più complessa. E' necessario fare affidamento sulla PU per calcolare questo indirizzo.
-Ho due possibilità:
-- introduzione di hardware dedicato
-- utilizzo dell'hardware già presente 
-La seconda opzione è la più conveniente, per evitare di appesantire ulteriormente:
-![[Pasted image 20241105125002.png]]![[Pasted image 20241105125021.png]]
-### Istruzioni dello z64: 
-Definire una codifica della istruzioni è fondamentale per progettare un'ISA: 
-- Determina in che modo la CU interpreta le istruzioni
-- Determina quali sequenze di parole binarie il compilatore inserisce in .text
-Sono organizzate in otto classi:
-- Classe 0: Controllo dell’hardware
-- Classe 1: Spostamento dati
-- Classe 2: Aritmetiche (su interi) e logiche
-- Classe 3: Rotazione e shift
-- Classe 4: Operazioni sui bit di FLAGS
-- Classe 5: Controllo del flusso d’esecuzione del programma
-- Classe 6: Controllo condizionale del flusso d’esecuzione del programma
-- Classe 7: Ingresso/uscita di dati
-Le istruzioni hanno un formato a lunghezza variabile:
-![[Pasted image 20241111142825.png]]
-La lunghezza variabile permette la generazione di programmi più compatti (meno consumo di memoria e spazio su disco).
-#### Il campo Opcode:
-![[Pasted image 20241111142953.png]]
-Il campo Opcode:
-- Class è un codice di 4 bit che identifica la famiglia di istruzioni cui
-appartiene quella corrente
-- Type è un codice di quattro bit che identifica la precisa istruzione
-nella famiglia
-- Questa differenziazione ci consentirà di realizzare una CU più ottimizzata
-...
-
-#### Quali sono le istruzioni?
-Le seguenti convenzioni vengono utilizzate per rappresentare gli
-operandi delle istruzioni:
-- B — L’operando è un registro di uso generale, un indirizzo di memoria o un valore immediato. In caso di un indirizzo di memoria, qualsiasi combinazione delle modalità di indirizzamento è lecita. In caso di un immediato, la sua posizione dipende dalla possibile presenza dello spiazzamento e dalla sua dimensione.
-- E — L’operando è un registro di uso generale, o un indirizzo di memoria. In caso di un indirizzo di memoria, qualsiasi combinazione delle modalità di indirizzamento è lecita.
-- G — L’operando è un registro di uso generale.
-- K — L’operando è una costante numerica non segnata di valore fino a 232 − 1
-- M — L’operando è una locazione di memoria, codificata come uno spiazzamento a partire dal contenuto del registro RIP dopo l’esecuzione della
-  fase di fetch  
-- ImmK — L’operando è un dato immediato di K cifre binarie
-##### Classe 0: Controllo hardware
-Le istruzioni di controllo hardware consentono di modificare lo stato della CPU, oppure eseguono istruzioni particolari.
-![[Pasted image 20241111143327.png]]
-Hit può essere utilizzata per esempio se la CPU si surriscalda.
-Nop indica nessuna operazione.
-##### Classe 1: Istruzioni di movimento dati:
-![[Pasted image 20241111144914.png]]
-L'istruzione movzX supporta le stesse combinazioni di suffissi.
-I nomi dei registri virtuali devono essere coerenti con i suffissi.
-L'istruzione lea valuta la modalità di indirizzamento, salva il risultato in G.
-###### Comandi per il movimento di dati:
-![[Pasted image 20241111145016.png]]
-##### Classe 2: Istruzioni logico aritmetiche (1):
-![[Pasted image 20241111145926.png]]
+![[Pasted image 20241025194318 1.png]]

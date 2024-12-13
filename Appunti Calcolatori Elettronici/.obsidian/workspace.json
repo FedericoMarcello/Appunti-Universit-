@@ -4,21 +4,53 @@
     "type": "split",
     "children": [
       {
-        "id": "5b00816e964e02c7",
+        "id": "61203b485999682d",
         "type": "tabs",
+        "dimension": 50.32133676092545,
         "children": [
           {
-            "id": "7aeb2915dd66ba56",
+            "id": "486e77652ef4b0e1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Calcolatori elettronici/Calcolatori.md",
-                "mode": "preview",
+                "file": "Calcolatori elettronici/Appunti.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Calcolatori"
+              "title": "Appunti"
+            }
+          }
+        ]
+      },
+      {
+        "id": "b13d277928a88b76",
+        "type": "tabs",
+        "dimension": 49.67866323907455,
+        "children": [
+          {
+            "id": "df78e1b9e70d0ecb",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Utility/Slide/13. Input e output.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "13. Input e output"
+            }
+          },
+          {
+            "id": "5126f9b1494cce18",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Demultiplexer.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Demultiplexer"
             }
           }
         ]
@@ -112,12 +144,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Calcolatori elettronici/Calcolatori.md",
+                "file": "Calcolatori elettronici/Teoria.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Calcolatori"
+              "title": "Outgoing links from Teoria"
             }
           },
           {
@@ -139,52 +171,65 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Calcolatori elettronici/Calcolatori.md"
+                "file": "Calcolatori elettronici/Appunti.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Calcolatori"
+              "title": "Outline of Appunti"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "audio-recorder:Start/stop recording": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "command-palette:Open command palette": false
     }
   },
-  "active": "7aeb2915dd66ba56",
+  "active": "486e77652ef4b0e1",
   "lastOpenFiles": [
-    "Immagini/Pasted image 20241111145926.png",
-    "Calcolatori elettronici/Calcolatori.md",
-    "Immagini/Pasted image 20241111145016.png",
-    "Immagini/Pasted image 20241111144914.png",
-    "Immagini/Pasted image 20241111142825.png",
-    "Immagini/Pasted image 20241111143327.png",
-    "Immagini/Pasted image 20241111142953.png",
-    "Immagini/Pasted image 20241105125021.png",
-    "Immagini/Pasted image 20241105125002.png",
-    "Immagini/Pasted image 20241105123156.png",
-    "Immagini/Pasted image 20241105121704.png",
-    "Calcolatori elettronici/Tutoraggio.md",
-    "Excalidraw/Drawing 2024-11-05 11.49.04.excalidraw.md",
-    "Excalidraw",
-    "Images",
+    "Utility/Immagini/Pasted image 20241210125233.png",
+    "Utility/Immagini/Pasted image 20241210125144.png",
+    "Utility/Slide/13. Input e output.pdf",
+    "Calcolatori elettronici/Appunti.md",
+    "Utility/Immagini/Pasted image 20241210123743.png",
+    "Utility/Immagini/Pasted image 20241210123403.png",
+    "Utility/Immagini/Pasted image 20241210123358.png",
+    "Utility/Immagini/Pasted image 20241210122204.png",
+    "Utility/Immagini/Pasted image 20241210122046.png",
+    "Utility/Immagini/Pasted image 20241210122031.png",
+    "Utility/Immagini/Pasted image 20241210121850.png",
+    "Utility/Immagini/Pasted image 20241210121841.png",
+    "Utility/Immagini/Pasted image 20241210115758.png",
+    "Utility/Slide/6. Reti iterative.pdf",
+    "Utility/Slide/5. Circuiti combinatori.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Demultiplexer.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Esempio_Rom.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Multiplexer.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Decodificatore_Decoder.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Codificatore_Encoder.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Buffer_three_state.pdf",
+    "Utility/Corso Completo/Circuiti Combinatori/Circuiti_Combinatori/Funz_bool_to_Circuit_Viceversa.pdf",
     "Calcolatori elettronici/Esercizi.md",
+    "Excalidraw/Drawing 2024-11-26 11.56.27.excalidraw.md",
+    "Calcolatori elettronici/Esempi.md",
+    "Utility/Excalidraw/Drawing 2024-11-05 11.49.04.excalidraw.md",
+    "Utility/TimeLine/Produttività.md",
+    "Utility/Excalidraw/Drawing 2024-11-12 14.50.54.excalidraw.md",
+    "Untitled.canvas",
+    "Calcolatori elettronici/Tutoraggio.md",
     "().md",
-    "Immagini",
-    "Calcolatori elettronici",
     "Welcome.md"
   ]
 }

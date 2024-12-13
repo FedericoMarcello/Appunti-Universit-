@@ -21,5 +21,13 @@
     "editor:redo",
     "editor:configure-toolbar",
     "obsidian-functionplot:insert-functionplot"
-  ]
+  ],
+  "attachmentFolderPath": "Utility/Immagini",
+  "pdfExportSettings": {
+    "includeName": false,
+    "pageSize": "A5",
+    "landscape": true,
+    "margin": "2",
+    "downscalePercent": 100
+  }
 }

@@ -1,6 +1,6 @@
 {
-  "cssTheme": "ITS Theme",
+  "cssTheme": "Obsidian gruvbox",
   "baseFontSize": 16,
-  "accentColor": "#e03800",
-  "theme": "moonstone"
+  "accentColor": "#a92828",
+  "theme": "obsidian"
 }

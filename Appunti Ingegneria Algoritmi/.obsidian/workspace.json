@@ -1,54 +1,53 @@
 {
   "main": {
-    "id": "5e5b7608f74b7eb7",
+    "id": "8b0f44f6b543c7a8",
     "type": "split",
     "children": [
       {
-        "id": "8d5e3160b072a8e5",
+        "id": "a5002cf7b8bb62ee",
         "type": "tabs",
         "children": [
           {
-            "id": "78b038afef542ced",
+            "id": "5766dd2aeef1e482",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Ingegneria Algoritmi/Programmazione.md",
+                "file": "Ingegneria Algoritmi/C/Corso.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Programmazione"
+              "title": "Corso"
             }
           }
-        ],
-        "stacked": true
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "b5fcbf854a1a5a5c",
+    "id": "26f72c2450485aa1",
     "type": "split",
     "children": [
       {
-        "id": "9e6fc9ebe1b4afa0",
+        "id": "473d33575a64e5fa",
         "type": "tabs",
         "children": [
           {
-            "id": "de1784d1f6cd268a",
+            "id": "8503738eaa549308",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabeticalReverse"
+                "sortOrder": "alphabetical"
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
             }
           },
           {
-            "id": "42a9cc6e15f4d3b2",
+            "id": "4098ea8c17a3b6a8",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +64,7 @@
             }
           },
           {
-            "id": "519efd5895b63457",
+            "id": "5c33b60de55370d8",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -78,23 +77,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "40de9028ae5c2790",
+    "id": "f287aa3273aea07f",
     "type": "split",
     "children": [
       {
-        "id": "7292025bcba6ce0e",
+        "id": "1daea8e1f4ca6e95",
         "type": "tabs",
         "children": [
           {
-            "id": "f896639a39e83661",
+            "id": "280ff373b021c877",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Ingegneria Algoritmi/Teoria.md",
+                "file": "Ingegneria Algoritmi/Teoria/Appunti.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +103,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Teoria"
+              "title": "Backlinks for Appunti"
             }
           },
           {
-            "id": "09da0c1c8ec3528a",
+            "id": "93d8a1a159abc9ed",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Ingegneria Algoritmi/Teoria.md",
+                "file": "Ingegneria Algoritmi/Teoria/Appunti.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Teoria"
+              "title": "Outgoing links from Appunti"
             }
           },
           {
-            "id": "f28487206c09069c",
+            "id": "f7767d59412a39fe",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -135,23 +134,22 @@
             }
           },
           {
-            "id": "fabed20f0775cd2d",
+            "id": "a1bdb2f43ea2bed3",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Ingegneria Algoritmi/Programmazione.md"
+                "file": "Ingegneria Algoritmi/Teoria/Appunti.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Programmazione"
+              "title": "Outline of Appunti"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
+    "width": 300,
     "collapsed": true
   },
   "left-ribbon": {
@@ -161,26 +159,39 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "78b038afef542ced",
+  "active": "5766dd2aeef1e482",
   "lastOpenFiles": [
+    "Ingegneria Algoritmi/Teoria/Appunti.md",
+    "Utility/Immagini/Pasted image 20241003161425 1.png",
+    "Utility/Immagini/Pasted image 20241003170210 1.png",
+    "Excalidraw/Drawing 2024-12-05 16.06.07.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-29 12.56.39.excalidraw.md",
     "Ingegneria Algoritmi/Teoria.md",
-    "Ingegneria Algoritmi/Programmazione.md",
-    "code.c",
-    "My Code File.py",
-    "Immagini/Pasted image 20241003161911.png",
-    "Immagini/Pasted image 20241003162829.png",
-    "Immagini/Pasted image 20241104111450.png",
-    "Immagini/Pasted image 20241104102258.png",
-    "Immagini/Pasted image 20241104104934.png",
-    "Immagini/Pasted image 20241104104512.png",
-    "Immagini/Pasted image 20241104104213.png",
-    "Immagini/Pasted image 20241104102237.png",
-    "Immagini/Pasted image 20241104100548.png",
-    "Immagini/Pasted image 20241104100524.png",
-    "Ingegneria Algoritmi",
-    "Immagini"
+    "Ingegneria Algoritmi/C/Corso.md",
+    "Utility/TimeLine/Produttività.md",
+    "Utility/Slide/90-NP_completezza.pdf",
+    "Utility/Slide/81-example.pdf",
+    "Utility/Slide/80-MatriciSparse.pdf",
+    "Utility/Slide/70-AlgoritmiNumerici.pdf",
+    "Utility/Slide/60-ProgettazioneAlgoritmi.pdf",
+    "Utility/Slide/55-Matching.pdf",
+    "Utility/Slide/50-Grafi.pdf",
+    "Utility/Slide/40-Tabelle-hash.pdf",
+    "Utility/Slide/30-Ordinamento.pdf",
+    "Utility/Slide/20-Alberi.pdf",
+    "Utility/Immagini/Pasted image 20241205174228.png",
+    "Utility/Immagini/Pasted image 20241205174210.png",
+    "Utility/Immagini/Pasted image 20241205174143.png",
+    "Utility/Immagini/Pasted image 20241205173803.png",
+    "Utility/Immagini/Pasted image 20241205173753.png",
+    "Utility/Immagini/Pasted image 20241205173742.png",
+    "Utility/Immagini/Pasted image 20241205173731.png",
+    "Utility/Immagini/Pasted image 20241205173441.png",
+    "Welcome.md"
   ]
 }
