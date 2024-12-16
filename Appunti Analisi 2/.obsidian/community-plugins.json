@@ -1,11 +1,12 @@
 [
   "obsidian-excalidraw-plugin",
-  "quick-latex",
   "obsidian-functionplot",
   "colored-text",
   "obsidian-style-settings",
   "obsidian-pandoc",
   "obsidian-enhancing-export",
+  "break-page",
   "better-export-pdf",
-  "break-page"
+  "obsidian-markdown-export-plugin",
+  "quick-latex"
 ]

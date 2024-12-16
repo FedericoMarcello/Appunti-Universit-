@@ -25,9 +25,9 @@
   "attachmentFolderPath": "Utility/Immagini",
   "pdfExportSettings": {
     "includeName": false,
-    "pageSize": "A5",
+    "pageSize": "Legal",
     "landscape": true,
-    "margin": "2",
+    "margin": "0",
     "downscalePercent": 100
   }
 }

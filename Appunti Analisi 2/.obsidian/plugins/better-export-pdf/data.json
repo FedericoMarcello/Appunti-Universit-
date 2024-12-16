@@ -5,12 +5,12 @@
   "displayFooter": true,
   "headerTemplate": "<div style=\"width: 100vw;font-size:10px;text-align:center;\"><span class=\"title\"></span></div>",
   "footerTemplate": "<div style=\"width: 100vw;font-size:10px;text-align:center;\"><span class=\"pageNumber\"></span> / <span class=\"totalPages\"></span></div>",
-  "printBackground": false,
+  "printBackground": true,
   "generateTaggedPDF": true,
-  "displayMetadata": false,
-  "debug": false,
-  "isTimestamp": true,
-  "enabledCss": false,
+  "displayMetadata": true,
+  "debug": true,
+  "isTimestamp": false,
+  "enabledCss": true,
   "prevConfig": {
     "pageSize": "A4",
     "marginType": "2",
@@ -23,7 +23,7 @@
     "marginLeft": "10",
     "marginRight": "10",
     "displayHeader": true,
-    "displayFooter": true,
+    "displayFooter": false,
     "cssSnippet": "0"
   }
 }

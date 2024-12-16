@@ -4,11 +4,43 @@
     "type": "split",
     "children": [
       {
+        "id": "35e7d5d0a096efe2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f9701f52e3a1a3ff",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Utility/Tauraso Dispense/Teoria/Slide/analisi-complessa-materiale-Tauraso.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "analisi-complessa-materiale-Tauraso"
+            }
+          }
+        ]
+      },
+      {
         "id": "e19ad83e16630eb8",
         "type": "tabs",
         "children": [
           {
-            "id": "a255172a170742df",
+            "id": "8a06c86c5964fcff",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Analisi 2/Lettere greche.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Lettere greche"
+            }
+          },
+          {
+            "id": "fe2387f5ac008c3a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -33,25 +65,8 @@
               "title": "Drawing 2024-10-23 12.21.21.excalidraw"
             }
           }
-        ]
-      },
-      {
-        "id": "d850109be861eb04",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "db64a4fdeb727c6b",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Utility/Tauraso Dispense/Teoria/Slide/Integrali-multipli-materiale-Tauraso.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Integrali-multipli-materiale-Tauraso"
-            }
-          }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -107,7 +122,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "c430a7e577a744a8",
@@ -189,30 +205,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a255172a170742df",
+  "active": "fe2387f5ac008c3a",
   "lastOpenFiles": [
-    "Utility/Tauraso Dispense/Teoria/Slide/Integrali-multipli-materiale-Tauraso.pdf",
+    "Utility/Tauraso Dispense/Teoria/Slide/analisi-complessa-materiale-Tauraso.pdf",
     "Analisi 2/Appunti.md",
-    "Utility/Immagini/Pasted image 20241213131351.png",
-    "Utility/Immagini/Pasted image 20241213112805.png",
-    "Utility/Immagini/Pasted image 20241212223830.png",
-    "Utility/Immagini/Pasted image 20241212223742.png",
+    "Utility/Tauraso Dispense/Teoria/Slide/trasformata-Laplace-materiale-Tauraso.pdf",
+    "Utility/Tauraso Dispense/Teoria/Slide/Integrali-multipli-materiale-Tauraso.pdf",
+    "Utility/Tauraso Dispense/Teoria/Slide/Integrali-curvilinei-materiale-Tauraso.pdf",
+    "Utility/Immagini/Pasted image 20241216142243.png",
+    "Utility/Immagini/Pasted image 20241216142232.png",
+    "Utility/Immagini/Pasted image 20241216142208.png",
+    "Utility/Immagini/Pasted image 20241216142159.png",
+    "Utility/Immagini/Pasted image 20241216142121.png",
+    "Utility/Immagini/Pasted image 20241216142059.png",
+    "Utility/Immagini/Pasted image 20241216142041.png",
+    "Utility/Immagini/Pasted image 20241216142017.png",
+    "Utility/Immagini/Pasted image 20241216142005.png",
+    "Utility/Immagini/Pasted image 20241216141946.png",
+    "Analisi 2/Lettere greche.md",
+    "output/Appunti.html",
+    "output/attachment",
+    "output",
+    "Utility/Tauraso Dispense/Teoria/Libro/Libro analisi 2.pdf",
     "Excalidraw/Drawing 2024-10-23 12.21.21.excalidraw.md",
     "Analisi 2/Appunti.tex",
     "Analisi 2/Appunti.docx",
-    "Utility/Immagini/Pasted image 20241212144636.png",
-    "Utility/Immagini/Pasted image 20241212141500.png",
-    "Utility/Immagini/Pasted image 20241212133814.png",
-    "Utility/Immagini/Pasted image 20241212133000.png",
-    "Utility/Immagini/Pasted image 20241212132935.png",
-    "Utility/Immagini/Pasted image 20241212132925.png",
-    "Utility/Tauraso Dispense/Teoria/Slide/Integrali-curvilinei-materiale-Tauraso.pdf",
-    "Utility/Tauraso Dispense/Teoria/Slide/analisi-complessa-materiale-Tauraso.pdf",
-    "Utility/Tauraso Dispense/Teoria/Slide/trasformata-Laplace-materiale-Tauraso.pdf",
-    "Utility/Tauraso Dispense/Teoria/Slide",
-    "Utility/Tauraso Dispense/Teoria/Libro/Libro analisi 2.pdf",
-    "Utility/Tauraso Dispense/Teoria/Libro analisi 2.pdf",
-    "Utility/Tauraso Dispense/Teoria/Libro",
     "Excalidraw/Drawing 2024-12-10 14.53.15.excalidraw.md",
     "Teoria.md"
   ]
